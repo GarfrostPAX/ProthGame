@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<serverbinding>
+		<bindaddress>127.0.0.1</bindaddress>
+		<bindport>4001</bindport>
+	</serverbinding>
+
+	<mysql>
+		<server>127.0.0.1</server>
+		<port>3306</port>
+		<username>root</username>
+		<password></password>
+		<database>mybb</database>
+	</mysql>
+
+	<generic>
+		<capcps>1</capcps>
+	</generic>
+</config>

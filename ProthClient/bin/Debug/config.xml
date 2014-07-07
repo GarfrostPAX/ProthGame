@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<server>
+		<ipaddress>127.0.0.1</ipaddress>
+		<port>4001</port>
+	</server>
+
+	<graphics>
+		<device>1</device>
+		<resolutionx>1280</resolutionx>
+		<resolutiony>720</resolutiony>
+		<fullscreen>0</fullscreen>
+		<vsync>1</vsync>
+	</graphics>
+</config>

@@ -1,0 +1,25 @@
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\bin\Debug\ProthServer.exe.config
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.vbprojResolveAssemblyReference.cache
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.Resources.resources
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.vbproj.GenerateResource.Cache
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\bin\Debug\ProthServer.exe
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\bin\Debug\ProthServer.pdb
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\bin\Debug\ProthServer.xml
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.exe
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.xml
+c:\users\silvester\documents\visual studio 2013\Projects\ProthServer\ProthServer\obj\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\bin\Debug\ProthServer.exe.config
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.exe
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.xml
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\bin\Debug\ProthServer.exe
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\bin\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\bin\Debug\ProthServer.xml
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.vbprojResolveAssemblyReference.cache
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.Resources.resources
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\obj\Debug\ProthServer.vbproj.GenerateResource.Cache
+C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthServer\bin\Debug\Nading Network Library Server.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\bin\Debug\ProthServer.exe.config
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.xml
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.pdb
