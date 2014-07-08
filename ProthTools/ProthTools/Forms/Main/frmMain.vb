@@ -14,23 +14,21 @@ Public Class frmMain
 
     Public Sub Start()
 
-        ' First of, let's force our window to be of maximum size.
-        ' It's not required of course, but I personally prefer fullscreen editors.
-        Me.WindowState = Windows.Forms.FormWindowState.Maximized
-
-        ' Now let's create a rendersurface as big as the client's computer resolution can handle.
+        ' Now let's create a rendersurface as big as their resolution will allow.
+        ' This way we can scale up the window without much if any trouble.
+        ' I -COULD- destroy and recreate this every time the window resizes, and reload the entire thing.
+        ' But really, why bother? It's a toolkit, the end-user is never going to see this.
         surf_Main = New WindowSurface(Screen.PrimaryScreen.Bounds.Height, Screen.PrimaryScreen.Bounds.Width)
 
         ' The viewport has been created, now assign it to our form.
         Me.Controls.Add(surf_Main)
 
+        ' Move the view down by an offset so the first section isn't blocked by other objects.
+        surf_Main.Location = New Point(0, OFFSETY)
+
         ' Everything is in order, now to make sure we can render to it using view_Main as an object.
         ' i.e. forcing SFML to render to our form.
         view_Main = New RenderWindow(surf_Main.Handle)
-
-        ' Move on to the RenderLoop.
-        ' I really don't like having it all in one sub.
-        RenderMainView()
 
     End Sub
 
@@ -39,7 +37,4 @@ Public Class frmMain
         var_IsRunning = False
     End Sub
 
-    Private Sub ToolStripMenuItem6_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem6.Click
-
-    End Sub
 End Class

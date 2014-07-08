@@ -13,6 +13,13 @@ Module modGlobals
     Public Const DIR_TILESETS As String = "\tilesets\"
     Public Const GFX_EXT As String = ".png"
 
+    ' Map Constants.
+    Public Const MAP_DEFAULT_X As Byte = 24
+    Public Const MAP_DEFAULT_Y As Byte = 19
+    Public Const MAP_DEFAULT_LAYERS As Byte = 5
+    Public Const TILE_X As Byte = 32
+    Public Const TILE_Y As Byte = 32
+
     ' Data Directory Globals
     Public var_AppPath As String
 
@@ -36,15 +43,22 @@ Module modGlobals
     ' Graphics Globals
     ' We'll be storing our images in these globals.
     Public tex_TileSet() As SFML.Graphics.Texture
+    Public var_NumTileSets As Integer
 
     ' Form Globals.
     ' So we can actually address these forms where nessecary.
     Public frm_Main As frmMain
     Public frm_Loading As frmLoading
 
+    ' Map Global.
+    Public Map As MapRec
+
 
     Public Sub InitGlobals()
-
+ 
+        ' Set up our Default Map Settings.
+        ' Since we have a lovely sub set up for this we might as well use it.
+        NewMap(MAP_DEFAULT_LAYERS, MAP_DEFAULT_X, MAP_DEFAULT_Y)
 
         ' Set the application path.
         var_AppPath = Application.StartupPath()

@@ -14,16 +14,16 @@ Module modGraphicsInit
 
     Private Sub InitTileSets()
         Dim fileEntries As String() = Directory.GetFiles(var_AppPath + DIR_DATA + DIR_TILESETS)
-        Dim FileName As String, numTileSets As Integer, Count As Integer
+        Dim FileName As String, Count As Integer
 
         ' Get the amount of tilesets found.
-        numTileSets = UBound(fileEntries)
+        var_NumTileSets = UBound(fileEntries)
 
         ' Make sure we actually found some tilesets.
-        If numTileSets > 0 Then
+        If var_NumTileSets > 0 Then
             ' Resize the array to accompany for all our tilesets.
             ' We're using + 1 because it looks cleaner to use 1,2,3,4,5 rather than 0,1,2,3,4
-            ReDim tex_TileSet(numTileSets + 1)
+            ReDim tex_TileSet(var_NumTileSets + 1)
 
             ' Set our Counter to 0.
             Count = 0
