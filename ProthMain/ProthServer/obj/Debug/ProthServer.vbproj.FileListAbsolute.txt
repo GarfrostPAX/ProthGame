@@ -23,3 +23,7 @@ C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\bin\Debug\ProthServer.
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.exe
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.xml
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthServer\obj\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\ProthServer.exe.config
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.xml
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.pdb

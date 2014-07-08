@@ -84,6 +84,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Database\modGlobals.vb" />
+    <Compile Include="Modules\Graphics\Init\modGraphicsInit.vb" />
     <Compile Include="Modules\Graphics\Rendering\modRenderMain.vb" />
     <Compile Include="Modules\Logic\modEditorLoop.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />

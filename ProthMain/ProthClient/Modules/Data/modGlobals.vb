@@ -22,12 +22,6 @@
     Public var_TempJob(MAX_CHARACTERS) As Byte
     Public var_TempLevel(MAX_CHARACTERS) As Byte
 
-    Public Const FILEPATH_CONTENT As String = "\bin\content\"
-    Public Const FILEPATH_GUI As String = FILEPATH_CONTENT & "graphics\gui\"
-    Public Const FILEPATH_BUTTONS As String = FILEPATH_GUI & "buttons\"
-    Public Const FILEPATH_FONTS As String = FILEPATH_CONTENT & "graphics\fonts\"
-    Public Const FILEPATH_MUSIC As String = FILEPATH_CONTENT & "music\"
-    Public Const FILEPATH_SOUND As String = FILEPATH_CONTENT & "sounds\"
     Public Const GFX_EXT As String = ".png"
 
     ' Very important! This will need to be used every time the client passes on data so the server knows who it belongs to.

@@ -13,6 +13,12 @@ Module modMain
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(False)
 
+        ' Initialize Global Variables.
+        InitGlobals()
+
+        ' Initialize all the Graphics we'll be using.
+        InitGraphics()
+
         ' Time to fire up our forms.
         ' We'll need to initialize them all seperately due to the way the project is structured.
         ' Not a huge problem, just means we can have a bit more control over what each form does.
@@ -24,6 +30,8 @@ Module modMain
 
         ' Everything should now be in order now.
         ' Of course we still want to be able to SEE our forms.. So let's unide them.
+        ' And hide the loading screen!
+        frm_Loading.Hide()
         frm_Main.Show()
 
         ' Time to start the main application loop!
