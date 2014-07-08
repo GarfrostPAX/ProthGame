@@ -32,5 +32,9 @@
             End If
         Next
 
+        Map.Layers(1).Tiles(5, 5).TileSetID = 1
+        Map.Layers(1).Tiles(5, 5).TileSetX = 32
+        Map.Layers(1).Tiles(5, 5).TileSetY = 320
+
     End Sub
 End Module

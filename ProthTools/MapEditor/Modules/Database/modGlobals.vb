@@ -11,6 +11,7 @@ Module modGlobals
     ' Data Directory Constants
     Public Const DIR_DATA As String = "\data"
     Public Const DIR_TILESETS As String = "\tilesets\"
+    Public Const DIR_GENERIC As String = "\generic\"
     Public Const GFX_EXT As String = ".png"
 
     ' Map Constants.
@@ -36,19 +37,23 @@ Module modGlobals
     Public Const OFFSETY As Integer = 49
     Public surf_Main As WindowSurface
     Public surf_TileSelect As WindowSurface
-    Public view_Main As RenderWindow
-    Public view_TileSelect As RenderWindow
-    Public var_MainReady As Boolean = False
+    Public render_Main As RenderWindow
+    Public render_TileSelect As RenderWindow
+    Public view_Main As SFML.Graphics.View
 
     ' Graphics Globals
     ' We'll be storing our images in these globals.
     Public tex_TileSet() As SFML.Graphics.Texture
     Public var_NumTileSets As Integer
+    Public tex_BackDrop As SFML.Graphics.Texture
 
     ' Form Globals.
     ' So we can actually address these forms where nessecary.
     Public frm_Main As frmMain
     Public frm_Loading As frmLoading
+
+    ' Mouse location Global.
+    Public var_MousePos As SFML.Window.Vector2f
 
     ' Map Global.
     Public Map As MapRec

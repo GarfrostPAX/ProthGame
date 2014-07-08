@@ -34,6 +34,9 @@ Module modMain
         frm_Loading.Hide()
         frm_Main.Show()
 
+        ' We've got a lovely blank map up. Should probably center the view on it.
+        CenterCameraOnMap()
+
         ' Time to start the main application loop!
         EditorLoop()
 

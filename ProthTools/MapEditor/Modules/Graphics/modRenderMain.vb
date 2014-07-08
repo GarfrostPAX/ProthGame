@@ -7,8 +7,11 @@ Module modRenderMain
 
         ' Open our Rendering Sequence and clear our screen from old data.
         ' Wouldn't want it to just stack on eachother when something is removed.
-        view_Main.DispatchEvents()
-        view_Main.Clear(SFML.Graphics.Color.Black)
+        render_Main.DispatchEvents()
+        render_Main.Clear(SFML.Graphics.Color.Black)
+
+        ' Render the fancy map backdrop.
+        RenderBackdrop()
 
         ' Render all the tiles that would normally appear UNDER the player.
         RenderMap(True)
@@ -17,7 +20,26 @@ Module modRenderMain
         RenderMap(False)
 
         ' Display our changes to the screen.
-        view_Main.Display()
+        render_Main.Display()
+
+    End Sub
+
+    Private Sub RenderBackdrop()
+        Dim tempSpr As SFML.Graphics.Sprite
+        Dim x As Integer, y As Integer
+
+        tempSpr = New Sprite(tex_BackDrop)
+
+        ' Loop through all the tiles we know of.
+        For x = 0 To Map.SizeX
+            For y = 0 To Map.SizeY
+
+                ' Render the graphic to the right location.
+                tempSpr.Position = New Vector2f(x * TILE_X, y * TILE_Y)
+                render_Main.Draw(tempSpr)
+
+            Next
+        Next
 
     End Sub
 
@@ -73,7 +95,7 @@ Module modRenderMain
         tempSpr.Position = New Vector2f(X * TILE_X, Y * TILE_Y)
 
         ' Now draw it to the screen!
-        view_Main.Draw(tempSpr)
+        render_Main.Draw(tempSpr)
 
         ' Clear out our values so we don't hoard memory.
         tempRec = Nothing

@@ -89,6 +89,7 @@
     <Compile Include="Modules\Database\modStructures.vb" />
     <Compile Include="Modules\Graphics\modGraphicsInit.vb" />
     <Compile Include="Modules\Graphics\modRenderMain.vb" />
+    <Compile Include="Modules\Logic\modEditorLogic.vb" />
     <Compile Include="Modules\Logic\modEditorLoop.vb" />
     <Compile Include="Modules\Logic\modInput.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />

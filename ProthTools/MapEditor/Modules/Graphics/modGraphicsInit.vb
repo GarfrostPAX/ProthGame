@@ -10,6 +10,9 @@ Module modGraphicsInit
         ' Load our TileSets.
         InitTileSets()
 
+        ' Load Generic Items.
+        InitGenericGraphics()
+
     End Sub
 
     Private Sub InitTileSets()
@@ -46,5 +49,17 @@ Module modGraphicsInit
             MsgBox("Unable to locate any tilesets.", MsgBoxStyle.Critical, "Error")
             End
         End If
+    End Sub
+
+    Public Sub InitGenericGraphics()
+
+        ' Check if the backdrop image exists before we continue.
+        If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT) Then
+            tex_BackDrop = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT)
+        Else
+            MsgBox("Unable to locate backdrop" + GFX_EXT, MsgBoxStyle.Critical, "Error")
+            End
+        End If
+
     End Sub
 End Module

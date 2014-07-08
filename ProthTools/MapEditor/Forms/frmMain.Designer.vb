@@ -338,9 +338,13 @@ Partial Class frmMain
         Me.Controls.Add(Me.strip_Status)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.MaximizeBox = False
         Me.Name = "frmMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prothesys Map Editor"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.strip_Status.ResumeLayout(False)
         Me.strip_Status.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
