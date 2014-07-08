@@ -1,0 +1,17 @@
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\ProthTools.exe.config
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\csfml-audio-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\csfml-graphics-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\csfml-window-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\libsndfile-1.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\openal32.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\ProthTools.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\ProthTools.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\sfmlnet-audio-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\sfmlnet-graphics-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\bin\Debug\sfmlnet-window-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.vbprojResolveAssemblyReference.cache
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.frmMain.resources
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.vbproj.GenerateResource.Cache
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\ProthTools\obj\Debug\ProthTools.frmLoading.resources
