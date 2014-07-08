@@ -48,7 +48,7 @@ Module modRenderMain
 
     End Sub
 
-    Private Sub RenderTile(ByVal Layer As Byte, ByVal X As Byte, ByVal Y As Byte)
+    Private Sub RenderTile(ByVal Layer As Byte, ByVal X As Integer, ByVal Y As Integer)
         Dim tempSpr As SFML.Graphics.Sprite, tempRec As SFML.Graphics.IntRect
 
         ' Before we do anything, make sure this tile actually has a valid tileset linked to it.

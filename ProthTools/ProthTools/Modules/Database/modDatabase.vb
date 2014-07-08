@@ -13,6 +13,10 @@
         Map.SizeX = SizeX
         Map.SizeY = SizeY
 
+        ' Redim our Bordering Maps Array.
+        ' This will be used to determine what map the user is going to walk into when they run into the border.
+        ReDim Map.BorderingMap(3)
+
         ' Create all the layers and the tiles within based on our entered data.
         ReDim Map.Layers(Map.LayerCount)
         For i = 1 To Map.LayerCount

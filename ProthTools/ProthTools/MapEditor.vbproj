@@ -65,30 +65,32 @@
     <Compile Include="Classes\Graphics\WindowSurface.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\Loading\frmLoading.Designer.vb">
+    <Compile Include="Forms\frmLoading.Designer.vb">
       <DependentUpon>frmLoading.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Loading\frmLoading.vb">
+    <Compile Include="Forms\frmLoading.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main\frmMain.Designer.vb">
+    <Compile Include="Forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Main\frmMain.vb">
+    <Compile Include="Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Tilesets\frmTileSelect.Designer.vb">
+    <Compile Include="Forms\frmTileSelect.Designer.vb">
       <DependentUpon>frmTileSelect.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Tilesets\frmTileSelect.vb">
+    <Compile Include="Forms\frmTileSelect.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Database\modDatabase.vb" />
+    <Compile Include="Modules\Database\modEnumerations.vb" />
     <Compile Include="Modules\Database\modGlobals.vb" />
     <Compile Include="Modules\Database\modStructures.vb" />
-    <Compile Include="Modules\Graphics\Init\modGraphicsInit.vb" />
-    <Compile Include="Modules\Graphics\Rendering\modRenderMain.vb" />
+    <Compile Include="Modules\Graphics\modGraphicsInit.vb" />
+    <Compile Include="Modules\Graphics\modRenderMain.vb" />
     <Compile Include="Modules\Logic\modEditorLoop.vb" />
+    <Compile Include="Modules\Logic\modInput.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -109,10 +111,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Loading\frmLoading.resx">
+    <EmbeddedResource Include="Forms\frmLoading.resx">
       <DependentUpon>frmLoading.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main\frmMain.resx">
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

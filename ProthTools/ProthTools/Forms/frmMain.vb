@@ -26,6 +26,9 @@ Public Class frmMain
         ' Move the view down by an offset so the first section isn't blocked by other objects.
         surf_Main.Location = New Point(0, OFFSETY)
 
+        AddHandler surf_Main.MouseDown, AddressOf surf_Main_MouseDown
+        AddHandler surf_Main.MouseMove, AddressOf surf_Main_MouseMove
+
         ' Everything is in order, now to make sure we can render to it using view_Main as an object.
         ' i.e. forcing SFML to render to our form.
         view_Main = New RenderWindow(surf_Main.Handle)
@@ -35,6 +38,16 @@ Public Class frmMain
     Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         ' The main form is closing, make sure we exit out of our threads as well.
         var_IsRunning = False
+    End Sub
+
+    Private Sub surf_Main_MouseDown(sender As Object, e As MouseEventArgs)
+        ' Pass on the mouse events elsewhere.
+        HandleMainMouseClick(e.Button, e.X, e.Y)
+    End Sub
+
+    Private Sub surf_Main_MouseMove(sender As Object, e As MouseEventArgs)
+        ' Pass on the mouse events elsewhere.
+        HandleMainMouseClick(e.Button, e.X, e.Y)
     End Sub
 
 End Class
