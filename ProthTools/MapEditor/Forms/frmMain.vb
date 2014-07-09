@@ -40,9 +40,11 @@ Public Class frmMain
         ' Anyway, the size is calculated by the offset (which is basically the top two bars added onto eachother) and the status strip
         ' being substracted from the inner screen size.
         surf_Main = New WindowSurface(Me.ClientSize.Height - (OFFSETY + strip_Status.Height), Me.ClientSize.Width - (OFFSETX + pan_Misc.Width))
+        surf_TileSelect = New WindowSurface(Me.splt_TileSelect.Panel2.Height, Me.splt_TileSelect.Panel2.Width)
 
         ' The viewport has been created, now assign it to our form.
         Me.Controls.Add(surf_Main)
+        Me.splt_TileSelect.Panel2.Controls.Add(surf_TileSelect)
 
         ' Move the view down by an offset so the first section isn't blocked by other objects.
         surf_Main.Location = New Point(OFFSETX, OFFSETY)
@@ -53,6 +55,7 @@ Public Class frmMain
         ' Everything is in order, now to make sure we can render to it using render_Main as an object.
         ' i.e. forcing SFML to render to our form.
         render_Main = New RenderWindow(surf_Main.Handle)
+        render_TileSelect = New RenderWindow(surf_TileSelect.Handle)
 
         ' Now for some funny magic.
         ' We're creating a viewcamera in SFML that will allow us to easily move the viewport around the
@@ -61,14 +64,17 @@ Public Class frmMain
         ' First we'll need to set up a rect of our main viewport though.
         ' It basically tells our camera how many pixels it has to show us by default.
         Dim temprec As New SFML.Graphics.FloatRect(0, 0, Me.ClientSize.Width - (OFFSETX + pan_Misc.Width), Me.ClientSize.Height - (OFFSETY + strip_Status.Height))
+        Dim temprectile As New SFML.Graphics.FloatRect(0, 0, Me.splt_TileSelect.Panel2.Width, Me.splt_TileSelect.Panel2.Height)
 
         ' Now to create said view.
         view_Main = New SFML.Graphics.View(temprec)
+        view_TileSelect = New SFML.Graphics.View(temprectile)
 
         ' And tell our renderwindow to use this view.
         ' Note that to get any future changes to apply to the camera we need to use the command
         ' below AGAIN. 
         render_Main.SetView(view_Main)
+        render_TileSelect.SetView(view_TileSelect)
 
     End Sub
 
@@ -87,14 +93,34 @@ Public Class frmMain
         HandleKeyBoard(e.Alt, e.Control, e.Shift, e.KeyCode)
     End Sub
 
-    Private Sub frmMain_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
-        ' Pass on the mousewheel events elsewhere.
-        HandleMouseWheel(e.Delta, e.X, e.Y)
-    End Sub
-
     Private Sub cmb_Layers_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Layers.SelectedIndexChanged
         ' Set out current layer.
         ' Because these indices start at 0 we need to add one.
         var_CurrentLayer = cmb_Layers.SelectedIndex + 1
+
+        ' Set the focus back to the form.
+        frm_Main.Focus()
+
+    End Sub
+
+    Private Sub cmb_TileSets_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_TileSets.SelectedIndexChanged
+        var_CurrentTileSet = cmb_TileSets.SelectedIndex + 1
+
+        ' Check if we need to disable some scrollbars.
+        If tex_TileSet(var_CurrentTileSet).Size.X > render_TileSelect.Size.X Then
+            ' We may want to let the scrollbar do something.
+            scrl_HTile.Enabled = True
+            scrl_HTile.Maximum = (tex_TileSet(var_CurrentTileSet).Size.X - render_TileSelect.Size.X) / TILE_X
+        Else
+            ' No need for the horizontal scrollbar, the display is big enough as it is.
+            scrl_HTile.Enabled = False
+        End If
+
+        ' Set the status.
+        StatusMessage("Switched to Tileset #" + var_CurrentTileSet.ToString)
+
+        ' Set the focus back to the form.
+        frm_Main.Focus()
+
     End Sub
 End Class

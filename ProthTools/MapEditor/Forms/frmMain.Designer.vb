@@ -63,15 +63,16 @@ Partial Class frmMain
         Me.splt_TileSelect = New System.Windows.Forms.SplitContainer()
         Me.cmb_TileSets = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
-        Me.HScrollBar1 = New System.Windows.Forms.HScrollBar()
+        Me.scrl_HTile = New System.Windows.Forms.HScrollBar()
+        Me.scrl_VTile = New System.Windows.Forms.VScrollBar()
         Me.pan_Misc = New System.Windows.Forms.Panel()
-        Me.strip_Status = New System.Windows.Forms.StatusStrip()
-        Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cmb_Layers = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.strip_Status = New System.Windows.Forms.StatusStrip()
+        Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.grp_TileSelect.SuspendLayout()
@@ -80,8 +81,8 @@ Partial Class frmMain
         Me.splt_TileSelect.Panel2.SuspendLayout()
         Me.splt_TileSelect.SuspendLayout()
         Me.pan_Misc.SuspendLayout()
-        Me.strip_Status.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.strip_Status.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -331,7 +332,7 @@ Partial Class frmMain
         Me.grp_TileSelect.Dock = System.Windows.Forms.DockStyle.Left
         Me.grp_TileSelect.Location = New System.Drawing.Point(0, 49)
         Me.grp_TileSelect.Name = "grp_TileSelect"
-        Me.grp_TileSelect.Size = New System.Drawing.Size(274, 633)
+        Me.grp_TileSelect.Size = New System.Drawing.Size(280, 633)
         Me.grp_TileSelect.TabIndex = 3
         Me.grp_TileSelect.TabStop = False
         Me.grp_TileSelect.Text = "Tile Select"
@@ -352,9 +353,9 @@ Partial Class frmMain
         '
         'splt_TileSelect.Panel2
         '
-        Me.splt_TileSelect.Panel2.Controls.Add(Me.HScrollBar1)
-        Me.splt_TileSelect.Panel2.Controls.Add(Me.VScrollBar1)
-        Me.splt_TileSelect.Size = New System.Drawing.Size(268, 614)
+        Me.splt_TileSelect.Panel2.Controls.Add(Me.scrl_HTile)
+        Me.splt_TileSelect.Panel2.Controls.Add(Me.scrl_VTile)
+        Me.splt_TileSelect.Size = New System.Drawing.Size(274, 614)
         Me.splt_TileSelect.SplitterDistance = 53
         Me.splt_TileSelect.SplitterWidth = 1
         Me.splt_TileSelect.TabIndex = 1
@@ -379,21 +380,21 @@ Partial Class frmMain
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Current Tileset:"
         '
-        'VScrollBar1
+        'scrl_HTile
         '
-        Me.VScrollBar1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.VScrollBar1.Location = New System.Drawing.Point(251, 0)
-        Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(17, 560)
-        Me.VScrollBar1.TabIndex = 2
+        Me.scrl_HTile.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.scrl_HTile.Location = New System.Drawing.Point(0, 543)
+        Me.scrl_HTile.Name = "scrl_HTile"
+        Me.scrl_HTile.Size = New System.Drawing.Size(257, 17)
+        Me.scrl_HTile.TabIndex = 3
         '
-        'HScrollBar1
+        'scrl_VTile
         '
-        Me.HScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.HScrollBar1.Location = New System.Drawing.Point(0, 543)
-        Me.HScrollBar1.Name = "HScrollBar1"
-        Me.HScrollBar1.Size = New System.Drawing.Size(251, 17)
-        Me.HScrollBar1.TabIndex = 3
+        Me.scrl_VTile.Dock = System.Windows.Forms.DockStyle.Right
+        Me.scrl_VTile.Location = New System.Drawing.Point(257, 0)
+        Me.scrl_VTile.Name = "scrl_VTile"
+        Me.scrl_VTile.Size = New System.Drawing.Size(17, 560)
+        Me.scrl_VTile.TabIndex = 2
         '
         'pan_Misc
         '
@@ -403,27 +404,6 @@ Partial Class frmMain
         Me.pan_Misc.Name = "pan_Misc"
         Me.pan_Misc.Size = New System.Drawing.Size(210, 633)
         Me.pan_Misc.TabIndex = 5
-        '
-        'strip_Status
-        '
-        Me.strip_Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl_Status, Me.lbl_Location})
-        Me.strip_Status.Location = New System.Drawing.Point(274, 660)
-        Me.strip_Status.Name = "strip_Status"
-        Me.strip_Status.Size = New System.Drawing.Size(780, 22)
-        Me.strip_Status.TabIndex = 6
-        Me.strip_Status.Text = "StatusStrip1"
-        '
-        'lbl_Status
-        '
-        Me.lbl_Status.Name = "lbl_Status"
-        Me.lbl_Status.Size = New System.Drawing.Size(39, 17)
-        Me.lbl_Status.Text = "Ready"
-        '
-        'lbl_Location
-        '
-        Me.lbl_Location.Name = "lbl_Location"
-        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
-        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
         '
         'GroupBox1
         '
@@ -456,6 +436,33 @@ Partial Class frmMain
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Current Layer:"
         '
+        'strip_Status
+        '
+        Me.strip_Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl_Status, Me.ToolStripStatusLabel1, Me.lbl_Location})
+        Me.strip_Status.Location = New System.Drawing.Point(280, 660)
+        Me.strip_Status.Name = "strip_Status"
+        Me.strip_Status.Size = New System.Drawing.Size(774, 22)
+        Me.strip_Status.TabIndex = 6
+        Me.strip_Status.Text = "StatusStrip1"
+        '
+        'lbl_Status
+        '
+        Me.lbl_Status.Name = "lbl_Status"
+        Me.lbl_Status.Size = New System.Drawing.Size(39, 17)
+        Me.lbl_Status.Text = "Ready"
+        '
+        'lbl_Location
+        '
+        Me.lbl_Location.Name = "lbl_Location"
+        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
+        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(10, 17)
+        Me.ToolStripStatusLabel1.Text = "|"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -485,10 +492,10 @@ Partial Class frmMain
         CType(Me.splt_TileSelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splt_TileSelect.ResumeLayout(False)
         Me.pan_Misc.ResumeLayout(False)
-        Me.strip_Status.ResumeLayout(False)
-        Me.strip_Status.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.strip_Status.ResumeLayout(False)
+        Me.strip_Status.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -533,8 +540,8 @@ Partial Class frmMain
     Friend WithEvents splt_TileSelect As System.Windows.Forms.SplitContainer
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cmb_TileSets As System.Windows.Forms.ComboBox
-    Friend WithEvents VScrollBar1 As System.Windows.Forms.VScrollBar
-    Friend WithEvents HScrollBar1 As System.Windows.Forms.HScrollBar
+    Friend WithEvents scrl_VTile As System.Windows.Forms.VScrollBar
+    Friend WithEvents scrl_HTile As System.Windows.Forms.HScrollBar
     Friend WithEvents pan_Misc As System.Windows.Forms.Panel
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents strip_Status As System.Windows.Forms.StatusStrip
@@ -542,4 +549,5 @@ Partial Class frmMain
     Friend WithEvents lbl_Location As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents cmb_Layers As System.Windows.Forms.ComboBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 End Class

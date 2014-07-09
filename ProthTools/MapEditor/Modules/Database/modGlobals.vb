@@ -41,10 +41,12 @@ Module modGlobals
     Public render_Main As RenderWindow
     Public render_TileSelect As RenderWindow
     Public view_Main As SFML.Graphics.View
+    Public view_TileSelect As SFML.Graphics.View
 
     ' Graphics Globals
     ' We'll be storing our images in these globals.
     Public tex_TileSet() As SFML.Graphics.Texture
+    Public var_TileSetName() As String
     Public var_NumTileSets As Integer
     Public tex_BackDrop As SFML.Graphics.Texture
 

@@ -36,11 +36,18 @@ Module modMain
         frm_Loading.Hide()
         frm_Main.Show()
 
-        ' Populate our layer list.
+        ' Populate our lists.
         PopulateLayerList()
+        PopulateTileSetList()
 
         ' We've got a lovely blank map up. Should probably center the view on it.
         CenterCameraOnMap()
+
+        ' Now for a very cheap fix.. For some reason you get blank lines when you first enter the application.
+        ' This sorts that out. It's weird, but it works. I believe it's related to the way Views are handled
+        ' within SFML, will report this to their project.
+        MapEditorZoom(True)
+        MapEditorZoom(False)
 
         ' Time to start the main application loop!
         EditorLoop()

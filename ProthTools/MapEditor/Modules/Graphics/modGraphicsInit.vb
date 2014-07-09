@@ -27,6 +27,7 @@ Module modGraphicsInit
             ' Resize the array to accompany for all our tilesets.
             ' We're using + 1 because it looks cleaner to use 1,2,3,4,5 rather than 0,1,2,3,4
             ReDim tex_TileSet(var_NumTileSets + 1)
+            ReDim var_TileSetName(var_NumTileSets + 1)
 
             ' Set our Counter to 0.
             Count = 0
@@ -41,8 +42,15 @@ Module modGraphicsInit
                     ' Set our object to be a texture and load in the graphic we found.
                     tex_TileSet(Count) = New SFML.Graphics.Texture(FileName)
 
+                    ' Time to parse out our single file name.
+                    var_TileSetName(Count) = Right(FileName, Len(FileName) - Len(var_AppPath + DIR_DATA + DIR_TILESETS))
+
                 End If
             Next FileName
+
+            ' Without adding one here we'll be getting some issues later on with offsets.
+            var_NumTileSets = var_NumTileSets + 1
+
         Else
             ' We didn't find any. Strange.
             ' Let's notify our user and exit out.

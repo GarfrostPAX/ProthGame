@@ -13,11 +13,11 @@ Module modInput
 
             Case MouseButtons.Left
                 ' Place a tile.
-                PlaceTile(var_CurrentLayer, var_MousePos.X, var_MousePos.Y, var_CurrentTileSet, var_CurrentTileSetX, var_CurrentTileSetY)
+                PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), var_CurrentTileSet, var_CurrentTileSetX, var_CurrentTileSetY)
                 Exit Sub
             Case MouseButtons.Right
                 ' Remove a tile.
-                PlaceTile(var_CurrentLayer, var_MousePos.X, var_MousePos.Y, 0, 0, 0)
+                PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), 0, 0, 0)
                 Exit Sub
 
         End Select
@@ -53,33 +53,17 @@ Module modInput
                 render_Main.SetView(view_Main)
                 Exit Sub
 
+            Case Keys.Add, Keys.E
+                ' Zoom in
+                MapEditorZoom(False)
+                Exit Sub
+
+            Case Keys.Subtract, Keys.Q
+                MapEditorZoom(True)
+                Exit Sub
+
         End Select
 
-    End Sub
-
-    Public Sub HandleMouseWheel(ByVal ScrollDelta As Integer, ByVal X As Integer, ByVal Y As Integer)
-
-        ' Convert the X and Y values to world values before we do anything with them.
-        var_MousePos = render_Main.MapPixelToCoords(New SFML.Window.Vector2i(X, Y))
-
-        ' Handle the Scrolling depending on whether the user scrolls up or down.
-        If ScrollDelta > 0 Then
-
-            ' Zoom In
-            view_Main.Zoom(0.9)
-
-            ' Center the mouse on the location that is pointed at.
-            ' Only doing this when zooming in, it's really annoying otherwise.
-            view_Main.Center = var_MousePos
-
-        Else
-            ' Zoom Out
-            view_Main.Zoom(1.1)
-        End If
-
-
-        ' Apply changes to the screen.
-        render_Main.SetView(view_Main)
     End Sub
 
 End Module

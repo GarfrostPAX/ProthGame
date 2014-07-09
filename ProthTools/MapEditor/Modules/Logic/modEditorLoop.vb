@@ -21,7 +21,10 @@ Module modEditorLoop
             RenderMainView()
 
             ' The Tile Selection Window
-            ' TODO: Actually render this.
+            RenderTileSelect()
+
+            ' Update our label at the bottom of the window.
+            UpdateStatusLabel()
 
             ' The following must be at the bottom of the loop.
             ' We'll need to make sure the program can still process information from the UI.

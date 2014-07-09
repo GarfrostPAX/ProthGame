@@ -1,5 +1,13 @@
 ﻿Module modEditorLogic
 
+    Public Sub UpdateStatusLabel()
+        frm_Main.lbl_Location.Text = Map.Title _
+        + " (Layer: " _
+        + var_CurrentLayer.ToString + " X: " _
+        + CInt((var_MousePos.X / TILE_X)).ToString + " Y: " _
+        + CInt((var_MousePos.Y / TILE_Y)).ToString
+    End Sub
+
     Public Sub CenterCameraOnMap()
         Dim x As Integer, y As Integer
 
@@ -37,6 +45,37 @@
 
     End Sub
 
+    Public Sub PopulateTileSetList()
+        Dim i As Integer
+
+        ' First up clean the old data out of the list.
+        frm_Main.cmb_TileSets.Items.Clear()
+
+        ' Add the new items to the list.
+        For i = 1 To var_NumTileSets
+            frm_Main.cmb_TileSets.Items.Add(i.ToString + ": " + var_TileSetName(i))
+        Next
+
+        ' Select the first entry.
+        frm_Main.cmb_TileSets.SelectedIndex = 0
+    End Sub
+
+    Public Sub MapEditorZoom(ByVal Out As Boolean)
+        
+        ' Handle the Scrolling
+        If Not Out Then
+            ' Zoom In
+            view_Main.Zoom(0.9)
+        Else
+            ' Zoom Out
+            view_Main.Zoom(1.1)
+        End If
+
+
+        ' Apply changes to the screen.
+        render_Main.SetView(view_Main)
+    End Sub
+
     Public Sub PopulateLayerList()
         Dim i As Integer
 
@@ -51,6 +90,10 @@
         ' Select the first entry.
         frm_Main.cmb_Layers.SelectedIndex = 0
 
+    End Sub
+
+    Public Sub StatusMessage(ByVal Msg As String)
+        frm_Main.lbl_Status.Text = Msg
     End Sub
 
 End Module

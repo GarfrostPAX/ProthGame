@@ -36,5 +36,8 @@
         Map.Layers(3).LayerName = "Mask 2"
         Map.Layers(4).LayerName = "Fringe 1"
         Map.Layers(5).LayerName = "Fringe 2"
+
+        ' And name the map itself.
+        Map.Title = "New Map"
     End Sub
 End Module
