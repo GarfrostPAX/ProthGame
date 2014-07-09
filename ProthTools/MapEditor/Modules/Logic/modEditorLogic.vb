@@ -35,16 +35,16 @@
         Y = Y / TILE_Y
 
         ' Make sure we don't crash the program first by checking if the position we're editing is valid or not.
-        If X < 0 Or X > Map.SizeX Or Y < 0 Or Y > Map.SizeY Or Layer < 1 Or Layer > Map.LayerCount Then
-            Exit Sub
+        If X >= 0 And X <= Map.SizeX And Y >= 0 And Y <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
+
+            ' Assign our values to the thingermajick.
+            Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
+            Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
+            Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
+
         End If
 
-        ' Assign our values to the thingermajick.
-        Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
-        Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
-        Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
-
-        ' Now that we've placed the MAIN tile, let's place down some additional ones.
+        ' Now that we've attempted to placed the MAIN tile, let's place down some additional ones.
 
         ' After we figure out how to place them..
         If var_AdditionalTilesX > 0 And var_AdditionalTilesY > 0 Then
@@ -88,7 +88,7 @@
                 End If
             Next
         End If
-        
+
 
     End Sub
 
