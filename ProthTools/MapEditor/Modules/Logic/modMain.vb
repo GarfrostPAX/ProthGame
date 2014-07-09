@@ -1,7 +1,5 @@
 ﻿Imports System
 Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
 Imports System.Windows.Forms
 
 Module modMain

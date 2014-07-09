@@ -1,7 +1,5 @@
 ﻿Imports System
 Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
 Imports System.Windows.Forms
 
 Module modEditorLoop
@@ -31,9 +29,9 @@ Module modEditorLoop
             ' So let's get those events out of the way.
             Application.DoEvents()
 
-            ' And make sure we don't overload the processor by putting the application to sleep for a milisecond.
+            ' And make sure we don't overload the processor by putting the application to sleep for 15 miliseconds.
             ' We don't need this program to use a crapload of power after all.
-            System.Threading.Thread.Sleep(1)
+            System.Threading.Thread.Sleep(15)
         Loop
 
     End Sub
