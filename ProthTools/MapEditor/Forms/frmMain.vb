@@ -36,30 +36,25 @@ Public Class frmMain
         OFFSETX = grp_TileSelect.Width
         OFFSETY = MenuStrip1.Height + ToolStrip1.Height
 
-        ' Now let's create a rendersurface as big as their resolution will allow.
-        ' This way we can scale up the window without much if any trouble.
-        ' I -COULD- destroy and recreate this every time the window resizes, and reload the entire thing.
-        ' But really, why bother? It's a toolkit, the end-user is never going to see this.
-        ' Anyway, the size is calculated by the offset (which is basically the top two bars added onto eachother) and the status strip
-        ' being substracted from the inner screen size.
+        ' Create the two main rendersurfaces we'll be using.
+        ' One for the main map window, and one for the tile selection tool.
         surf_Main = New WindowSurface(Me.ClientSize.Height - (OFFSETY + strip_Status.Height), Me.ClientSize.Width - (OFFSETX + pan_Misc.Width))
         surf_TileSelect = New WindowSurface(Me.splt_TileSelect.Panel2.Height - scrl_HTile.Height, Me.splt_TileSelect.Panel2.Width - scrl_VTile.Width)
 
-        ' The viewport has been created, now assign it to our form.
+        ' The viewports have been created, now assign them to our form.
         Me.Controls.Add(surf_Main)
         Me.splt_TileSelect.Panel2.Controls.Add(surf_TileSelect)
 
-        ' Move the view down by an offset so the first section isn't blocked by other objects.
+        ' Move the main view down by an offset so the first section isn't blocked by other objects.
         surf_Main.Location = New Point(OFFSETX, OFFSETY)
 
+        ' Add handlers for mouse events related to our custom controls.
         AddHandler surf_Main.MouseMove, AddressOf surf_Main_MouseMove
         AddHandler surf_Main.MouseDown, AddressOf surf_Main_MouseMove
-        AddHandler surf_Main.GotFocus, AddressOf ReturnFocus
-        AddHandler surf_TileSelect.GotFocus, AddressOf ReturnFocus
         AddHandler surf_TileSelect.MouseMove, AddressOf surf_TileSelectMouseMove
-        AddHandler surf_TileSelect.MouseDown, AddressOf surf_TileSelectMouseMove
+        AddHandler surf_TileSelect.MouseDown, AddressOf surf_TileSelectMouseDown
 
-        ' Everything is in order, now to make sure we can render to it using render_Main as an object.
+        ' Everything is in order, now to make sure we can render to our controls.
         ' i.e. forcing SFML to render to our form.
         render_Main = New RenderWindow(surf_Main.Handle)
         render_TileSelect = New RenderWindow(surf_TileSelect.Handle)
@@ -68,17 +63,17 @@ Public Class frmMain
         ' We're creating a viewcamera in SFML that will allow us to easily move the viewport around the
         ' world, and zoom in/out as we please without much of a hassle.
 
-        ' First we'll need to set up a rect of our main viewport though.
+        ' First we'll need to set up a rect of our main and tileset viewport though.
         ' It basically tells our camera how many pixels it has to show us by default.
         Dim temprec As New SFML.Graphics.FloatRect(0, 0, Me.ClientSize.Width - (OFFSETX + pan_Misc.Width), Me.ClientSize.Height - (OFFSETY + strip_Status.Height))
         Dim temprectile As New SFML.Graphics.FloatRect(0, 0, Me.splt_TileSelect.Panel2.Width - scrl_VTile.Width, Me.splt_TileSelect.Panel2.Height - scrl_HTile.Height)
 
-        ' Now to create said view.
+        ' Now to create said views.
         view_Main = New SFML.Graphics.View(temprec)
         view_TileSelect = New SFML.Graphics.View(temprectile)
 
-        ' And tell our renderwindow to use this view.
-        ' Note that to get any future changes to apply to the camera we need to use the command
+        ' And tell our renderwindows to use these views.
+        ' Note that to get any future changes to apply to the camera we need to use the applicable command
         ' below AGAIN. 
         render_Main.SetView(view_Main)
         render_TileSelect.SetView(view_TileSelect)
@@ -184,13 +179,17 @@ Public Class frmMain
 
     Private Sub surf_TileSelectMouseMove(sender As Object, e As MouseEventArgs)
         ' Send off the handler elsewhere.
-        HandleTileSelectMouse(e.Button, e.X, e.Y)
+        HandleTileSelectMouseMove(e.Button, e.X, e.Y)
 
         ' Return focus to the form
         frm_Main.Focus()
     End Sub
 
-    Private Sub ReturnFocus(sender As Object, e As EventArgs)
+    Private Sub surf_TileSelectMouseDown(sender As Object, e As MouseEventArgs)
+        ' Send off the handler elsewhere.
+        HandleTileSelectMouse(e.Button, e.X, e.Y)
+
+        ' Return focus to the form
         frm_Main.Focus()
     End Sub
 

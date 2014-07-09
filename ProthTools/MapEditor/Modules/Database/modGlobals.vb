@@ -49,6 +49,7 @@ Module modGlobals
     Public var_TileSetName() As String
     Public var_NumTileSets As Integer
     Public tex_BackDrop As SFML.Graphics.Texture
+    Public tex_Select As SFML.Graphics.Texture
 
     ' Form Globals.
     ' So we can actually address these forms where nessecary.
@@ -57,10 +58,13 @@ Module modGlobals
 
     ' Mouse location Global.
     Public var_MousePos As SFML.Window.Vector2f
+    Public var_TileSelectPos As SFML.Window.Vector2f
     Public var_CurrentLayer As Byte
     Public var_CurrentTileSet As Integer
     Public var_CurrentTileSetX As Integer
     Public var_CurrentTileSetY As Integer
+    Public var_AdditionalTilesX As Integer
+    Public var_AdditionalTilesY As Integer
 
     ' Map Global.
     Public Map As MapRec

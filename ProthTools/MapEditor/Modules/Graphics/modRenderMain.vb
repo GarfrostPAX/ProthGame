@@ -19,6 +19,9 @@ Module modRenderMain
         ' Render all the tiles that would normally appear ABOVE the player.
         RenderMap(False)
 
+        ' Render our selection thingymabob.
+        RenderCurrentSelection()
+
         ' Display our changes to the screen.
         render_Main.Display()
 
@@ -100,6 +103,64 @@ Module modRenderMain
         ' Clear out our values so we don't hoard memory.
         tempRec = Nothing
         tempSpr = Nothing
+    End Sub
+
+    Private Sub RenderCurrentSelection()
+        Dim tempSpr As SFML.Graphics.Sprite
+        Dim tempX As Integer, tempY As Integer
+
+        tempX = (var_MousePos.X - 16) / TILE_X
+        tempY = (var_MousePos.Y - 16) / TILE_Y
+
+        ' Check if we actually need to render more than one tile or not.
+        If var_AdditionalTilesX < 1 And var_AdditionalTilesY < 1 Then
+            ' Just one, so grab the single picture and get going.
+
+            ' Grab the full sprite.
+            tempSpr = New SFML.Graphics.Sprite(tex_Select)
+
+            ' Set the color to be rather vibrant, makes it easier to see.
+            tempSpr.Color = New SFML.Graphics.Color(255, 0, 255)
+
+            ' Set the location.
+            tempSpr.Position = New SFML.Window.Vector2f(tempX * TILE_X, tempY * TILE_Y)
+
+            ' Draw it to the screen!
+            render_Main.Draw(tempSpr)
+        Else
+            ' We're going to have to do this bit by bit. So first let's start with the top and bottom.
+            ' Let's chop off a piece of this image.
+            tempSpr = New SFML.Graphics.Sprite(tex_Select, New SFML.Graphics.IntRect(0, 0, TILE_X, 2))
+
+            ' Set the color to be rather vibrant, makes it easier to see.
+            tempSpr.Color = New SFML.Graphics.Color(255, 0, 255)
+
+            ' We've got the top and bottom piece, let's stretch it out.
+            tempSpr.Scale = New SFML.Window.Vector2f(var_AdditionalTilesX + 1, 1)
+
+            ' Now position and draw it twice, once at the top and once at the bottom of the selection.
+            tempSpr.Position = New SFML.Window.Vector2f(tempX * TILE_X, tempY * TILE_Y)
+            render_Main.Draw(tempSpr)
+            tempSpr.Position = New SFML.Window.Vector2f(tempX * TILE_X, (tempY + 1 + var_AdditionalTilesY) * TILE_Y - 2)
+            render_Main.Draw(tempSpr)
+
+            ' Now let's start with the sides!
+            ' Let's chop off a piece of this image.
+            tempSpr = New SFML.Graphics.Sprite(tex_Select, New SFML.Graphics.IntRect(0, 0, 2, TILE_Y))
+
+            ' Set the color to be rather vibrant, makes it easier to see.
+            tempSpr.Color = New SFML.Graphics.Color(255, 0, 255)
+
+            ' We've got the top and bottom piece, let's stretch it out.
+            tempSpr.Scale = New SFML.Window.Vector2f(1, var_AdditionalTilesY + 1)
+
+            ' Now position and draw it twice, once at the top and once at the bottom of the selection.
+            tempSpr.Position = New SFML.Window.Vector2f(tempX * TILE_X, tempY * TILE_Y)
+            render_Main.Draw(tempSpr)
+            tempSpr.Position = New SFML.Window.Vector2f((tempX + 1 + var_AdditionalTilesX) * TILE_X - 2, tempY * TILE_Y)
+            render_Main.Draw(tempSpr)
+        End If
+
     End Sub
 
 End Module

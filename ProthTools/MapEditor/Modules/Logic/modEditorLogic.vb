@@ -29,6 +29,7 @@
     End Sub
 
     Public Sub PlaceTile(ByVal Layer As Integer, ByVal X As Integer, ByVal Y As Integer, ByVal TileSet As Integer, ByVal TileSetX As Integer, ByVal TileSetY As Integer)
+        Dim TempX As Integer, TempY As Integer
 
         X = X / TILE_X
         Y = Y / TILE_Y
@@ -42,6 +43,52 @@
         Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
         Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
         Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
+
+        ' Now that we've placed the MAIN tile, let's place down some additional ones.
+
+        ' After we figure out how to place them..
+        If var_AdditionalTilesX > 0 And var_AdditionalTilesY > 0 Then
+            ' Place them both X and Y directions! Fancy.
+
+            For TempX = 0 To var_AdditionalTilesX
+                For TempY = 0 To var_AdditionalTilesY
+                    ' check if the position actually exists on our map before we place something down.
+                    If X + TempX >= 0 And X + TempX <= Map.SizeX And Y + TempY >= 0 And Y + TempY <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
+                        ' Place the additional tile.
+                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID = TileSet
+                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX = TileSetX + TempX
+                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY = TileSetY + TempY
+                    End If
+                Next
+            Next
+
+        ElseIf var_AdditionalTilesX > 0 And var_AdditionalTilesY < 1 Then
+            ' Only place them on the X axis.
+
+            For TempX = 1 To var_AdditionalTilesX
+                ' check if the position actually exists on our map before we place something down.
+                If X + TempX >= 0 And X + TempX <= Map.SizeX And Layer >= 1 And Layer <= Map.LayerCount Then
+                    ' Place the additional tile.
+                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetID = TileSet
+                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetX = TileSetX + TempX
+                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetY = TileSetY
+                End If
+            Next
+
+        ElseIf var_AdditionalTilesY > 0 And var_AdditionalTilesX < 1 Then
+            ' Only place them on the Y axis.
+
+            For TempY = 1 To var_AdditionalTilesY
+                ' check if the position actually exists on our map before we place something down.
+                If Y + TempY >= 0 And Y + TempY <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
+                    ' Place the additional tile.
+                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetID = TileSet
+                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetX = TileSetX
+                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetY = TileSetY + TempY
+                End If
+            Next
+        End If
+        
 
     End Sub
 

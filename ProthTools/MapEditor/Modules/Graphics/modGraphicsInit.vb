@@ -69,5 +69,13 @@ Module modGraphicsInit
             End
         End If
 
+        ' Check if the select image exists before we continue.
+        If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "select" + GFX_EXT) Then
+            tex_Select = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "select" + GFX_EXT)
+        Else
+            MsgBox("Unable to locate select" + GFX_EXT, MsgBoxStyle.Critical, "Error")
+            End
+        End If
+
     End Sub
 End Module

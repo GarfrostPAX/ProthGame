@@ -25,23 +25,61 @@ Module modInput
     End Sub
 
     Public Sub HandleTileSelectMouse(ByVal mButton As MouseButtons, ByVal X As Integer, ByVal Y As Integer)
-        Dim MousePos As SFML.Window.Vector2f
 
         ' Convert the X and Y values to world values before we do anything with them.
-        MousePos = render_TileSelect.MapPixelToCoords(New SFML.Window.Vector2i(X - 16, Y - 16))
+        var_TileSelectPos = render_TileSelect.MapPixelToCoords(New SFML.Window.Vector2i(X - 16, Y - 16))
 
         ' Let's check what mousebutton is being pressed and act accordingly.
         Select Case mButton
 
             Case MouseButtons.Left
                 ' Select the tile.
-                var_CurrentTileSetX = MousePos.X / TILE_X
-                var_CurrentTileSetY = MousePos.Y / TILE_Y
+                var_CurrentTileSetX = var_TileSelectPos.X / TILE_X
+                var_CurrentTileSetY = var_TileSelectPos.Y / TILE_Y
+                var_AdditionalTilesX = 0
+                var_AdditionalTilesY = 0
                 Exit Sub
 
         End Select
 
     End Sub
+
+    Public Sub HandleTileSelectMouseMove(ByVal mButton As MouseButtons, ByVal X As Integer, ByVal Y As Integer)
+
+        ' Convert the X and Y values to world values before we do anything with them.
+        var_TileSelectPos = render_TileSelect.MapPixelToCoords(New SFML.Window.Vector2i(X - (TILE_X / 2), Y - (TILE_Y / 2)))
+
+        ' Let's check what mousebutton is being pressed and act accordingly.
+        Select Case mButton
+
+            Case MouseButtons.Left
+                ' Let's see if we can figure out whether or not the user is dragging more tiles into our selection.
+
+                ' Horizontal
+                If CInt(var_TileSelectPos.X / TILE_X) > var_CurrentTileSetX + var_AdditionalTilesX Then
+                    ' We're draggin an additional tile into it to the right side!
+                    var_AdditionalTilesX = var_AdditionalTilesX + 1
+                ElseIf CInt(var_TileSelectPos.X / TILE_X) < var_CurrentTileSetX + var_AdditionalTilesX And var_AdditionalTilesX > 0 Then
+                    ' We're dragging an additional tile back again.
+                    var_AdditionalTilesX = var_AdditionalTilesX - 1
+                End If
+
+
+                ' Vertical
+                If CInt(var_TileSelectPos.Y / TILE_Y) > var_CurrentTileSetY + var_AdditionalTilesY Then
+                    ' We're draggin an additional tile into it to the right side!
+                    var_AdditionalTilesY = var_AdditionalTilesY + 1
+                ElseIf CInt(var_TileSelectPos.Y / TILE_Y) < var_CurrentTileSetY + var_AdditionalTilesY And var_AdditionalTilesY > 0 Then
+                    ' We're dragging an additional tile back again.
+                    var_AdditionalTilesY = var_AdditionalTilesY - 1
+                End If
+
+                Exit Sub
+
+        End Select
+
+    End Sub
+
 
     Public Sub HandleKeyBoard(ByVal Alt As Boolean, ByVal Control As Boolean, ByVal Shift As Boolean, ByVal InKey As System.Windows.Forms.Keys)
 
