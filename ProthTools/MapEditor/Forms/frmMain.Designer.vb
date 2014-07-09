@@ -71,8 +71,8 @@ Partial Class frmMain
         Me.Label2 = New System.Windows.Forms.Label()
         Me.strip_Status = New System.Windows.Forms.StatusStrip()
         Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.grp_TileSelect.SuspendLayout()
@@ -367,9 +367,9 @@ Partial Class frmMain
         Me.cmb_TileSets.Location = New System.Drawing.Point(9, 20)
         Me.cmb_TileSets.MaxDropDownItems = 100
         Me.cmb_TileSets.Name = "cmb_TileSets"
+        Me.cmb_TileSets.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmb_TileSets.Size = New System.Drawing.Size(252, 21)
         Me.cmb_TileSets.TabIndex = 1
-        Me.cmb_TileSets.TabStop = False
         '
         'Label1
         '
@@ -383,17 +383,20 @@ Partial Class frmMain
         'scrl_HTile
         '
         Me.scrl_HTile.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.scrl_HTile.LargeChange = 1
         Me.scrl_HTile.Location = New System.Drawing.Point(0, 543)
+        Me.scrl_HTile.Maximum = 10
         Me.scrl_HTile.Name = "scrl_HTile"
-        Me.scrl_HTile.Size = New System.Drawing.Size(257, 17)
+        Me.scrl_HTile.Size = New System.Drawing.Size(256, 17)
         Me.scrl_HTile.TabIndex = 3
         '
         'scrl_VTile
         '
         Me.scrl_VTile.Dock = System.Windows.Forms.DockStyle.Right
-        Me.scrl_VTile.Location = New System.Drawing.Point(257, 0)
+        Me.scrl_VTile.LargeChange = 1
+        Me.scrl_VTile.Location = New System.Drawing.Point(256, 0)
         Me.scrl_VTile.Name = "scrl_VTile"
-        Me.scrl_VTile.Size = New System.Drawing.Size(17, 560)
+        Me.scrl_VTile.Size = New System.Drawing.Size(18, 560)
         Me.scrl_VTile.TabIndex = 2
         '
         'pan_Misc
@@ -451,17 +454,17 @@ Partial Class frmMain
         Me.lbl_Status.Size = New System.Drawing.Size(39, 17)
         Me.lbl_Status.Text = "Ready"
         '
-        'lbl_Location
-        '
-        Me.lbl_Location.Name = "lbl_Location"
-        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
-        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
-        '
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(10, 17)
         Me.ToolStripStatusLabel1.Text = "|"
+        '
+        'lbl_Location
+        '
+        Me.lbl_Location.Name = "lbl_Location"
+        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
+        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
         '
         'frmMain
         '

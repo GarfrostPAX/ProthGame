@@ -82,8 +82,8 @@ Module modRenderMain
         ' create a rect with the right coordinated to pick our desired tile from.
         ' saves creating a sprite from an entire tilesheet.
         With tempRec
-            .Left = Map.Layers(Layer).Tiles(X, Y).TileSetX
-            .Top = Map.Layers(Layer).Tiles(X, Y).TileSetY
+            .Left = Map.Layers(Layer).Tiles(X, Y).TileSetX * TILE_X
+            .Top = Map.Layers(Layer).Tiles(X, Y).TileSetY * TILE_Y
             .Width = TILE_X
             .Height = TILE_Y
         End With

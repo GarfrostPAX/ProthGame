@@ -24,6 +24,25 @@ Module modInput
 
     End Sub
 
+    Public Sub HandleTileSelectMouse(ByVal mButton As MouseButtons, ByVal X As Integer, ByVal Y As Integer)
+        Dim MousePos As SFML.Window.Vector2f
+
+        ' Convert the X and Y values to world values before we do anything with them.
+        MousePos = render_TileSelect.MapPixelToCoords(New SFML.Window.Vector2i(X - 16, Y - 16))
+
+        ' Let's check what mousebutton is being pressed and act accordingly.
+        Select Case mButton
+
+            Case MouseButtons.Left
+                ' Select the tile.
+                var_CurrentTileSetX = MousePos.X / TILE_X
+                var_CurrentTileSetY = MousePos.Y / TILE_Y
+                Exit Sub
+
+        End Select
+
+    End Sub
+
     Public Sub HandleKeyBoard(ByVal Alt As Boolean, ByVal Control As Boolean, ByVal Shift As Boolean, ByVal InKey As System.Windows.Forms.Keys)
 
         ' Let's see what key(s) are pressed and acr accordingly.

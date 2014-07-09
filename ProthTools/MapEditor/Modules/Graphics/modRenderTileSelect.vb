@@ -22,7 +22,7 @@
         Dim tempSpr As SFML.Graphics.Sprite
 
         ' Grab our tileset.
-        tempSpr = New SFML.Graphics.Sprite(tex_TileSet(frm_Main.cmb_TileSets.SelectedIndex + 1))
+        tempSpr = New SFML.Graphics.Sprite(tex_TileSet(var_CurrentTileSet))
 
         ' Paste it on-screen.
         render_TileSelect.Draw(tempSpr)
@@ -40,7 +40,7 @@
             Width = render_TileSelect.Size.X / TILE_X
         End If
         If tex_TileSet(var_CurrentTileSet).Size.Y > render_TileSelect.Size.Y Then
-            height = tex_TileSet(var_CurrentTileSet).Size.Y / TILE_Y
+            Height = tex_TileSet(var_CurrentTileSet).Size.Y / TILE_Y
         Else
             Height = render_TileSelect.Size.Y / TILE_Y
         End If
