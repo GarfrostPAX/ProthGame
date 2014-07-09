@@ -67,7 +67,7 @@
 
             For TempX = 1 To var_AdditionalTilesX
                 ' check if the position actually exists on our map before we place something down.
-                If X + TempX >= 0 And X + TempX <= Map.SizeX And Layer >= 1 And Layer <= Map.LayerCount Then
+                If X + TempX >= 0 And X + TempX <= Map.SizeX And Y >= 0 And Y <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
                     ' Place the additional tile.
                     Map.Layers(Layer).Tiles(X + TempX, Y).TileSetID = TileSet
                     Map.Layers(Layer).Tiles(X + TempX, Y).TileSetX = TileSetX + TempX
@@ -80,7 +80,7 @@
 
             For TempY = 1 To var_AdditionalTilesY
                 ' check if the position actually exists on our map before we place something down.
-                If Y + TempY >= 0 And Y + TempY <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
+                If Y + TempY >= 0 And Y + TempY <= Map.SizeY And X >= 0 And X <= Map.SizeX And Layer >= 1 And Layer <= Map.LayerCount Then
                     ' Place the additional tile.
                     Map.Layers(Layer).Tiles(X, Y + TempY).TileSetID = TileSet
                     Map.Layers(Layer).Tiles(X, Y + TempY).TileSetX = TileSetX
