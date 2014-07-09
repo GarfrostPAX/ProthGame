@@ -34,7 +34,8 @@ Module modGlobals
 
     ' RenderSurface globals.
     ' These are used by our main editor screen and tileset selection to display stuff.
-    Public Const OFFSETY As Integer = 49
+    Public OFFSETX As Integer
+    Public OFFSETY As Integer
     Public surf_Main As WindowSurface
     Public surf_TileSelect As WindowSurface
     Public render_Main As RenderWindow
@@ -54,6 +55,10 @@ Module modGlobals
 
     ' Mouse location Global.
     Public var_MousePos As SFML.Window.Vector2f
+    Public var_CurrentLayer As Byte
+    Public var_CurrentTileSet As Integer
+    Public var_CurrentTileSetX As Integer
+    Public var_CurrentTileSetY As Integer
 
     ' Map Global.
     Public Map As MapRec

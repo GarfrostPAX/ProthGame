@@ -20,8 +20,6 @@
         ' Create all the layers and the tiles within based on our entered data.
         ReDim Map.Layers(Map.LayerCount)
         For i = 1 To Map.LayerCount
-            ' Give our layer a name.
-            Map.Layers(i).LayerName = "Layer " + i.ToString
 
             ' Make sure the layer can contain the data we want it to.
             ReDim Map.Layers(i).Tiles(Map.SizeX, Map.SizeY)
@@ -32,9 +30,11 @@
             End If
         Next
 
-        Map.Layers(1).Tiles(5, 5).TileSetID = 1
-        Map.Layers(1).Tiles(5, 5).TileSetX = 32
-        Map.Layers(1).Tiles(5, 5).TileSetY = 320
-
+        ' Give our layers some names.
+        Map.Layers(1).LayerName = "Ground"
+        Map.Layers(2).LayerName = "Mask 1"
+        Map.Layers(3).LayerName = "Mask 2"
+        Map.Layers(4).LayerName = "Fringe 1"
+        Map.Layers(5).LayerName = "Fringe 2"
     End Sub
 End Module

@@ -12,13 +12,12 @@ Module modInput
         Select Case mButton
 
             Case MouseButtons.Left
-                ' TODO: Add proper Handler.
-                Map.Layers(1).Tiles((var_MousePos.X - 16) / TILE_X, (var_MousePos.Y - 16) / TILE_Y).TileSetID = 1
-                Map.Layers(1).Tiles((var_MousePos.X - 16) / TILE_X, (var_MousePos.Y - 16) / TILE_Y).TileSetX = 32
-                Map.Layers(1).Tiles((var_MousePos.X - 16) / TILE_X, (var_MousePos.Y - 16) / TILE_Y).TileSetY = 320
+                ' Place a tile.
+                PlaceTile(var_CurrentLayer, var_MousePos.X, var_MousePos.Y, var_CurrentTileSet, var_CurrentTileSetX, var_CurrentTileSetY)
                 Exit Sub
             Case MouseButtons.Right
-                ' TODO: Add Handler.
+                ' Remove a tile.
+                PlaceTile(var_CurrentLayer, var_MousePos.X, var_MousePos.Y, 0, 0, 0)
                 Exit Sub
 
         End Select
@@ -63,15 +62,21 @@ Module modInput
         ' Convert the X and Y values to world values before we do anything with them.
         var_MousePos = render_Main.MapPixelToCoords(New SFML.Window.Vector2i(X, Y))
 
-        ' Center the mouse on the location that is pointed at.
-        view_Main.Center = var_MousePos
-
         ' Handle the Scrolling depending on whether the user scrolls up or down.
         If ScrollDelta > 0 Then
+
+            ' Zoom In
             view_Main.Zoom(0.9)
+
+            ' Center the mouse on the location that is pointed at.
+            ' Only doing this when zooming in, it's really annoying otherwise.
+            view_Main.Center = var_MousePos
+
         Else
+            ' Zoom Out
             view_Main.Zoom(1.1)
         End If
+
 
         ' Apply changes to the screen.
         render_Main.SetView(view_Main)

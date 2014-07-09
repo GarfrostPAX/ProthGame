@@ -20,4 +20,37 @@
         render_Main.SetView(view_Main)
     End Sub
 
+    Public Sub PlaceTile(ByVal Layer As Integer, ByVal X As Integer, ByVal Y As Integer, ByVal TileSet As Integer, ByVal TileSetX As Integer, ByVal TileSetY As Integer)
+
+        X = X / TILE_X
+        Y = Y / TILE_Y
+
+        ' Make sure we don't crash the program first by checking if the position we're editing is valid or not.
+        If X < 0 Or X > Map.SizeX Or Y < 0 Or Y > Map.SizeY Or Layer < 1 Or Layer > Map.LayerCount Then
+            Exit Sub
+        End If
+
+        ' Assign our values to the thingermajick.
+        Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
+        Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
+        Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
+
+    End Sub
+
+    Public Sub PopulateLayerList()
+        Dim i As Integer
+
+        ' First up clean the old data out of the list.
+        frm_Main.cmb_Layers.Items.Clear()
+
+        ' Add the new items to the list.
+        For i = 1 To Map.LayerCount
+            frm_Main.cmb_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName)
+        Next
+
+        ' Select the first entry.
+        frm_Main.cmb_Layers.SelectedIndex = 0
+
+    End Sub
+
 End Module

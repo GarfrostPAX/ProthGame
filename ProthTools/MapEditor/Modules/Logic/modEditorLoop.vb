@@ -23,7 +23,6 @@ Module modEditorLoop
             ' The Tile Selection Window
             ' TODO: Actually render this.
 
-
             ' The following must be at the bottom of the loop.
             ' We'll need to make sure the program can still process information from the UI.
             ' So let's get those events out of the way.

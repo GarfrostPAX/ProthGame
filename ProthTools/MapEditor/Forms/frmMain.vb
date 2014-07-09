@@ -29,19 +29,23 @@ Public Class frmMain
         ' Why? Because I'm lazy. The client will eventually need more polished code for this.
         Me.WindowState = FormWindowState.Maximized
 
+        ' Calculate some offsets to use for our render window position.
+        OFFSETX = grp_TileSelect.Width
+        OFFSETY = MenuStrip1.Height + ToolStrip1.Height
+
         ' Now let's create a rendersurface as big as their resolution will allow.
         ' This way we can scale up the window without much if any trouble.
         ' I -COULD- destroy and recreate this every time the window resizes, and reload the entire thing.
         ' But really, why bother? It's a toolkit, the end-user is never going to see this.
         ' Anyway, the size is calculated by the offset (which is basically the top two bars added onto eachother) and the status strip
         ' being substracted from the inner screen size.
-        surf_Main = New WindowSurface(Me.ClientSize.Height - (OFFSETY + strip_Status.Height), Me.ClientSize.Width)
+        surf_Main = New WindowSurface(Me.ClientSize.Height - (OFFSETY + strip_Status.Height), Me.ClientSize.Width - (OFFSETX + pan_Misc.Width))
 
         ' The viewport has been created, now assign it to our form.
         Me.Controls.Add(surf_Main)
 
         ' Move the view down by an offset so the first section isn't blocked by other objects.
-        surf_Main.Location = New Point(0, OFFSETY)
+        surf_Main.Location = New Point(OFFSETX, OFFSETY)
 
         AddHandler surf_Main.MouseMove, AddressOf surf_Main_MouseMove
         AddHandler surf_Main.MouseDown, AddressOf surf_Main_MouseMove
@@ -56,7 +60,7 @@ Public Class frmMain
 
         ' First we'll need to set up a rect of our main viewport though.
         ' It basically tells our camera how many pixels it has to show us by default.
-        Dim temprec As New SFML.Graphics.FloatRect(0, 0, Me.ClientSize.Width, Me.ClientSize.Height - (OFFSETY + strip_Status.Height))
+        Dim temprec As New SFML.Graphics.FloatRect(0, 0, Me.ClientSize.Width - (OFFSETX + pan_Misc.Width), Me.ClientSize.Height - (OFFSETY + strip_Status.Height))
 
         ' Now to create said view.
         view_Main = New SFML.Graphics.View(temprec)
@@ -88,4 +92,9 @@ Public Class frmMain
         HandleMouseWheel(e.Delta, e.X, e.Y)
     End Sub
 
+    Private Sub cmb_Layers_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Layers.SelectedIndexChanged
+        ' Set out current layer.
+        ' Because these indices start at 0 we need to add one.
+        var_CurrentLayer = cmb_Layers.SelectedIndex + 1
+    End Sub
 End Class

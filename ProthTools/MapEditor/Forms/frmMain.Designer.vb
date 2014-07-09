@@ -23,9 +23,6 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.strip_Status = New System.Windows.Forms.StatusStrip()
-        Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -52,7 +49,6 @@ Partial Class frmMain
         Me.HideHigherLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HideLowerLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
@@ -62,31 +58,31 @@ Partial Class frmMain
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.strip_Status.SuspendLayout()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.grp_TileSelect = New System.Windows.Forms.GroupBox()
+        Me.splt_TileSelect = New System.Windows.Forms.SplitContainer()
+        Me.cmb_TileSets = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
+        Me.HScrollBar1 = New System.Windows.Forms.HScrollBar()
+        Me.pan_Misc = New System.Windows.Forms.Panel()
+        Me.strip_Status = New System.Windows.Forms.StatusStrip()
+        Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmb_Layers = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.grp_TileSelect.SuspendLayout()
+        CType(Me.splt_TileSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.splt_TileSelect.Panel1.SuspendLayout()
+        Me.splt_TileSelect.Panel2.SuspendLayout()
+        Me.splt_TileSelect.SuspendLayout()
+        Me.pan_Misc.SuspendLayout()
+        Me.strip_Status.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'strip_Status
-        '
-        Me.strip_Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl_Status, Me.lbl_Location})
-        Me.strip_Status.Location = New System.Drawing.Point(0, 660)
-        Me.strip_Status.Name = "strip_Status"
-        Me.strip_Status.Size = New System.Drawing.Size(1264, 22)
-        Me.strip_Status.TabIndex = 0
-        Me.strip_Status.Text = "StatusStrip1"
-        '
-        'lbl_Status
-        '
-        Me.lbl_Status.Name = "lbl_Status"
-        Me.lbl_Status.Size = New System.Drawing.Size(39, 17)
-        Me.lbl_Status.Text = "Ready"
-        '
-        'lbl_Location
-        '
-        Me.lbl_Location.Name = "lbl_Location"
-        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
-        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
         '
         'MenuStrip1
         '
@@ -247,15 +243,6 @@ Partial Class frmMain
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator2, Me.ToolStripButton6, Me.ToolStripButton7})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
-        Me.ToolStrip1.TabIndex = 2
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
         'ToolStripButton1
         '
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -329,13 +316,155 @@ Partial Class frmMain
         Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton7.Text = "ToolStripButton7"
         '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator2, Me.ToolStripButton6, Me.ToolStripButton7})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
+        Me.ToolStrip1.TabIndex = 2
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'grp_TileSelect
+        '
+        Me.grp_TileSelect.Controls.Add(Me.splt_TileSelect)
+        Me.grp_TileSelect.Dock = System.Windows.Forms.DockStyle.Left
+        Me.grp_TileSelect.Location = New System.Drawing.Point(0, 49)
+        Me.grp_TileSelect.Name = "grp_TileSelect"
+        Me.grp_TileSelect.Size = New System.Drawing.Size(274, 633)
+        Me.grp_TileSelect.TabIndex = 3
+        Me.grp_TileSelect.TabStop = False
+        Me.grp_TileSelect.Text = "Tile Select"
+        '
+        'splt_TileSelect
+        '
+        Me.splt_TileSelect.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.splt_TileSelect.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.splt_TileSelect.IsSplitterFixed = True
+        Me.splt_TileSelect.Location = New System.Drawing.Point(3, 16)
+        Me.splt_TileSelect.Name = "splt_TileSelect"
+        Me.splt_TileSelect.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'splt_TileSelect.Panel1
+        '
+        Me.splt_TileSelect.Panel1.Controls.Add(Me.cmb_TileSets)
+        Me.splt_TileSelect.Panel1.Controls.Add(Me.Label1)
+        '
+        'splt_TileSelect.Panel2
+        '
+        Me.splt_TileSelect.Panel2.Controls.Add(Me.HScrollBar1)
+        Me.splt_TileSelect.Panel2.Controls.Add(Me.VScrollBar1)
+        Me.splt_TileSelect.Size = New System.Drawing.Size(268, 614)
+        Me.splt_TileSelect.SplitterDistance = 53
+        Me.splt_TileSelect.SplitterWidth = 1
+        Me.splt_TileSelect.TabIndex = 1
+        '
+        'cmb_TileSets
+        '
+        Me.cmb_TileSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_TileSets.FormattingEnabled = True
+        Me.cmb_TileSets.Location = New System.Drawing.Point(9, 20)
+        Me.cmb_TileSets.MaxDropDownItems = 100
+        Me.cmb_TileSets.Name = "cmb_TileSets"
+        Me.cmb_TileSets.Size = New System.Drawing.Size(252, 21)
+        Me.cmb_TileSets.TabIndex = 1
+        Me.cmb_TileSets.TabStop = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Current Tileset:"
+        '
+        'VScrollBar1
+        '
+        Me.VScrollBar1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.VScrollBar1.Location = New System.Drawing.Point(251, 0)
+        Me.VScrollBar1.Name = "VScrollBar1"
+        Me.VScrollBar1.Size = New System.Drawing.Size(17, 560)
+        Me.VScrollBar1.TabIndex = 2
+        '
+        'HScrollBar1
+        '
+        Me.HScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.HScrollBar1.Location = New System.Drawing.Point(0, 543)
+        Me.HScrollBar1.Name = "HScrollBar1"
+        Me.HScrollBar1.Size = New System.Drawing.Size(251, 17)
+        Me.HScrollBar1.TabIndex = 3
+        '
+        'pan_Misc
+        '
+        Me.pan_Misc.Controls.Add(Me.GroupBox1)
+        Me.pan_Misc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.pan_Misc.Location = New System.Drawing.Point(1054, 49)
+        Me.pan_Misc.Name = "pan_Misc"
+        Me.pan_Misc.Size = New System.Drawing.Size(210, 633)
+        Me.pan_Misc.TabIndex = 5
+        '
+        'strip_Status
+        '
+        Me.strip_Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lbl_Status, Me.lbl_Location})
+        Me.strip_Status.Location = New System.Drawing.Point(274, 660)
+        Me.strip_Status.Name = "strip_Status"
+        Me.strip_Status.Size = New System.Drawing.Size(780, 22)
+        Me.strip_Status.TabIndex = 6
+        Me.strip_Status.Text = "StatusStrip1"
+        '
+        'lbl_Status
+        '
+        Me.lbl_Status.Name = "lbl_Status"
+        Me.lbl_Status.Size = New System.Drawing.Size(39, 17)
+        Me.lbl_Status.Text = "Ready"
+        '
+        'lbl_Location
+        '
+        Me.lbl_Location.Name = "lbl_Location"
+        Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
+        Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.cmb_Layers)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Location = New System.Drawing.Point(2, -2)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(204, 59)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Layers"
+        '
+        'cmb_Layers
+        '
+        Me.cmb_Layers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_Layers.FormattingEnabled = True
+        Me.cmb_Layers.Location = New System.Drawing.Point(6, 32)
+        Me.cmb_Layers.MaxDropDownItems = 100
+        Me.cmb_Layers.Name = "cmb_Layers"
+        Me.cmb_Layers.Size = New System.Drawing.Size(192, 21)
+        Me.cmb_Layers.TabIndex = 3
+        Me.cmb_Layers.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(3, 16)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(73, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Current Layer:"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1264, 682)
-        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.strip_Status)
+        Me.Controls.Add(Me.pan_Misc)
+        Me.Controls.Add(Me.grp_TileSelect)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
@@ -345,19 +474,26 @@ Partial Class frmMain
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prothesys Map Editor"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.strip_Status.ResumeLayout(False)
-        Me.strip_Status.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.grp_TileSelect.ResumeLayout(False)
+        Me.splt_TileSelect.Panel1.ResumeLayout(False)
+        Me.splt_TileSelect.Panel1.PerformLayout()
+        Me.splt_TileSelect.Panel2.ResumeLayout(False)
+        CType(Me.splt_TileSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.splt_TileSelect.ResumeLayout(False)
+        Me.pan_Misc.ResumeLayout(False)
+        Me.strip_Status.ResumeLayout(False)
+        Me.strip_Status.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents strip_Status As System.Windows.Forms.StatusStrip
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenMapToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -390,8 +526,20 @@ Partial Class frmMain
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents lbl_Status As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents lbl_Location As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton7 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents grp_TileSelect As System.Windows.Forms.GroupBox
+    Friend WithEvents splt_TileSelect As System.Windows.Forms.SplitContainer
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents cmb_TileSets As System.Windows.Forms.ComboBox
+    Friend WithEvents VScrollBar1 As System.Windows.Forms.VScrollBar
+    Friend WithEvents HScrollBar1 As System.Windows.Forms.HScrollBar
+    Friend WithEvents pan_Misc As System.Windows.Forms.Panel
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents strip_Status As System.Windows.Forms.StatusStrip
+    Friend WithEvents lbl_Status As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents lbl_Location As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents cmb_Layers As System.Windows.Forms.ComboBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 End Class
