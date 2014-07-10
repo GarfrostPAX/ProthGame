@@ -22,7 +22,6 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,20 +44,19 @@ Partial Class frmMain
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HideHigherLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HideLowerLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.chk_Grid = New System.Windows.Forms.ToolStripMenuItem()
+        Me.chk_HighLayers = New System.Windows.Forms.ToolStripMenuItem()
+        Me.chkLowLayers = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.btn_NewMap = New System.Windows.Forms.ToolStripButton()
         Me.btn_OpenMap = New System.Windows.Forms.ToolStripButton()
         Me.btn_SaveMap = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.btn_SaveAs = New System.Windows.Forms.ToolStripButton()
+        Me.btn_Undo = New System.Windows.Forms.ToolStripButton()
+        Me.btn_Redo = New System.Windows.Forms.ToolStripButton()
         Me.grp_TileSelect = New System.Windows.Forms.GroupBox()
         Me.splt_TileSelect = New System.Windows.Forms.SplitContainer()
         Me.cmb_TileSets = New System.Windows.Forms.ComboBox()
@@ -73,6 +71,7 @@ Partial Class frmMain
         Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.chk_FadeLayers = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.grp_TileSelect.SuspendLayout()
@@ -103,14 +102,16 @@ Partial Class frmMain
         '
         'NewMapToolStripMenuItem
         '
+        Me.NewMapToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.NewFile_6276
         Me.NewMapToolStripMenuItem.Name = "NewMapToolStripMenuItem"
-        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.NewMapToolStripMenuItem.Text = "New Map"
         '
         'OpenMapToolStripMenuItem
         '
+        Me.OpenMapToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Open_6529
         Me.OpenMapToolStripMenuItem.Name = "OpenMapToolStripMenuItem"
-        Me.OpenMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.OpenMapToolStripMenuItem.Text = "Open Map"
         '
         'ToolStripMenuItem2
@@ -120,14 +121,16 @@ Partial Class frmMain
         '
         'SaveMapToolStripMenuItem
         '
+        Me.SaveMapToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Save_6530
         Me.SaveMapToolStripMenuItem.Name = "SaveMapToolStripMenuItem"
-        Me.SaveMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.SaveMapToolStripMenuItem.Text = "Save Map"
         '
         'SaveMapAsToolStripMenuItem
         '
+        Me.SaveMapAsToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Saveall_6518
         Me.SaveMapAsToolStripMenuItem.Name = "SaveMapAsToolStripMenuItem"
-        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.SaveMapAsToolStripMenuItem.Text = "Save Map As.."
         '
         'ToolStripMenuItem3
@@ -148,6 +151,7 @@ Partial Class frmMain
         '
         'CloseToolStripMenuItem
         '
+        Me.CloseToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Clearallrequests_8816
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
@@ -215,28 +219,31 @@ Partial Class frmMain
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GridToolStripMenuItem, Me.HideHigherLayersToolStripMenuItem, Me.HideLowerLayersToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.chk_Grid, Me.chk_HighLayers, Me.chkLowLayers, Me.chk_FadeLayers})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
         '
-        'GridToolStripMenuItem
+        'chk_Grid
         '
-        Me.GridToolStripMenuItem.Name = "GridToolStripMenuItem"
-        Me.GridToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.GridToolStripMenuItem.Text = "Grid"
+        Me.chk_Grid.CheckOnClick = True
+        Me.chk_Grid.Name = "chk_Grid"
+        Me.chk_Grid.Size = New System.Drawing.Size(179, 22)
+        Me.chk_Grid.Text = "Grid"
         '
-        'HideHigherLayersToolStripMenuItem
+        'chk_HighLayers
         '
-        Me.HideHigherLayersToolStripMenuItem.Name = "HideHigherLayersToolStripMenuItem"
-        Me.HideHigherLayersToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.HideHigherLayersToolStripMenuItem.Text = "Hide Higher Layers"
+        Me.chk_HighLayers.CheckOnClick = True
+        Me.chk_HighLayers.Name = "chk_HighLayers"
+        Me.chk_HighLayers.Size = New System.Drawing.Size(179, 22)
+        Me.chk_HighLayers.Text = "Hide Higher Layers"
         '
-        'HideLowerLayersToolStripMenuItem
+        'chkLowLayers
         '
-        Me.HideLowerLayersToolStripMenuItem.Name = "HideLowerLayersToolStripMenuItem"
-        Me.HideLowerLayersToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
-        Me.HideLowerLayersToolStripMenuItem.Text = "Hide Lower Layers"
+        Me.chkLowLayers.CheckOnClick = True
+        Me.chkLowLayers.Name = "chkLowLayers"
+        Me.chkLowLayers.Size = New System.Drawing.Size(179, 22)
+        Me.chkLowLayers.Text = "Hide Lower Layers"
         '
         'HelpToolStripMenuItem
         '
@@ -244,10 +251,29 @@ Partial Class frmMain
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_NewMap, Me.btn_OpenMap, Me.btn_SaveMap, Me.btn_SaveAs, Me.ToolStripSeparator1, Me.btn_Undo, Me.btn_Redo, Me.ToolStripSeparator2})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
+        Me.ToolStrip1.TabIndex = 2
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
         'btn_NewMap
         '
         Me.btn_NewMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btn_NewMap.Image = CType(resources.GetObject("btn_NewMap.Image"), System.Drawing.Image)
+        Me.btn_NewMap.Image = Global.ProthTools.My.Resources.Resources.NewFile_6276
         Me.btn_NewMap.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btn_NewMap.Name = "btn_NewMap"
         Me.btn_NewMap.Size = New System.Drawing.Size(23, 22)
@@ -256,7 +282,7 @@ Partial Class frmMain
         'btn_OpenMap
         '
         Me.btn_OpenMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btn_OpenMap.Image = CType(resources.GetObject("btn_OpenMap.Image"), System.Drawing.Image)
+        Me.btn_OpenMap.Image = Global.ProthTools.My.Resources.Resources.Open_6529
         Me.btn_OpenMap.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btn_OpenMap.Name = "btn_OpenMap"
         Me.btn_OpenMap.Size = New System.Drawing.Size(23, 22)
@@ -265,66 +291,38 @@ Partial Class frmMain
         'btn_SaveMap
         '
         Me.btn_SaveMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btn_SaveMap.Image = CType(resources.GetObject("btn_SaveMap.Image"), System.Drawing.Image)
+        Me.btn_SaveMap.Image = Global.ProthTools.My.Resources.Resources.Save_6530
         Me.btn_SaveMap.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btn_SaveMap.Name = "btn_SaveMap"
         Me.btn_SaveMap.Size = New System.Drawing.Size(23, 22)
         Me.btn_SaveMap.Text = "Save Map"
         '
-        'ToolStripSeparator1
+        'btn_SaveAs
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.btn_SaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btn_SaveAs.Image = Global.ProthTools.My.Resources.Resources.Saveall_6518
+        Me.btn_SaveAs.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_SaveAs.Name = "btn_SaveAs"
+        Me.btn_SaveAs.Size = New System.Drawing.Size(23, 22)
+        Me.btn_SaveAs.Text = "Save As"
         '
-        'ToolStripButton4
+        'btn_Undo
         '
-        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
-        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton4.Text = "ToolStripButton4"
+        Me.btn_Undo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btn_Undo.Image = Global.ProthTools.My.Resources.Resources.Undo_16x
+        Me.btn_Undo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_Undo.Name = "btn_Undo"
+        Me.btn_Undo.Size = New System.Drawing.Size(23, 22)
+        Me.btn_Undo.Text = "Undo"
         '
-        'ToolStripButton5
+        'btn_Redo
         '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton5.Text = "ToolStripButton5"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripButton6
-        '
-        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
-        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton6.Text = "ToolStripButton6"
-        '
-        'ToolStripButton7
-        '
-        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
-        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton7.Text = "ToolStripButton7"
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_NewMap, Me.btn_OpenMap, Me.btn_SaveMap, Me.ToolStripSeparator1, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator2, Me.ToolStripButton6, Me.ToolStripButton7})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
-        Me.ToolStrip1.TabIndex = 2
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.btn_Redo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btn_Redo.Image = Global.ProthTools.My.Resources.Resources.Redo_16x
+        Me.btn_Redo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_Redo.Name = "btn_Redo"
+        Me.btn_Redo.Size = New System.Drawing.Size(23, 22)
+        Me.btn_Redo.Text = "Redo"
         '
         'grp_TileSelect
         '
@@ -466,6 +464,13 @@ Partial Class frmMain
         Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
         Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
         '
+        'chk_FadeLayers
+        '
+        Me.chk_FadeLayers.CheckOnClick = True
+        Me.chk_FadeLayers.Name = "chk_FadeLayers"
+        Me.chk_FadeLayers.Size = New System.Drawing.Size(179, 22)
+        Me.chk_FadeLayers.Text = "Fade Inactive Layers"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -525,19 +530,18 @@ Partial Class frmMain
     Friend WithEvents PropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LayersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents GridToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HideHigherLayersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HideLowerLayersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents chk_Grid As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents chk_HighLayers As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents chkLowLayers As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btn_NewMap As System.Windows.Forms.ToolStripButton
     Friend WithEvents btn_OpenMap As System.Windows.Forms.ToolStripButton
     Friend WithEvents btn_SaveMap As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btn_Undo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btn_Redo As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton7 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btn_SaveAs As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents grp_TileSelect As System.Windows.Forms.GroupBox
     Friend WithEvents splt_TileSelect As System.Windows.Forms.SplitContainer
@@ -553,4 +557,5 @@ Partial Class frmMain
     Friend WithEvents cmb_Layers As System.Windows.Forms.ComboBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents chk_FadeLayers As System.Windows.Forms.ToolStripMenuItem
 End Class

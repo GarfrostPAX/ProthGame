@@ -240,4 +240,23 @@ Public Class frmMain
     Private Sub SaveMapAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveMapAsToolStripMenuItem.Click
         HandleSaveMap(True)
     End Sub
+
+    Private Sub btn_SaveAs_Click(sender As Object, e As EventArgs) Handles btn_SaveAs.Click
+        HandleSaveMap(True)
+    End Sub
+
+    Private Sub chk_HighLayers_Click(sender As Object, e As EventArgs) Handles chk_HighLayers.Click
+        ' Just so the layers actually appear or disappear right away.
+        var_MainChanged = True
+    End Sub
+
+    Private Sub chkLowLayers_Click(sender As Object, e As EventArgs) Handles chkLowLayers.Click
+        ' Just so the layers actually appear or disappear right away.
+        var_MainChanged = True
+    End Sub
+
+    Private Sub chk_FadeLayers_Click(sender As Object, e As EventArgs) Handles chk_FadeLayers.Click
+        ' Just so the layers actually appear or disappear right away.
+        var_MainChanged = True
+    End Sub
 End Class

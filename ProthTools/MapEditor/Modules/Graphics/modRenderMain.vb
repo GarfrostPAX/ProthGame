@@ -69,6 +69,16 @@ Module modRenderMain
         Dim x As Byte, y As Byte
         Dim tempSpr As SFML.Graphics.Sprite
 
+        ' Before we do anything, let's see if the user actually wants to see this layer.
+        If frm_Main.chkLowLayers.Checked Then
+            ' He doesn't want to see the lower layers! Is this one below the current?
+            If Layer < var_CurrentLayer Then Exit Sub
+        End If
+        If frm_Main.chk_HighLayers.Checked Then
+            ' He doesn't want to see the higher layers! Is this one below the current?
+            If Layer > var_CurrentLayer Then Exit Sub
+        End If
+
         ' So before we assume we can simply render our textured layer, we'll need to see if anything changed
         ' since last loop.
         ' If it did, we'll need to re-render the texture before we render it to the screen.
@@ -101,7 +111,8 @@ Module modRenderMain
 
         ' Set the sprite to be somewhat transparent if it's not on our current layer.
         ' This way we can tell what we're editing even if it's below something else.
-        If var_CurrentLayer <> Layer Then
+        ' That is, if the settings allow it.
+        If var_CurrentLayer <> Layer And frm_Main.chk_FadeLayers.Checked Then
             tempSpr.Color = New SFML.Graphics.Color(255, 255, 255, 128)
         End If
 
