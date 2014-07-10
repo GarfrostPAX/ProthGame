@@ -1,6 +1,6 @@
 ﻿Module modDatabase
     Public Sub NewMap(ByVal Layers As Byte, ByVal SizeX As Byte, ByVal SizeY As Byte)
-        Dim i As Byte
+        Dim i As Byte, x As Integer, y As Integer
 
         ' First clear out our current data in the Map.
         Map = Nothing
@@ -19,10 +19,22 @@
 
         ' Create all the layers and the tiles within based on our entered data.
         ReDim Map.Layers(Map.LayerCount)
+        ReDim tex_Layer(Map.LayerCount)
+        ReDim var_LayerChanged(Map.LayerCount)
         For i = 1 To Map.LayerCount
 
             ' Make sure the layer can contain the data we want it to.
             ReDim Map.Layers(i).Tiles(Map.SizeX, Map.SizeY)
+
+            ' Create a texture with the appropriate size for the layer.
+            ' Because the texture needs to contain 32 pixels that just a regular calculation wouldn't cut
+            ' We're adding an additional tile to this.
+            x = Map.SizeX + 1
+            y = Map.SizeY + 1
+            tex_Layer(i) = New SFML.Graphics.RenderTexture(x * TILE_X, y * TILE_Y)
+
+            ' Set LayerChanged to true.
+            var_LayerChanged(i) = True
 
             ' Make sure Layer 1-3 are under the player.
             If i <= 3 Then

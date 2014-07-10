@@ -37,11 +37,18 @@
         ' Make sure we don't crash the program first by checking if the position we're editing is valid or not.
         If X >= 0 And X <= Map.SizeX And Y >= 0 And Y <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
 
-            ' Assign our values to the thingermajick.
-            Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
-            Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
-            Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
+            ' Check to make sure that this tile didn't already exist in this location.
+            ' No point in placing a tile a second time and rendering a cycle over it.
+            If Map.Layers(Layer).Tiles(X, Y).TileSetID <> TileSet And Map.Layers(Layer).Tiles(X, Y).TileSetX <> TileSetX And Map.Layers(Layer).Tiles(X, Y).TileSetY <> TileSetY Then
 
+                ' Assign our values to the thingermajick.
+                Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
+                Map.Layers(Layer).Tiles(X, Y).TileSetX = TileSetX
+                Map.Layers(Layer).Tiles(X, Y).TileSetY = TileSetY
+
+                ' Let our render subs know this layer has changed.
+                var_LayerChanged(Layer) = True
+            End If
         End If
 
         ' Now that we've attempted to placed the MAIN tile, let's place down some additional ones.
@@ -54,10 +61,19 @@
                 For TempY = 0 To var_AdditionalTilesY
                     ' check if the position actually exists on our map before we place something down.
                     If X + TempX >= 0 And X + TempX <= Map.SizeX And Y + TempY >= 0 And Y + TempY <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
-                        ' Place the additional tile.
-                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID = TileSet
-                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX = TileSetX + TempX
-                        Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY = TileSetY + TempY
+
+                        ' Check to make sure that this tile didn't already exist in this location.
+                        ' No point in placing a tile a second time and rendering a cycle over it.
+                        If Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID <> TileSet And Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX + TempX <> TileSetX + TempX And Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY + TempY <> TileSetY + TempY Then
+
+                            ' Place the additional tile.
+                            Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID = TileSet
+                            Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX = TileSetX + TempX
+                            Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY = TileSetY + TempY
+
+                            ' Let our render subs know this layer has changed.
+                            var_LayerChanged(Layer) = True
+                        End If
                     End If
                 Next
             Next

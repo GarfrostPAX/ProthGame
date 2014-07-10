@@ -57,6 +57,10 @@ Public Class frmMain
         render_Main = New RenderWindow(surf_Main.Handle)
         render_TileSelect = New RenderWindow(surf_TileSelect.Handle)
 
+        ' Set some framerate limits. No point in ever rendering it more than whatever the end user's refresh rate is.
+        render_Main.SetVerticalSyncEnabled(True)
+        render_TileSelect.SetVerticalSyncEnabled(True)
+
         ' Now for some funny magic.
         ' We're creating a viewcamera in SFML that will allow us to easily move the viewport around the
         ' world, and zoom in/out as we please without much of a hassle.
@@ -87,7 +91,10 @@ Public Class frmMain
         ' Pass on the mouse events elsewhere.
         HandleMainMouse(e.Button, e.X, e.Y)
 
-        ' Retur focus to the form
+        ' Something likely changed on the main view! A position of the mouse cursor, probably.
+        var_MainChanged = True
+
+        ' Return focus to the form
         frm_Main.Focus()
     End Sub
 
@@ -179,6 +186,9 @@ Public Class frmMain
         ' Send off the handler elsewhere.
         HandleTileSelectMouseMove(e.Button, e.X, e.Y)
 
+        ' Something likely changed on the tileset view! A position of the mouse cursor, probably.
+        var_TileSetChanged = True
+
         ' Return focus to the form
         frm_Main.Focus()
     End Sub
@@ -186,6 +196,9 @@ Public Class frmMain
     Private Sub surf_TileSelectMouseDown(sender As Object, e As MouseEventArgs)
         ' Send off the handler elsewhere.
         HandleTileSelectMouse(e.Button, e.X, e.Y)
+
+        ' Something likely changed on the tileset view! A position of the mouse cursor, probably.
+        var_TileSetChanged = True
 
         ' Return focus to the form
         frm_Main.Focus()

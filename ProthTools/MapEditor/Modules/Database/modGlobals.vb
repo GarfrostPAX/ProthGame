@@ -50,6 +50,10 @@ Module modGlobals
     Public var_NumTileSets As Integer
     Public tex_BackDrop As SFML.Graphics.Texture
     Public tex_Select As SFML.Graphics.Texture
+    Public tex_Layer() As SFML.Graphics.RenderTexture
+    Public var_LayerChanged() As Boolean
+    Public var_MainChanged As Boolean = True
+    Public var_TileSetChanged As Boolean = True
 
     ' Form Globals.
     ' So we can actually address these forms where nessecary.

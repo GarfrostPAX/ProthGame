@@ -16,10 +16,25 @@ Module modEditorLoop
             ' So let's render our displays!
 
             ' The Main Window.
-            RenderMainView()
+            ' Render the changes to the view if anything has changed.
+            If var_MainChanged Then
+                ' Render!
+                RenderMainView()
+
+                ' Set the changed value back to 0.
+                var_MainChanged = False
+            End If
 
             ' The Tile Selection Window
-            RenderTileSelect()
+            ' Only render changes if anything has actually changed.
+            If var_TileSetChanged Then
+                ' Render!
+                RenderTileSelect()
+
+                ' Set the changed value back to 0.
+                var_TileSetChanged = False
+            End If
+
 
             ' Update our label at the bottom of the window.
             UpdateStatusLabel()

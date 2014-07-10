@@ -47,7 +47,7 @@ Module modRenderMain
     End Sub
 
     Private Sub RenderMap(ByVal UnderPlayer As Boolean)
-        Dim l As Byte, x As Byte, y As Byte
+        Dim l As Byte
         ' This sub will render the entire map to the screen.
         ' Note that the UnderPlayer modifier you pass into this equals the same boolean value as 
         ' your layers will. It will only render those layers that equal the value you pass.
@@ -57,19 +57,53 @@ Module modRenderMain
 
             ' Check if this layer should be rendered on this pass.
             If Map.Layers(l).UnderPlayer = UnderPlayer Then
-
-                ' Now loop through the X/Y values of this layer to render this thing.
-                ' We start at 0 here, this means we don't need to mess with more blasted offset values than we do already.
-                ' Also means that this is an array that doesn't have a blank entry in it for once!
-                For x = 0 To Map.SizeX
-                    For y = 0 To Map.SizeY
-                        ' Render the actual tile.
-                        RenderTile(l, x, y)
-                    Next
-                Next
+                ' Render the layer.
+                RenderLayer(l)
             End If
 
         Next
+
+    End Sub
+
+    Private Sub RenderLayer(ByVal Layer As Byte)
+        Dim x As Byte, y As Byte
+        Dim tempSpr As SFML.Graphics.Sprite
+
+        ' So before we assume we can simply render our textured layer, we'll need to see if anything changed
+        ' since last loop.
+        ' If it did, we'll need to re-render the texture before we render it to the screen.
+        If var_LayerChanged(Layer) Then
+
+            ' First we'll be clearing out this texture's content. We don't need to keep old data on it.
+            ' Go with a transparent background, or it won't layer well.
+            tex_Layer(Layer).Clear(SFML.Graphics.Color.Transparent)
+
+            ' Now loop through the X/Y values of this layer to render this thing.
+            ' We start at 0 here, this means we don't need to mess with more blasted offset values than we do already.
+            ' Also means that this is an array that doesn't have a blank entry in it for once!
+            For x = 0 To Map.SizeX
+                For y = 0 To Map.SizeY
+                    ' Render the actual tile.
+                    RenderTile(Layer, x, y)
+                Next
+            Next
+
+            ' Make sure the changes to the texture gets displayed properly.
+            tex_Layer(Layer).Display()
+
+            ' Now make sure we let the next loop know the texture has been rendered.
+            var_LayerChanged(Layer) = False
+        End If
+
+        ' Throw the layer texture onto the display!
+        ' Let's create a sprite of it.
+        tempSpr = New SFML.Graphics.Sprite(tex_Layer(Layer).Texture)
+
+        ' Push the sprite to the screen.
+        render_Main.Draw(tempSpr)
+
+        ' Dump the object.
+        tempSpr = Nothing
 
     End Sub
 
@@ -98,7 +132,7 @@ Module modRenderMain
         tempSpr.Position = New Vector2f(X * TILE_X, Y * TILE_Y)
 
         ' Now draw it to the screen!
-        render_Main.Draw(tempSpr)
+        tex_Layer(Layer).Draw(tempSpr)
 
         ' Clear out our values so we don't hoard memory.
         tempRec = Nothing
@@ -159,6 +193,9 @@ Module modRenderMain
             render_Main.Draw(tempSpr)
             tempSpr.Position = New SFML.Window.Vector2f((tempX + 1 + var_AdditionalTilesX) * TILE_X - 2, tempY * TILE_Y)
             render_Main.Draw(tempSpr)
+
+            ' Dispose of the object.
+            tempSpr = Nothing
         End If
 
     End Sub
