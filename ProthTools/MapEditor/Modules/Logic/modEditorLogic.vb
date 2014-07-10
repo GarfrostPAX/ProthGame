@@ -39,7 +39,7 @@
 
             ' Check to make sure that this tile didn't already exist in this location.
             ' No point in placing a tile a second time and rendering a cycle over it.
-            If Map.Layers(Layer).Tiles(X, Y).TileSetID <> TileSet And Map.Layers(Layer).Tiles(X, Y).TileSetX <> TileSetX And Map.Layers(Layer).Tiles(X, Y).TileSetY <> TileSetY Then
+            If Map.Layers(Layer).Tiles(X, Y).TileSetID <> TileSet Or Map.Layers(Layer).Tiles(X, Y).TileSetX <> TileSetX Or Map.Layers(Layer).Tiles(X, Y).TileSetY <> TileSetY Then
 
                 ' Assign our values to the thingermajick.
                 Map.Layers(Layer).Tiles(X, Y).TileSetID = TileSet
@@ -64,7 +64,7 @@
 
                         ' Check to make sure that this tile didn't already exist in this location.
                         ' No point in placing a tile a second time and rendering a cycle over it.
-                        If Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID <> TileSet And Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX + TempX <> TileSetX + TempX And Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY + TempY <> TileSetY + TempY Then
+                        If Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID <> TileSet Or Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetX + TempX <> TileSetX + TempX Or Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetY + TempY <> TileSetY + TempY Then
 
                             ' Place the additional tile.
                             Map.Layers(Layer).Tiles(X + TempX, Y + TempY).TileSetID = TileSet

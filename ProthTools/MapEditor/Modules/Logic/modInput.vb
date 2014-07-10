@@ -90,33 +90,39 @@ Module modInput
                 ' Move the camera to the left.
                 view_Main.Move(New SFML.Window.Vector2f(-9, 0))
                 render_Main.SetView(view_Main)
+                var_MainChanged = True
                 Exit Sub
 
             Case Keys.D
                 ' Move the camera to the right.
                 view_Main.Move(New SFML.Window.Vector2f(9, 0))
                 render_Main.SetView(view_Main)
+                var_MainChanged = True
                 Exit Sub
 
             Case Keys.W
                 ' Move the camera up.
                 view_Main.Move(New SFML.Window.Vector2f(0, -9))
                 render_Main.SetView(view_Main)
+                var_MainChanged = True
                 Exit Sub
 
             Case Keys.S
                 ' Move the camera down.
                 view_Main.Move(New SFML.Window.Vector2f(0, 9))
                 render_Main.SetView(view_Main)
+                var_MainChanged = True
                 Exit Sub
 
             Case Keys.Add, Keys.E
                 ' Zoom in
                 MapEditorZoom(False)
+                var_MainChanged = True
                 Exit Sub
 
             Case Keys.Subtract, Keys.Q
                 MapEditorZoom(True)
+                var_MainChanged = True
                 Exit Sub
 
         End Select

@@ -41,6 +41,7 @@ Module modGraphicsInit
 
                     ' Set our object to be a texture and load in the graphic we found.
                     tex_TileSet(Count) = New SFML.Graphics.Texture(FileName)
+                    tex_TileSet(Count).Smooth = False
 
                     ' Time to parse out our single file name.
                     var_TileSetName(Count) = Right(FileName, Len(FileName) - Len(var_AppPath + DIR_DATA + DIR_TILESETS))
@@ -64,6 +65,7 @@ Module modGraphicsInit
         ' Check if the backdrop image exists before we continue.
         If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT) Then
             tex_BackDrop = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT)
+            tex_BackDrop.Smooth = False
         Else
             MsgBox("Unable to locate backdrop" + GFX_EXT, MsgBoxStyle.Critical, "Error")
             End
@@ -72,6 +74,7 @@ Module modGraphicsInit
         ' Check if the select image exists before we continue.
         If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "select" + GFX_EXT) Then
             tex_Select = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "select" + GFX_EXT)
+            tex_Select.Smooth = False
         Else
             MsgBox("Unable to locate select" + GFX_EXT, MsgBoxStyle.Critical, "Error")
             End

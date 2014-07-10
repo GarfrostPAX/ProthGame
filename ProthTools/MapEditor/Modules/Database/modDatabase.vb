@@ -32,6 +32,7 @@
             x = Map.SizeX + 1
             y = Map.SizeY + 1
             tex_Layer(i) = New SFML.Graphics.RenderTexture(x * TILE_X, y * TILE_Y)
+            tex_Layer(i).Smooth = False
 
             ' Set LayerChanged to true.
             var_LayerChanged(i) = True
