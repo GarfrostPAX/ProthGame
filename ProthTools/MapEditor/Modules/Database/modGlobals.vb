@@ -12,12 +12,15 @@ Module modGlobals
     Public Const DIR_DATA As String = "\data"
     Public Const DIR_TILESETS As String = "\tilesets\"
     Public Const DIR_GENERIC As String = "\generic\"
+    Public Const DIR_MAPS As String = "\maps\"
     Public Const GFX_EXT As String = ".png"
+    Public Const MAPINF_EXT As String = ".minf"
+    Public Const MAPDAT_EXT As String = ".mdat"
 
     ' Map Constants.
-    Public Const MAP_DEFAULT_X As Byte = 24
-    Public Const MAP_DEFAULT_Y As Byte = 19
-    Public Const MAP_DEFAULT_LAYERS As Byte = 5
+    Public Const MAP_DEFAULT_X As Byte = 60
+    Public Const MAP_DEFAULT_Y As Byte = 34
+    Public Const MAP_DEFAULT_LAYERS As Byte = 7
     Public Const TILE_X As Byte = 32
     Public Const TILE_Y As Byte = 32
 

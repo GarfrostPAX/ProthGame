@@ -84,10 +84,19 @@
             For TempX = 1 To var_AdditionalTilesX
                 ' check if the position actually exists on our map before we place something down.
                 If X + TempX >= 0 And X + TempX <= Map.SizeX And Y >= 0 And Y <= Map.SizeY And Layer >= 1 And Layer <= Map.LayerCount Then
-                    ' Place the additional tile.
-                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetID = TileSet
-                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetX = TileSetX + TempX
-                    Map.Layers(Layer).Tiles(X + TempX, Y).TileSetY = TileSetY
+
+                    ' Check to make sure that this tile didn't already exist in this location.
+                    ' No point in placing a tile a second time and rendering a cycle over it.
+                    If Map.Layers(Layer).Tiles(X + TempX, Y).TileSetID <> TileSet Or Map.Layers(Layer).Tiles(X + TempX, Y).TileSetX + TempX <> TileSetX + TempX Or Map.Layers(Layer).Tiles(X + TempX, Y).TileSetY <> TileSetY Then
+
+                        ' Place the additional tile.
+                        Map.Layers(Layer).Tiles(X + TempX, Y).TileSetID = TileSet
+                        Map.Layers(Layer).Tiles(X + TempX, Y).TileSetX = TileSetX + TempX
+                        Map.Layers(Layer).Tiles(X + TempX, Y).TileSetY = TileSetY
+
+                        ' Let our render subs know this layer has changed.
+                        var_LayerChanged(Layer) = True
+                    End If
                 End If
             Next
 
@@ -97,10 +106,19 @@
             For TempY = 1 To var_AdditionalTilesY
                 ' check if the position actually exists on our map before we place something down.
                 If Y + TempY >= 0 And Y + TempY <= Map.SizeY And X >= 0 And X <= Map.SizeX And Layer >= 1 And Layer <= Map.LayerCount Then
-                    ' Place the additional tile.
-                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetID = TileSet
-                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetX = TileSetX
-                    Map.Layers(Layer).Tiles(X, Y + TempY).TileSetY = TileSetY + TempY
+
+                    ' Check to make sure that this tile didn't already exist in this location.
+                    ' No point in placing a tile a second time and rendering a cycle over it.
+                    If Map.Layers(Layer).Tiles(X, Y + TempY).TileSetID <> TileSet Or Map.Layers(Layer).Tiles(X, Y + TempY).TileSetX <> TileSetX Or Map.Layers(Layer).Tiles(X, Y + TempY).TileSetY + TempY <> TileSetY + TempY Then
+
+                        ' Place the additional tile.
+                        Map.Layers(Layer).Tiles(X, Y + TempY).TileSetID = TileSet
+                        Map.Layers(Layer).Tiles(X, Y + TempY).TileSetX = TileSetX
+                        Map.Layers(Layer).Tiles(X, Y + TempY).TileSetY = TileSetY + TempY
+
+                        ' Let our render subs know this layer has changed.
+                        var_LayerChanged(Layer) = True
+                    End If
                 End If
             Next
         End If
@@ -154,6 +172,35 @@
         frm_Main.cmb_Layers.SelectedIndex = 0
 
     End Sub
+
+    Public Sub HandleSaveMap()
+        Dim Dialog As Windows.Forms.SaveFileDialog
+        Dim Result As Windows.Forms.DialogResult
+
+        ' Get our dialog created.
+        ' We want to know WHERE our user is saving the map after all.
+        Dialog = New Windows.Forms.SaveFileDialog
+
+        ' Set some default settings for our lovely window.
+        Dialog.InitialDirectory = var_AppPath + DIR_DATA + DIR_MAPS
+        Dialog.Filter = "Map Info (*.minf)|*.minf"
+        Dialog.Title = "Save Map.."
+
+        ' Run the dialog and get a return value.
+        Result = Dialog.ShowDialog()
+
+        ' Make sure the dialog actually returned a sensible value.
+        If Result = Windows.Forms.DialogResult.Cancel Then
+            ' The user has decided to not save the map.
+            Exit Sub
+        Else
+            ' Save the map!
+            ' But make sure you take off the extension that the dialog adds..
+            SaveMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
+        End If
+
+    End Sub
+
 
     Public Sub StatusMessage(ByVal Msg As String)
         frm_Main.lbl_Status.Text = Msg

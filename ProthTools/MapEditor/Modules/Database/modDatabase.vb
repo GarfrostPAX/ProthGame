@@ -15,6 +15,7 @@
 
         ' Redim our Bordering Maps Array.
         ' This will be used to determine what map the user is going to walk into when they run into the border.
+        ' See Enum Directions.
         ReDim Map.BorderingMap(3)
 
         ' Create all the layers and the tiles within based on our entered data.
@@ -37,20 +38,41 @@
             ' Set LayerChanged to true.
             var_LayerChanged(i) = True
 
-            ' Make sure Layer 1-3 are under the player.
-            If i <= 3 Then
+            ' Make sure Layer 1-4 are under the player.
+            If i <= 4 Then
                 Map.Layers(i).UnderPlayer = True
             End If
         Next
 
         ' Give our layers some names.
         Map.Layers(1).LayerName = "Ground"
-        Map.Layers(2).LayerName = "Mask 1"
-        Map.Layers(3).LayerName = "Mask 2"
-        Map.Layers(4).LayerName = "Fringe 1"
-        Map.Layers(5).LayerName = "Fringe 2"
+        Map.Layers(2).LayerName = "Foliage 1"
+        Map.Layers(3).LayerName = "Foliage 2"
+        Map.Layers(4).LayerName = "Decoration 1"
+        Map.Layers(5).LayerName = "Overlay 1"
+        Map.Layers(6).LayerName = "Overlay 2"
+        Map.Layers(7).LayerName = "Overlay 3"
 
         ' And name the map itself.
         Map.Title = "New Map"
     End Sub
+
+    Public Sub SaveMap(ByVal FileName As String)
+        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+
+        ' First let's save the basic map info we need to load it up again later.
+        System.IO.File.WriteAllText(FileName + MAPINF_EXT, Map.LayerCount.ToString + "," + Map.SizeX.ToString + "," + Map.SizeY.ToString)
+
+        ' Now let's dump our Array to a file!
+        ' Open a new filestream.
+        Dim fStream As New System.IO.FileStream(FileName + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
+
+        ' Dump the Array into the file.
+        bf.Serialize(fStream, Map)
+
+        ' Close the filestream.
+        fStream.Close()
+
+    End Sub
+
 End Module

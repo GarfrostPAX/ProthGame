@@ -204,4 +204,7 @@ Public Class frmMain
         frm_Main.Focus()
     End Sub
 
+    Private Sub btn_SaveMap_Click(sender As Object, e As EventArgs) Handles btn_SaveMap.Click
+        HandleSaveMap()
+    End Sub
 End Class

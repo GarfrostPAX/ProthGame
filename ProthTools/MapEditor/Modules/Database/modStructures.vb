@@ -1,6 +1,6 @@
 ﻿Module modStructures
 
-    Public Structure MapRec
+    <Serializable()> Public Structure MapRec
         Dim Title As String
         Dim BorderingMap() As Integer
 
@@ -12,14 +12,14 @@
 
     End Structure
 
-    Public Structure LayerRec
+    <Serializable()> Public Structure LayerRec
         Dim LayerName As String
         Dim UnderPlayer As Boolean
 
         Dim Tiles(,) As TileRec
     End Structure
 
-    Public Structure TileRec
+    <Serializable()> Public Structure TileRec
         Dim TileSetID As Integer
         Dim TileSetX As Integer
         Dim TileSetY As Integer
