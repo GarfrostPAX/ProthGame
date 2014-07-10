@@ -99,6 +99,12 @@ Module modRenderMain
         ' Let's create a sprite of it.
         tempSpr = New SFML.Graphics.Sprite(tex_Layer(Layer).Texture)
 
+        ' Set the sprite to be somewhat transparent if it's not on our current layer.
+        ' This way we can tell what we're editing even if it's below something else.
+        If var_CurrentLayer <> Layer Then
+            tempSpr.Color = New SFML.Graphics.Color(255, 255, 255, 128)
+        End If
+
         ' Push the sprite to the screen.
         render_Main.Draw(tempSpr)
 

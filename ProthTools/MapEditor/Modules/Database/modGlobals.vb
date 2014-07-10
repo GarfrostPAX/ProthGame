@@ -73,6 +73,9 @@ Module modGlobals
     Public var_AdditionalTilesX As Integer
     Public var_AdditionalTilesY As Integer
 
+    ' Saving Global
+    Public var_LastSavedMap As String
+
     ' Map Global.
     Public Map As MapRec
 

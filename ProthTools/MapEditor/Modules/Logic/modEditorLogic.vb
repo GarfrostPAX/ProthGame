@@ -173,13 +173,45 @@
 
     End Sub
 
-    Public Sub HandleSaveMap()
+    Public Sub HandleSaveMap(Optional ByVal SaveAs As Boolean = False)
         Dim Dialog As Windows.Forms.SaveFileDialog
+        Dim Result As Windows.Forms.DialogResult
+
+        If SaveAs = True Or var_LastSavedMap = "" Then
+            ' Get our dialog created.
+            ' We want to know WHERE our user is saving the map after all.
+            Dialog = New Windows.Forms.SaveFileDialog
+
+            ' Set some default settings for our lovely window.
+            Dialog.InitialDirectory = var_AppPath + DIR_DATA + DIR_MAPS
+            Dialog.Filter = "Map Info (*.minf)|*.minf"
+            Dialog.Title = "Save Map.."
+
+            ' Run the dialog and get a return value.
+            Result = Dialog.ShowDialog()
+
+            ' Make sure the dialog actually returned a sensible value.
+            If Result = Windows.Forms.DialogResult.Cancel Then
+                ' The user has decided to not save the map.
+                Exit Sub
+            Else
+                ' Save the map!
+                ' But make sure you take off the extension that the dialog adds..
+                SaveMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
+            End If
+        Else
+            SaveMap(var_LastSavedMap)
+        End If
+
+    End Sub
+
+    Public Sub HandleLoadMap()
+        Dim Dialog As Windows.Forms.OpenFileDialog
         Dim Result As Windows.Forms.DialogResult
 
         ' Get our dialog created.
         ' We want to know WHERE our user is saving the map after all.
-        Dialog = New Windows.Forms.SaveFileDialog
+        Dialog = New Windows.Forms.OpenFileDialog
 
         ' Set some default settings for our lovely window.
         Dialog.InitialDirectory = var_AppPath + DIR_DATA + DIR_MAPS
@@ -194,13 +226,27 @@
             ' The user has decided to not save the map.
             Exit Sub
         Else
-            ' Save the map!
+            ' Load the map!
             ' But make sure you take off the extension that the dialog adds..
-            SaveMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
+            LoadMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
         End If
 
     End Sub
 
+    Public Sub HandleNewMap()
+        Dim Result As New Microsoft.VisualBasic.MsgBoxResult
+
+        ' Make sure the user wants to make a new map.
+        Result = MsgBox("Creating a new map will wipe all data currently on-screen." + vbNewLine + vbNewLine + "Are you sure you want to continue?", MsgBoxStyle.YesNo, "New Map")
+
+        ' If so, do as they say!
+        If Result = MsgBoxResult.Yes Then
+            NewMap(MAP_DEFAULT_LAYERS, MAP_DEFAULT_X, MAP_DEFAULT_Y)
+        End If
+
+        ' Clear object.
+        Result = Nothing
+    End Sub
 
     Public Sub StatusMessage(ByVal Msg As String)
         frm_Main.lbl_Status.Text = Msg

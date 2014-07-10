@@ -55,6 +55,21 @@
 
         ' And name the map itself.
         Map.Title = "New Map"
+
+        ' Only do the following once the form object exists.
+        If IsNothing(frm_Main) = False Then
+
+            ' Set the status.
+            StatusMessage("New Map Created")
+
+            ' Set the form title.
+            frm_Main.Text = "Prothesys Map Editor [New Map]"
+
+        End If
+
+        ' Set our last saved map to nothing
+        var_LastSavedMap = ""
+
     End Sub
 
     Public Sub SaveMap(ByVal FileName As String)
@@ -72,6 +87,53 @@
 
         ' Close the filestream.
         fStream.Close()
+
+        ' Set the form title.
+        frm_Main.Text = "Prothesys Map Editor [" + FileName + MAPINF_EXT + "]"
+
+        ' Set our last saved map to this one.
+        var_LastSavedMap = FileName
+
+        ' Set the status.
+        StatusMessage("Saved Map")
+
+    End Sub
+
+    Public Sub LoadMap(ByVal FileName As String)
+        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+        Dim tempStr As String, TempDat() As String
+
+        ' First let's read the basic map info we need to load it up again.
+        tempstr = System.IO.File.ReadAllText(FileName + MAPINF_EXT)
+
+        ' Split it up.
+        TempDat = Split(tempStr, ",")
+
+        ' Instead of being fancy and redimming everything, let's just load in a brand new map.
+        ' It's easier. I'm lazy.
+        NewMap(CByte(TempDat(0)), CByte(TempDat(1)), CByte(TempDat(2)))
+
+        ' Now let's read our map data!
+        ' Open a new filestream.
+        Dim fStream As New System.IO.FileStream(FileName + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
+
+        ' Dump the Array into the file.
+        Map = bf.Deserialize(fStream)
+
+        ' Close the filestream.
+        fStream.Close()
+
+        ' Set the form title.
+        frm_Main.Text = "Prothesys Map Editor [" + FileName + MAPINF_EXT + "]"
+
+        ' Tell the renderer that something changed.
+        var_MainChanged = True
+
+        ' Set our last saved map to this one.
+        var_LastSavedMap = FileName
+
+        ' Set the status.
+        StatusMessage("Loaded Map")
 
     End Sub
 

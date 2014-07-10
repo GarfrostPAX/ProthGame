@@ -108,6 +108,12 @@ Public Class frmMain
         ' Because these indices start at 0 we need to add one.
         var_CurrentLayer = cmb_Layers.SelectedIndex + 1
 
+        ' Status Change!
+        StatusMessage("Changed to Layer: " + Map.Layers(var_CurrentLayer).LayerName)
+
+        ' Let the renderer know something changed.
+        var_MainChanged = True
+
         ' Set the focus back to the form.
         frm_Main.Focus()
 
@@ -159,6 +165,9 @@ Public Class frmMain
             scrl_VTile.Enabled = False
         End If
 
+        ' Make sure the tileset renderer knows something changed.
+        var_TileSetChanged = True
+
         ' Set the status.
         StatusMessage("Switched to Tileset #" + var_CurrentTileSet.ToString)
 
@@ -206,5 +215,29 @@ Public Class frmMain
 
     Private Sub btn_SaveMap_Click(sender As Object, e As EventArgs) Handles btn_SaveMap.Click
         HandleSaveMap()
+    End Sub
+
+    Private Sub btn_OpenMap_Click(sender As Object, e As EventArgs) Handles btn_OpenMap.Click
+        HandleLoadMap()
+    End Sub
+
+    Private Sub btn_NewMap_Click(sender As Object, e As EventArgs) Handles btn_NewMap.Click
+        HandleNewMap()
+    End Sub
+
+    Private Sub NewMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewMapToolStripMenuItem.Click
+        HandleNewMap()
+    End Sub
+
+    Private Sub OpenMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenMapToolStripMenuItem.Click
+        HandleLoadMap()
+    End Sub
+
+    Private Sub SaveMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveMapToolStripMenuItem.Click
+        HandleSaveMap()
+    End Sub
+
+    Private Sub SaveMapAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveMapAsToolStripMenuItem.Click
+        HandleSaveMap(True)
     End Sub
 End Class

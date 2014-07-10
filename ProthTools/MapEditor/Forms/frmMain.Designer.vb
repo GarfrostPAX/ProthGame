@@ -49,8 +49,8 @@ Partial Class frmMain
         Me.HideHigherLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HideLowerLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.btn_NewMap = New System.Windows.Forms.ToolStripButton()
+        Me.btn_OpenMap = New System.Windows.Forms.ToolStripButton()
         Me.btn_SaveMap = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
@@ -104,13 +104,13 @@ Partial Class frmMain
         'NewMapToolStripMenuItem
         '
         Me.NewMapToolStripMenuItem.Name = "NewMapToolStripMenuItem"
-        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NewMapToolStripMenuItem.Text = "New Map"
         '
         'OpenMapToolStripMenuItem
         '
         Me.OpenMapToolStripMenuItem.Name = "OpenMapToolStripMenuItem"
-        Me.OpenMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.OpenMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OpenMapToolStripMenuItem.Text = "Open Map"
         '
         'ToolStripMenuItem2
@@ -121,13 +121,13 @@ Partial Class frmMain
         'SaveMapToolStripMenuItem
         '
         Me.SaveMapToolStripMenuItem.Name = "SaveMapToolStripMenuItem"
-        Me.SaveMapToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.SaveMapToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveMapToolStripMenuItem.Text = "Save Map"
         '
         'SaveMapAsToolStripMenuItem
         '
         Me.SaveMapAsToolStripMenuItem.Name = "SaveMapAsToolStripMenuItem"
-        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveMapAsToolStripMenuItem.Text = "Save Map As.."
         '
         'ToolStripMenuItem3
@@ -244,23 +244,23 @@ Partial Class frmMain
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
-        'ToolStripButton1
+        'btn_NewMap
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.btn_NewMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btn_NewMap.Image = CType(resources.GetObject("btn_NewMap.Image"), System.Drawing.Image)
+        Me.btn_NewMap.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_NewMap.Name = "btn_NewMap"
+        Me.btn_NewMap.Size = New System.Drawing.Size(23, 22)
+        Me.btn_NewMap.Text = "New Map"
         '
-        'ToolStripButton2
+        'btn_OpenMap
         '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
+        Me.btn_OpenMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btn_OpenMap.Image = CType(resources.GetObject("btn_OpenMap.Image"), System.Drawing.Image)
+        Me.btn_OpenMap.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_OpenMap.Name = "btn_OpenMap"
+        Me.btn_OpenMap.Size = New System.Drawing.Size(23, 22)
+        Me.btn_OpenMap.Text = "Load Map"
         '
         'btn_SaveMap
         '
@@ -319,7 +319,7 @@ Partial Class frmMain
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.btn_SaveMap, Me.ToolStripSeparator1, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator2, Me.ToolStripButton6, Me.ToolStripButton7})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_NewMap, Me.btn_OpenMap, Me.btn_SaveMap, Me.ToolStripSeparator1, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator2, Me.ToolStripButton6, Me.ToolStripButton7})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1264, 25)
@@ -482,7 +482,7 @@ Partial Class frmMain
         Me.MaximizeBox = False
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Prothesys Map Editor"
+        Me.Text = "Prothesys Map Editor [New Map]"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -529,8 +529,8 @@ Partial Class frmMain
     Friend WithEvents HideHigherLayersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HideLowerLayersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btn_NewMap As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btn_OpenMap As System.Windows.Forms.ToolStripButton
     Friend WithEvents btn_SaveMap As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
