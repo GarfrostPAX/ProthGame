@@ -202,60 +202,55 @@
             var_LayerChanged(Map.LayerCount) = True
 
         Else
-            ' Under the player, so we'll need to shove this layer in somewhere halfway into the array.
-            ' Basically, let's add a new entry and push all the data to the end of the array, and then push in our new layer.
+            ' Oh dear, this might get more complex.
+            ' The user wants a layer below the player, which means we need to inject it halfway through.
 
-            ' Figure out what the highest Layer that's under our player is.
-            ' Add one to this at the end, this will be the layer we're going to re-use.
-            For x = 1 To Map.LayerCount
-                If Map.Layers(x).UnderPlayer Then tempLayer = x
+            ' First let's figure out what the top layer is that's currently below our player.
+            ' Add one to it to see which layer we'll be creating.
+            For i = 1 To Map.LayerCount
+                If Map.Layers(i).UnderPlayer Then tempLayer = i
             Next
             tempLayer = tempLayer + 1
 
-            ' First add a brand new layer to the counter.
-            Map.LayerCount = Map.LayerCount + 1
-
-            ' Now just redim the arrays. :)
-            ReDim Preserve Map.Layers(Map.LayerCount)
-            ReDim Preserve tex_Layer(Map.LayerCount)
-            ReDim Preserve var_LayerChanged(Map.LayerCount)
-            ReDim Map.Layers(Map.LayerCount).Tiles(Map.SizeX, Map.SizeY)
-
-            ' Adding one because the rendered view needs to be an additional tile wide.
-            tempX = Map.SizeX + 1
-            tempY = Map.SizeY + 1
-            tex_Layer(Map.LayerCount) = New SFML.Graphics.RenderTexture(tempX * TILE_X, tempY * TILE_Y)
-
-            ' Loop through the maps backwards to move the data up.
-            i = Map.LayerCount
-            Do While i > tempLayer
-
-                ' Move our data.
-                Map.Layers(i) = Map.Layers(i - 1)
-
-                ' Force the editor to render this layer later.
-                var_LayerChanged(i) = True
-
-                ' Move on to the next.
-                i = i - 1
-            Loop
-
-            'Clear out our new layer.
-            For tempX = 0 To Map.SizeX
-                For tempY = 0 To Map.SizeY
-                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetID = 0
-                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetX = 0
-                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetY = 0
-                Next
+            ' Create a temporary map array to mimic our real map.
+            ' We'll be using this to pull data from later.
+            Dim tempMap As New MapRec
+            ReDim tempMap.Layers(Map.LayerCount)
+            For i = 1 To Map.LayerCount
+                ReDim tempMap.Layers(i).Tiles(Map.SizeX, Map.SizeY)
             Next
-            var_LayerChanged(tempLayer) = True
 
-            ' Set data to new layer.
+            ' Set our temporary map to be identical to our actual map.
+            tempMap = Map
+
+            ' Create a brand new map with the new layer count.
+            ' It's going to be blank, but that doesn't matter! We have a copy.
+            NewMap(Map.LayerCount + 1, Map.SizeX, Map.SizeY)
+
+            ' Set the basic settings back the way they should be.
+            Map.BorderingMap = tempMap.BorderingMap
+            Map.Title = tempMap.Title
+
+            ' Move the lower layers back into place.
+            For i = 1 To tempLayer - 1
+                Map.Layers(i) = tempMap.Layers(i)
+            Next
+
+            ' And move the upper layers back into place!
+            For i = tempLayer To Map.LayerCount - 1
+                Map.Layers(i + 1) = tempMap.Layers(i)
+            Next
+
+            ' Set the settings for our new layer.
             Map.Layers(tempLayer).LayerName = Name
             Map.Layers(tempLayer).UnderPlayer = UnderPlayer
 
+            ' And set the temporary map object to be nothing again.
+            ' It's served its purpose well.
+            tempMap = Nothing
         End If
 
+        
         ' Force an update to the lists.
         PopulateLayerList()
 
