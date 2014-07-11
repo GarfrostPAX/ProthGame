@@ -20,13 +20,13 @@ Module modMain
         ' Time to fire up our forms.
         ' We'll need to initialize them all seperately due to the way the project is structured.
         ' Not a huge problem, just means we can have a bit more control over what each form does.
-        ' You may notice some are set to be children of frm_Main, this is because we want them to appear on said form.
         frm_Loading = New frmLoading
         frm_Loading.Show()
 
         frm_Main = New frmMain
-        frm_Main.IsMdiContainer = True
         frm_Main.Start()
+
+        frm_Layers = New frmLayers
 
         ' Everything should now be in order now.
         ' Of course we still want to be able to SEE our forms.. So let's unide them.

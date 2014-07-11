@@ -33,3 +33,4 @@ C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\MapEditor\obj\Debug\Pro
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\MapEditor\obj\Debug\ProthTools.frmMain.resources
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\MapEditor\obj\Debug\MapEditor.vbproj.GenerateResource.Cache
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\MapEditor\obj\Debug\ProthTools.Resources.resources
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthTools\MapEditor\obj\Debug\ProthTools.frmLayers.resources

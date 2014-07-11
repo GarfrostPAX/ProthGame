@@ -62,6 +62,9 @@ Module modGlobals
     ' So we can actually address these forms where nessecary.
     Public frm_Main As frmMain
     Public frm_Loading As frmLoading
+    Public frm_Layers As frmLayers
+
+    Public var_LayersOpen As Boolean = False
 
     ' Mouse location Global.
     Public var_MousePos As SFML.Window.Vector2f

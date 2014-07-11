@@ -95,7 +95,7 @@ Public Class frmMain
         var_MainChanged = True
 
         ' Return focus to the form
-        frm_Main.Focus()
+        FocusMain()
     End Sub
 
     Private Sub frmMain_KeyDown(sender As Object, e As Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -115,7 +115,7 @@ Public Class frmMain
         var_MainChanged = True
 
         ' Set the focus back to the form.
-        frm_Main.Focus()
+        FocusMain()
 
     End Sub
 
@@ -172,7 +172,7 @@ Public Class frmMain
         StatusMessage("Switched to Tileset #" + var_CurrentTileSet.ToString)
 
         ' Set the focus back to the form.
-        frm_Main.Focus()
+        FocusMain()
     End Sub
 
     Private Sub scrl_VTile_Scroll(sender As Object, e As ScrollEventArgs) Handles scrl_VTile.Scroll
@@ -199,7 +199,7 @@ Public Class frmMain
         var_TileSetChanged = True
 
         ' Return focus to the form
-        frm_Main.Focus()
+        FocusMain()
     End Sub
 
     Private Sub surf_TileSelectMouseDown(sender As Object, e As MouseEventArgs)
@@ -210,7 +210,7 @@ Public Class frmMain
         var_TileSetChanged = True
 
         ' Return focus to the form
-        frm_Main.Focus()
+        FocusMain()
     End Sub
 
     Private Sub btn_SaveMap_Click(sender As Object, e As EventArgs) Handles btn_SaveMap.Click
@@ -258,5 +258,11 @@ Public Class frmMain
     Private Sub chk_FadeLayers_Click(sender As Object, e As EventArgs) Handles chk_FadeLayers.Click
         ' Just so the layers actually appear or disappear right away.
         var_MainChanged = True
+    End Sub
+
+    Private Sub btn_ManageLayers_Click(sender As Object, e As EventArgs) Handles btn_ManageLayers.Click
+        var_LayersOpen = True
+        frm_Layers.Visible = True
+        frm_Main.Enabled = False
     End Sub
 End Class

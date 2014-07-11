@@ -64,6 +64,12 @@
     <Compile Include="Classes\Graphics\WindowSurface.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\frmLayers.Designer.vb">
+      <DependentUpon>frmLayers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLayers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmLoading.Designer.vb">
       <DependentUpon>frmLoading.vb</DependentUpon>
     </Compile>
@@ -111,6 +117,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmLayers.resx">
+      <DependentUpon>frmLayers.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLoading.resx">
       <DependentUpon>frmLoading.vb</DependentUpon>
     </EmbeddedResource>

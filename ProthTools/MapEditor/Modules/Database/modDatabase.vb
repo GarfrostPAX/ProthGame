@@ -129,11 +129,44 @@
         ' Tell the renderer that something changed.
         var_MainChanged = True
 
+        ' Populate our layer lists with the new values.
+        PopulateLayerList()
+
         ' Set our last saved map to this one.
         var_LastSavedMap = FileName
 
         ' Set the status.
         StatusMessage("Loaded Map")
+
+    End Sub
+
+    Public Sub DeleteLayer(ByVal Layer As Integer)
+        Dim i As Integer
+
+        ' Let's see if the layer is above or below the limit.
+        If Layer < Map.LayerCount Then
+
+            ' Move down all the data in the array by one into the one we're deleting.
+            ' This makes it much easier, as at the end of it we can just delete the last layer.
+            For i = Layer To Map.LayerCount - 1
+
+                ' Move our data!
+                Map.Layers(i) = Map.Layers(i + 1)
+                tex_Layer(i) = tex_Layer(i + 1)
+                var_LayerChanged(i) = var_LayerChanged(i + 1)
+            Next
+        End If
+
+        ' Now just redim our top layer away and all is good!
+        ReDim Preserve Map.Layers(Map.LayerCount - 1)
+        ReDim Preserve tex_Layer(Map.LayerCount - 1)
+        ReDim Preserve var_LayerChanged(Map.LayerCount - 1)
+
+        ' Remove one layer from the layercount.
+        Map.LayerCount = Map.LayerCount - 1
+
+        ' Update our lists.
+        PopulateLayerList()
 
     End Sub
 

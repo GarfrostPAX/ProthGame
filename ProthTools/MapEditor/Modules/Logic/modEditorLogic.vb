@@ -162,14 +162,23 @@
 
         ' First up clean the old data out of the list.
         frm_Main.cmb_Layers.Items.Clear()
+        frm_Layers.lst_Layers.Items.Clear()
 
         ' Add the new items to the list.
         For i = 1 To Map.LayerCount
-            frm_Main.cmb_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName)
+            If Map.Layers(i).UnderPlayer Then
+                frm_Main.cmb_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName + " [LOWER]")
+                frm_Layers.lst_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName + " [LOWER]")
+            Else
+                frm_Main.cmb_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName + " [UPPER]")
+                frm_Layers.lst_Layers.Items.Add(i.ToString + ": " + Map.Layers(i).LayerName + " [UPPER]")
+            End If
+            
         Next
 
         ' Select the first entry.
         frm_Main.cmb_Layers.SelectedIndex = 0
+        frm_Layers.lst_Layers.Items(0).Selected = True
 
     End Sub
 
@@ -246,6 +255,15 @@
 
         ' Clear object.
         Result = Nothing
+    End Sub
+
+    Public Sub FocusMain()
+
+        ' Make sure we do not do this when another window is open.
+        If var_LayersOpen = False Then
+            frm_Main.Focus()
+        End If
+
     End Sub
 
     Public Sub StatusMessage(ByVal Msg As String)
