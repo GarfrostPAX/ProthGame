@@ -168,6 +168,100 @@
         ' Update our lists.
         PopulateLayerList()
 
+        ' Status Message.
+        StatusMessage("Deleted Layer #" + Layer.ToString)
+
+    End Sub
+
+    Public Sub AddLayer(ByVal Name As String, ByVal UnderPlayer As Boolean)
+        Dim tempX As Integer, tempY As Integer, tempLayer As Integer, i As Integer
+
+        ' Check to see if the new layer is added to the upper or lower layers.
+        If Not UnderPlayer Then
+            ' The Upper Layers! this is really easy as all we need to do is expand the arrays.
+            ' First add a brand new layer to the counter.
+            Map.LayerCount = Map.LayerCount + 1
+
+            ' Now just redim the arrays. :)
+            ReDim Preserve Map.Layers(Map.LayerCount)
+            ReDim Preserve tex_Layer(Map.LayerCount)
+            ReDim Preserve var_LayerChanged(Map.LayerCount)
+            ReDim Map.Layers(Map.LayerCount).Tiles(Map.SizeX, Map.SizeY)
+
+            ' Adding one because the rendered view needs to be an additional tile wide.
+            tempX = Map.SizeX + 1
+            tempY = Map.SizeY + 1
+            tex_Layer(Map.LayerCount) = New SFML.Graphics.RenderTexture(tempX * TILE_X, tempY * TILE_Y)
+
+
+            ' Add data to the new Array entry.
+            Map.Layers(Map.LayerCount).LayerName = Name
+            Map.Layers(Map.LayerCount).UnderPlayer = UnderPlayer
+
+            ' Force the editor to render a blank texture.
+            var_LayerChanged(Map.LayerCount) = True
+
+        Else
+            ' Under the player, so we'll need to shove this layer in somewhere halfway into the array.
+            ' Basically, let's add a new entry and push all the data to the end of the array, and then push in our new layer.
+
+            ' Figure out what the highest Layer that's under our player is.
+            ' Add one to this at the end, this will be the layer we're going to re-use.
+            For x = 1 To Map.LayerCount
+                If Map.Layers(x).UnderPlayer Then tempLayer = x
+            Next
+            tempLayer = tempLayer + 1
+
+            ' First add a brand new layer to the counter.
+            Map.LayerCount = Map.LayerCount + 1
+
+            ' Now just redim the arrays. :)
+            ReDim Preserve Map.Layers(Map.LayerCount)
+            ReDim Preserve tex_Layer(Map.LayerCount)
+            ReDim Preserve var_LayerChanged(Map.LayerCount)
+            ReDim Map.Layers(Map.LayerCount).Tiles(Map.SizeX, Map.SizeY)
+
+            ' Adding one because the rendered view needs to be an additional tile wide.
+            tempX = Map.SizeX + 1
+            tempY = Map.SizeY + 1
+            tex_Layer(Map.LayerCount) = New SFML.Graphics.RenderTexture(tempX * TILE_X, tempY * TILE_Y)
+
+            ' Loop through the maps backwards to move the data up.
+            i = Map.LayerCount
+            Do While i > tempLayer
+
+                ' Move our data.
+                Map.Layers(i) = Map.Layers(i - 1)
+
+                ' Force the editor to render this layer later.
+                var_LayerChanged(i) = True
+
+                ' Move on to the next.
+                i = i - 1
+            Loop
+
+            'Clear out our new layer.
+            For tempX = 0 To Map.SizeX
+                For tempY = 0 To Map.SizeY
+                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetID = 0
+                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetX = 0
+                    Map.Layers(tempLayer).Tiles(tempX, tempY).TileSetY = 0
+                Next
+            Next
+            var_LayerChanged(tempLayer) = True
+
+            ' Set data to new layer.
+            Map.Layers(tempLayer).LayerName = Name
+            Map.Layers(tempLayer).UnderPlayer = UnderPlayer
+
+        End If
+
+        ' Force an update to the lists.
+        PopulateLayerList()
+
+        ' Set a status message.
+        StatusMessage("Added new layer '" + Name + "'")
+
     End Sub
 
 End Module

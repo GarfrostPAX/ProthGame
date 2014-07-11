@@ -22,4 +22,44 @@
 
         End If
     End Sub
+
+    Private Sub btn_RenameLayer_Click(sender As Object, e As EventArgs) Handles btn_RenameLayer.Click
+        Dim Result As String
+
+        ' Ask for the new name.
+        Result = InputBox("Enter the new name for this layer:", "Change Name")
+
+        ' CHange the name
+        Map.Layers(lst_Layers.SelectedIndices(0) + 1).LayerName = Trim(Result)
+
+        ' Update lists.
+        PopulateLayerList()
+
+        ' Status message
+        StatusMessage("Rename Layer #" + (lst_Layers.SelectedIndices(0) + 1).ToString + " to '" + Result + "'")
+    End Sub
+
+    Private Sub btn_AddLayer_Click(sender As Object, e As EventArgs) Handles btn_AddLayer.Click
+        grp_AddLayer.Visible = True
+        Me.Height = 159
+    End Sub
+
+    Private Sub btn_CancelAdd_Click(sender As Object, e As EventArgs) Handles btn_CancelAdd.Click
+        ' Hide and reset this window again.
+        Me.Height = 234
+        txt_LayerName.Text = ""
+        chk_UnderPlayer.Checked = False
+        grp_AddLayer.Visible = False
+    End Sub
+
+    Private Sub btn_ConfirmAdd_Click(sender As Object, e As EventArgs) Handles btn_ConfirmAdd.Click
+        ' Add layer.
+        AddLayer(Trim(txt_LayerName.Text), chk_UnderPlayer.Checked)
+
+        ' Hide and reset this window again.
+        Me.Height = 234
+        txt_LayerName.Text = ""
+        chk_UnderPlayer.Checked = False
+        grp_AddLayer.Visible = False
+    End Sub
 End Class
