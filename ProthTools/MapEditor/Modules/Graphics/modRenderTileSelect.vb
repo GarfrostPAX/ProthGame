@@ -35,6 +35,9 @@ Module modRenderTileSelect
         ' Paste it on-screen.
         render_TileSelect.Draw(tempSpr)
 
+        ' Dispose of the object.
+        tempSpr = Nothing
+
     End Sub
 
     Private Sub RenderTileSetBackdrop()
@@ -103,6 +106,9 @@ Module modRenderTileSelect
             render_TileSelect.Draw(tempSpr)
             tempSpr.Position = New SFML.Window.Vector2f((var_CurrentTileSetX + 1 + var_AdditionalTilesX) * TILE_X - 2, var_CurrentTileSetY * TILE_Y)
             render_TileSelect.Draw(tempSpr)
+
+            ' Dispose of the object.
+            tempSpr = Nothing
         End If
 
     End Sub
@@ -126,6 +132,9 @@ Module modRenderTileSelect
 
         ' Draw it to the screen!
         render_TileSelect.Draw(tempSpr)
+
+        ' Dispose of the object.
+        tempSpr = Nothing
     End Sub
 
 End Module

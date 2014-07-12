@@ -81,5 +81,14 @@ Module modGraphicsInit
             End
         End If
 
+        ' Check if the select image exists before we continue.
+        If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "attribute" + GFX_EXT) Then
+            tex_Attribute = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "attribute" + GFX_EXT)
+            tex_Attribute.Smooth = False
+        Else
+            MsgBox("Unable to locate attribute" + GFX_EXT, MsgBoxStyle.Critical, "Error")
+            End
+        End If
+
     End Sub
 End Module

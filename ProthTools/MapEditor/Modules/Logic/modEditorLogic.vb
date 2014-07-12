@@ -295,4 +295,32 @@
 
     End Sub
 
+    Public Sub PlaceAttribute(ByVal X As Integer, ByVal Y As Integer, Optional ByVal Clear As Boolean = False)
+
+        X = X / (TILE_X / 2)
+        Y = Y / (TILE_Y / 2)
+
+        ' Exit out of the value is impossible.
+        If X < 0 Or X > Map.AttributesX Or Y < 0 Or Y > Map.AttributesY Then Exit Sub
+
+        If Not Clear Then
+            ' Place an attribute!
+            If frm_Main.rd_Blocked.Checked Then Map.Attributes(X, Y).AttributeID = MapAttributes.Blocked
+            If frm_Main.rd_Warp.Checked Then Map.Attributes(X, Y).AttributeID = MapAttributes.Warp
+            If frm_Main.rd_NPCSPawn.Checked Then Map.Attributes(X, Y).AttributeID = MapAttributes.NPCSpawn
+
+            ' Set the attribute data.
+            Map.Attributes(X, Y).Data1 = CInt(frm_Main.txt_Data1.Text)
+            Map.Attributes(X, Y).Data2 = CInt(frm_Main.txt_Data2.Text)
+            Map.Attributes(X, Y).Data3 = CInt(frm_Main.txt_Data3.Text)
+        Else
+            ' Clear all the data.
+            Map.Attributes(X, Y).AttributeID = MapAttributes.None
+            Map.Attributes(X, Y).Data1 = 0
+            Map.Attributes(X, Y).Data2 = 0
+            Map.Attributes(X, Y).Data3 = 0
+        End If
+
+    End Sub
+
 End Module

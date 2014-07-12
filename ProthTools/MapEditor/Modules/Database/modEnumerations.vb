@@ -7,4 +7,11 @@
         Left
     End Enum
 
+    Public Enum MapAttributes As Byte
+        None
+        Blocked
+        Warp
+        NPCSpawn
+    End Enum
+
 End Module

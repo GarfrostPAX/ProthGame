@@ -66,6 +66,8 @@ Partial Class frmMain
         Me.scrl_VTile = New System.Windows.Forms.VScrollBar()
         Me.pan_Misc = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btn_ClearLayer = New System.Windows.Forms.Button()
+        Me.btn_FillLayer = New System.Windows.Forms.Button()
         Me.btn_ManageLayers = New System.Windows.Forms.Button()
         Me.cmb_Layers = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -73,8 +75,17 @@ Partial Class frmMain
         Me.lbl_Status = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lbl_Location = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.btn_FillLayer = New System.Windows.Forms.Button()
-        Me.btn_ClearLayer = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chk_AttributeMode = New System.Windows.Forms.CheckBox()
+        Me.rd_Blocked = New System.Windows.Forms.RadioButton()
+        Me.rd_Warp = New System.Windows.Forms.RadioButton()
+        Me.rd_NPCSPawn = New System.Windows.Forms.RadioButton()
+        Me.lbl_Data1 = New System.Windows.Forms.Label()
+        Me.lbl_Data2 = New System.Windows.Forms.Label()
+        Me.lbl_Data3 = New System.Windows.Forms.Label()
+        Me.txt_Data1 = New System.Windows.Forms.TextBox()
+        Me.txt_Data2 = New System.Windows.Forms.TextBox()
+        Me.txt_Data3 = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.grp_TileSelect.SuspendLayout()
@@ -85,6 +96,7 @@ Partial Class frmMain
         Me.pan_Misc.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.strip_Status.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -120,7 +132,7 @@ Partial Class frmMain
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(144, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(174, 6)
         '
         'SaveMapToolStripMenuItem
         '
@@ -133,30 +145,30 @@ Partial Class frmMain
         '
         Me.SaveMapAsToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Saveall_6518
         Me.SaveMapAsToolStripMenuItem.Name = "SaveMapAsToolStripMenuItem"
-        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.SaveMapAsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.SaveMapAsToolStripMenuItem.Text = "Save Map As.."
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(144, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(174, 6)
         '
         'RecentMapsToolStripMenuItem
         '
         Me.RecentMapsToolStripMenuItem.Name = "RecentMapsToolStripMenuItem"
-        Me.RecentMapsToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.RecentMapsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.RecentMapsToolStripMenuItem.Text = "Recent Maps"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(144, 6)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(174, 6)
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Image = Global.ProthTools.My.Resources.Resources.Clearallrequests_8816
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'EditToolStripMenuItem
@@ -411,6 +423,7 @@ Partial Class frmMain
         '
         'pan_Misc
         '
+        Me.pan_Misc.Controls.Add(Me.GroupBox2)
         Me.pan_Misc.Controls.Add(Me.GroupBox1)
         Me.pan_Misc.Dock = System.Windows.Forms.DockStyle.Right
         Me.pan_Misc.Location = New System.Drawing.Point(1054, 49)
@@ -431,6 +444,24 @@ Partial Class frmMain
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Layers"
+        '
+        'btn_ClearLayer
+        '
+        Me.btn_ClearLayer.Location = New System.Drawing.Point(123, 88)
+        Me.btn_ClearLayer.Name = "btn_ClearLayer"
+        Me.btn_ClearLayer.Size = New System.Drawing.Size(75, 23)
+        Me.btn_ClearLayer.TabIndex = 6
+        Me.btn_ClearLayer.Text = "Clear Layer"
+        Me.btn_ClearLayer.UseVisualStyleBackColor = True
+        '
+        'btn_FillLayer
+        '
+        Me.btn_FillLayer.Location = New System.Drawing.Point(6, 88)
+        Me.btn_FillLayer.Name = "btn_FillLayer"
+        Me.btn_FillLayer.Size = New System.Drawing.Size(75, 23)
+        Me.btn_FillLayer.TabIndex = 5
+        Me.btn_FillLayer.Text = "Fill Layer"
+        Me.btn_FillLayer.UseVisualStyleBackColor = True
         '
         'btn_ManageLayers
         '
@@ -488,23 +519,117 @@ Partial Class frmMain
         Me.lbl_Location.Size = New System.Drawing.Size(111, 17)
         Me.lbl_Location.Text = "Map: 1.map (0, 0, 0)"
         '
-        'btn_FillLayer
+        'GroupBox2
         '
-        Me.btn_FillLayer.Location = New System.Drawing.Point(6, 88)
-        Me.btn_FillLayer.Name = "btn_FillLayer"
-        Me.btn_FillLayer.Size = New System.Drawing.Size(75, 23)
-        Me.btn_FillLayer.TabIndex = 5
-        Me.btn_FillLayer.Text = "Fill Layer"
-        Me.btn_FillLayer.UseVisualStyleBackColor = True
+        Me.GroupBox2.Controls.Add(Me.txt_Data3)
+        Me.GroupBox2.Controls.Add(Me.txt_Data2)
+        Me.GroupBox2.Controls.Add(Me.txt_Data1)
+        Me.GroupBox2.Controls.Add(Me.lbl_Data3)
+        Me.GroupBox2.Controls.Add(Me.lbl_Data2)
+        Me.GroupBox2.Controls.Add(Me.lbl_Data1)
+        Me.GroupBox2.Controls.Add(Me.rd_NPCSPawn)
+        Me.GroupBox2.Controls.Add(Me.rd_Warp)
+        Me.GroupBox2.Controls.Add(Me.rd_Blocked)
+        Me.GroupBox2.Controls.Add(Me.chk_AttributeMode)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 115)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(204, 229)
+        Me.GroupBox2.TabIndex = 7
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Attributes"
         '
-        'btn_ClearLayer
+        'chk_AttributeMode
         '
-        Me.btn_ClearLayer.Location = New System.Drawing.Point(123, 88)
-        Me.btn_ClearLayer.Name = "btn_ClearLayer"
-        Me.btn_ClearLayer.Size = New System.Drawing.Size(75, 23)
-        Me.btn_ClearLayer.TabIndex = 6
-        Me.btn_ClearLayer.Text = "Clear Layer"
-        Me.btn_ClearLayer.UseVisualStyleBackColor = True
+        Me.chk_AttributeMode.AutoSize = True
+        Me.chk_AttributeMode.Location = New System.Drawing.Point(6, 19)
+        Me.chk_AttributeMode.Name = "chk_AttributeMode"
+        Me.chk_AttributeMode.Size = New System.Drawing.Size(95, 17)
+        Me.chk_AttributeMode.TabIndex = 0
+        Me.chk_AttributeMode.Text = "Attribute Mode"
+        Me.chk_AttributeMode.UseVisualStyleBackColor = True
+        '
+        'rd_Blocked
+        '
+        Me.rd_Blocked.AutoSize = True
+        Me.rd_Blocked.Checked = True
+        Me.rd_Blocked.Location = New System.Drawing.Point(5, 54)
+        Me.rd_Blocked.Name = "rd_Blocked"
+        Me.rd_Blocked.Size = New System.Drawing.Size(64, 17)
+        Me.rd_Blocked.TabIndex = 1
+        Me.rd_Blocked.TabStop = True
+        Me.rd_Blocked.Text = "Blocked"
+        Me.rd_Blocked.UseVisualStyleBackColor = True
+        '
+        'rd_Warp
+        '
+        Me.rd_Warp.AutoSize = True
+        Me.rd_Warp.Location = New System.Drawing.Point(122, 54)
+        Me.rd_Warp.Name = "rd_Warp"
+        Me.rd_Warp.Size = New System.Drawing.Size(51, 17)
+        Me.rd_Warp.TabIndex = 2
+        Me.rd_Warp.Text = "Warp"
+        Me.rd_Warp.UseVisualStyleBackColor = True
+        '
+        'rd_NPCSPawn
+        '
+        Me.rd_NPCSPawn.AutoSize = True
+        Me.rd_NPCSPawn.Location = New System.Drawing.Point(5, 77)
+        Me.rd_NPCSPawn.Name = "rd_NPCSPawn"
+        Me.rd_NPCSPawn.Size = New System.Drawing.Size(83, 17)
+        Me.rd_NPCSPawn.TabIndex = 3
+        Me.rd_NPCSPawn.Text = "NPC Spawn"
+        Me.rd_NPCSPawn.UseVisualStyleBackColor = True
+        '
+        'lbl_Data1
+        '
+        Me.lbl_Data1.AutoSize = True
+        Me.lbl_Data1.Location = New System.Drawing.Point(2, 103)
+        Me.lbl_Data1.Name = "lbl_Data1"
+        Me.lbl_Data1.Size = New System.Drawing.Size(39, 13)
+        Me.lbl_Data1.TabIndex = 4
+        Me.lbl_Data1.Text = "Data1:"
+        '
+        'lbl_Data2
+        '
+        Me.lbl_Data2.AutoSize = True
+        Me.lbl_Data2.Location = New System.Drawing.Point(2, 142)
+        Me.lbl_Data2.Name = "lbl_Data2"
+        Me.lbl_Data2.Size = New System.Drawing.Size(39, 13)
+        Me.lbl_Data2.TabIndex = 5
+        Me.lbl_Data2.Text = "Data2:"
+        '
+        'lbl_Data3
+        '
+        Me.lbl_Data3.AutoSize = True
+        Me.lbl_Data3.Location = New System.Drawing.Point(2, 181)
+        Me.lbl_Data3.Name = "lbl_Data3"
+        Me.lbl_Data3.Size = New System.Drawing.Size(39, 13)
+        Me.lbl_Data3.TabIndex = 6
+        Me.lbl_Data3.Text = "Data3:"
+        '
+        'txt_Data1
+        '
+        Me.txt_Data1.Location = New System.Drawing.Point(6, 119)
+        Me.txt_Data1.Name = "txt_Data1"
+        Me.txt_Data1.Size = New System.Drawing.Size(189, 20)
+        Me.txt_Data1.TabIndex = 7
+        Me.txt_Data1.Text = "0"
+        '
+        'txt_Data2
+        '
+        Me.txt_Data2.Location = New System.Drawing.Point(5, 158)
+        Me.txt_Data2.Name = "txt_Data2"
+        Me.txt_Data2.Size = New System.Drawing.Size(189, 20)
+        Me.txt_Data2.TabIndex = 8
+        Me.txt_Data2.Text = "0"
+        '
+        'txt_Data3
+        '
+        Me.txt_Data3.Location = New System.Drawing.Point(5, 197)
+        Me.txt_Data3.Name = "txt_Data3"
+        Me.txt_Data3.Size = New System.Drawing.Size(189, 20)
+        Me.txt_Data3.TabIndex = 9
+        Me.txt_Data3.Text = "0"
         '
         'frmMain
         '
@@ -539,6 +664,8 @@ Partial Class frmMain
         Me.GroupBox1.PerformLayout()
         Me.strip_Status.ResumeLayout(False)
         Me.strip_Status.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -596,4 +723,15 @@ Partial Class frmMain
     Friend WithEvents btn_ManageLayers As System.Windows.Forms.Button
     Friend WithEvents btn_FillLayer As System.Windows.Forms.Button
     Friend WithEvents btn_ClearLayer As System.Windows.Forms.Button
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents chk_AttributeMode As System.Windows.Forms.CheckBox
+    Friend WithEvents rd_NPCSPawn As System.Windows.Forms.RadioButton
+    Friend WithEvents rd_Warp As System.Windows.Forms.RadioButton
+    Friend WithEvents rd_Blocked As System.Windows.Forms.RadioButton
+    Friend WithEvents txt_Data3 As System.Windows.Forms.TextBox
+    Friend WithEvents txt_Data2 As System.Windows.Forms.TextBox
+    Friend WithEvents txt_Data1 As System.Windows.Forms.TextBox
+    Friend WithEvents lbl_Data3 As System.Windows.Forms.Label
+    Friend WithEvents lbl_Data2 As System.Windows.Forms.Label
+    Friend WithEvents lbl_Data1 As System.Windows.Forms.Label
 End Class

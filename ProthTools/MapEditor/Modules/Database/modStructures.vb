@@ -4,11 +4,14 @@
         Dim Title As String
         Dim BorderingMap() As Integer
 
-        Dim SizeX As Byte
-        Dim SizeY As Byte
+        Dim SizeX As Integer
+        Dim SizeY As Integer
+        Dim AttributesX As Integer
+        Dim AttributesY As Integer
         Dim LayerCount As Byte
 
         Dim Layers() As LayerRec
+        Dim Attributes(,) As AttributeRec
 
     End Structure
 
@@ -23,6 +26,13 @@
         Dim TileSetID As Integer
         Dim TileSetX As Integer
         Dim TileSetY As Integer
+    End Structure
+
+    <Serializable()> Public Structure AttributeRec
+        Dim AttributeID As Byte
+        Dim Data1 As Integer
+        Dim Data2 As Integer
+        Dim Data3 As Integer
     End Structure
 
 End Module

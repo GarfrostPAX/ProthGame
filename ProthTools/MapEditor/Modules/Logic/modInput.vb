@@ -12,12 +12,25 @@ Module modInput
         Select Case mButton
 
             Case MouseButtons.Left
-                ' Place a tile.
-                PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), var_CurrentTileSet, var_CurrentTileSetX, var_CurrentTileSetY)
+                ' Check what mode we're in.
+                If frm_Main.chk_AttributeMode.Checked Then
+                    ' Place an Attribute
+                    PlaceAttribute(var_MousePos.X - (TILE_X / 4), var_MousePos.Y - (TILE_Y / 4))
+                Else
+                    ' Place a tile.
+                    PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), var_CurrentTileSet, var_CurrentTileSetX, var_CurrentTileSetY)
+                End If
                 Exit Sub
+
             Case MouseButtons.Right
-                ' Remove a tile.
-                PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), 0, 0, 0)
+                ' Check what mode we're in.
+                If frm_Main.chk_AttributeMode.Checked Then
+                    ' Remove an Attribute
+                    PlaceAttribute(var_MousePos.X - (TILE_X / 4), var_MousePos.Y - (TILE_Y / 4), True)
+                Else
+                    ' Remove a tile.
+                    PlaceTile(var_CurrentLayer, var_MousePos.X - (TILE_X / 2), var_MousePos.Y - (TILE_Y / 2), 0, 0, 0)
+                End If
                 Exit Sub
 
         End Select

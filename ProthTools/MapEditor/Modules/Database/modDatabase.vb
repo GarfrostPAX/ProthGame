@@ -1,5 +1,5 @@
 ﻿Module modDatabase
-    Public Sub NewMap(ByVal Layers As Byte, ByVal SizeX As Byte, ByVal SizeY As Byte)
+    Public Sub NewMap(ByVal Layers As Byte, ByVal SizeX As Integer, ByVal SizeY As Integer)
         Dim i As Byte, x As Integer, y As Integer
 
         ' First clear out our current data in the Map.
@@ -12,6 +12,8 @@
         Map.LayerCount = Layers
         Map.SizeX = SizeX
         Map.SizeY = SizeY
+        Map.AttributesX = (SizeX * 2) + 1 ' + 1 to make sure we actually get the full amount since we start at 0.
+        Map.AttributesY = (SizeY * 2) + 1
 
         ' Redim our Bordering Maps Array.
         ' This will be used to determine what map the user is going to walk into when they run into the border.
@@ -22,6 +24,7 @@
         ReDim Map.Layers(Map.LayerCount)
         ReDim tex_Layer(Map.LayerCount)
         ReDim var_LayerChanged(Map.LayerCount)
+
         For i = 1 To Map.LayerCount
 
             ' Make sure the layer can contain the data we want it to.
@@ -43,6 +46,13 @@
                 Map.Layers(i).UnderPlayer = True
             End If
         Next
+
+        ' Create our attribute texture as well.
+        tex_AttributeLayer = New SFML.Graphics.RenderTexture(x * TILE_X, y * TILE_Y)
+
+        ' Redim our Attributes.
+        ' Because our movement system is based on 16x16 squares rather than 32x32 squares we'll need double the tiles.
+        ReDim Map.Attributes(Map.AttributesX, Map.AttributesY)
 
         ' Give our layers some names.
         Map.Layers(1).LayerName = "Ground"

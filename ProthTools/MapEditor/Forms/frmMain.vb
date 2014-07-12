@@ -278,4 +278,39 @@ Public Class frmMain
         FillLayer(True)
     End Sub
 
+    Private Sub rd_Blocked_CheckedChanged(sender As Object, e As EventArgs) Handles rd_Blocked.CheckedChanged
+        lbl_Data1.Text = "Data1:"
+        lbl_Data2.Text = "Data2:"
+        lbl_Data3.Text = "Data3:"
+        txt_Data1.Text = "0"
+        txt_Data2.Text = "0"
+        txt_Data3.Text = "0"
+        txt_Data1.Enabled = False
+        txt_Data2.Enabled = False
+        txt_Data3.Enabled = False
+    End Sub
+
+    Private Sub rd_Warp_CheckedChanged(sender As Object, e As EventArgs) Handles rd_Warp.CheckedChanged
+        lbl_Data1.Text = "To Map:"
+        lbl_Data2.Text = "Location X:"
+        lbl_Data3.Text = "Location Y:"
+        txt_Data1.Text = "0"
+        txt_Data2.Text = "0"
+        txt_Data3.Text = "0"
+        txt_Data1.Enabled = True
+        txt_Data2.Enabled = True
+        txt_Data3.Enabled = True
+    End Sub
+
+    Private Sub rd_NPCSPawn_CheckedChanged(sender As Object, e As EventArgs) Handles rd_NPCSPawn.CheckedChanged
+        lbl_Data1.Text = "NPC ID:"
+        lbl_Data2.Text = "Data2:"
+        lbl_Data3.Text = "Data3:"
+        txt_Data1.Text = "0"
+        txt_Data2.Text = "0"
+        txt_Data3.Text = "0"
+        txt_Data1.Enabled = True
+        txt_Data2.Enabled = False
+        txt_Data3.Enabled = False
+    End Sub
 End Class

@@ -57,6 +57,9 @@ Module modGlobals
     Public var_LayerChanged() As Boolean
     Public var_MainChanged As Boolean = True
     Public var_TileSetChanged As Boolean = True
+    Public tex_Attribute As SFML.Graphics.Texture
+    Public tex_AttributeLayer As SFML.Graphics.RenderTexture
+    Public var_AttributeChanged As Boolean = True
 
     ' Form Globals.
     ' So we can actually address these forms where nessecary.
