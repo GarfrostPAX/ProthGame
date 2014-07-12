@@ -265,4 +265,12 @@ Public Class frmMain
         frm_Layers.Visible = True
         frm_Main.Enabled = False
     End Sub
+
+    Private Sub btn_FillLayer_Click(sender As Object, e As EventArgs) Handles btn_FillLayer.Click
+        FillLayer(False)
+    End Sub
+
+    Private Sub btn_ClearLayer_Click(sender As Object, e As EventArgs) Handles btn_ClearLayer.Click
+        FillLayer(True)
+    End Sub
 End Class

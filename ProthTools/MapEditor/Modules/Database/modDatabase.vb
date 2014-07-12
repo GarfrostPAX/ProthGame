@@ -59,6 +59,9 @@
         ' Only do the following once the form object exists.
         If IsNothing(frm_Main) = False Then
 
+            ' Populate our list with the new map's layers.
+            PopulateLayerList()
+
             ' Set the status.
             StatusMessage("New Map Created")
 

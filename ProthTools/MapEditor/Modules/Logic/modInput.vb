@@ -108,10 +108,15 @@ Module modInput
                 Exit Sub
 
             Case Keys.S
-                ' Move the camera down.
-                view_Main.Move(New SFML.Window.Vector2f(0, 9))
-                render_Main.SetView(view_Main)
-                var_MainChanged = True
+                If Control = False Then
+                    ' Move the camera down.
+                    view_Main.Move(New SFML.Window.Vector2f(0, 9))
+                    render_Main.SetView(view_Main)
+                    var_MainChanged = True
+                Else
+                    ' Save the Map!
+                    HandleSaveMap(False)
+                End If
                 Exit Sub
 
             Case Keys.Add, Keys.E
@@ -123,6 +128,18 @@ Module modInput
             Case Keys.Subtract, Keys.Q
                 MapEditorZoom(True)
                 var_MainChanged = True
+                Exit Sub
+
+            Case Keys.N
+                If Control = True Then
+                    HandleNewMap()
+                End If
+                Exit Sub
+
+            Case Keys.O
+                If Control = True Then
+                    HandleLoadMap()
+                End If
                 Exit Sub
 
         End Select

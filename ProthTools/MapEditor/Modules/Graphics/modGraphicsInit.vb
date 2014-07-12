@@ -23,7 +23,7 @@ Module modGraphicsInit
         var_NumTileSets = UBound(fileEntries)
 
         ' Make sure we actually found some tilesets.
-        If var_NumTileSets > 0 Then
+        If fileEntries.Length > 0 Then
             ' Resize the array to accompany for all our tilesets.
             ' We're using + 1 because it looks cleaner to use 1,2,3,4,5 rather than 0,1,2,3,4
             ReDim tex_TileSet(var_NumTileSets + 1)

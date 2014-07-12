@@ -270,4 +270,29 @@
         frm_Main.lbl_Status.Text = Msg
     End Sub
 
+    Public Sub FillLayer(Optional ByVal Clear As Boolean = False)
+        Dim x As Integer, y As Integer, TileSet As Integer, TileX As Integer, TileY As Integer
+
+        ' If we do not need to clear our layer out, set the values.
+        If Not Clear Then
+            TileSet = var_CurrentTileSet
+            TileX = var_CurrentTileSetX
+            TileY = var_CurrentTileSetY
+        End If
+
+        ' Fill the entire layer with the correct selected tile.
+        For x = 0 To Map.SizeX
+            For y = 0 To Map.SizeY
+                Map.Layers(var_CurrentLayer).Tiles(x, y).TileSetID = TileSet
+                Map.Layers(var_CurrentLayer).Tiles(x, y).TileSetX = TileX
+                Map.Layers(var_CurrentLayer).Tiles(x, y).TileSetY = TileY
+            Next
+        Next
+
+        ' Update our texture and our window.
+        var_LayerChanged(var_CurrentLayer) = True
+        var_MainChanged = True
+
+    End Sub
+
 End Module
