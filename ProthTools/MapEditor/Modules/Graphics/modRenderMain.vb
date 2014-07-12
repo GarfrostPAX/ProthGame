@@ -31,18 +31,16 @@ Module modRenderMain
         Dim tempSpr As SFML.Graphics.Sprite
         Dim x As Integer, y As Integer
 
-        tempSpr = New Sprite(tex_BackDrop)
+        ' We need to do this and add one to make sure the sprite has the right size.
+        x = Map.SizeX + 1
+        y = Map.SizeY + 1
 
-        ' Loop through all the tiles we know of.
-        For x = 0 To Map.SizeX
-            For y = 0 To Map.SizeY
+        ' Create a new sprite the size of the map.
+        ' Since our texture is set to repeat, it'll handle the tiles on its own.
+        tempSpr = New Sprite(tex_BackDrop, New SFML.Graphics.IntRect(0, 0, x * TILE_X, y * TILE_Y))
 
-                ' Render the graphic to the right location.
-                tempSpr.Position = New Vector2f(x * TILE_X, y * TILE_Y)
-                render_Main.Draw(tempSpr)
-
-            Next
-        Next
+        ' Render it to the screen.
+        render_Main.Draw(tempSpr)
 
     End Sub
 
@@ -113,7 +111,7 @@ Module modRenderMain
         ' This way we can tell what we're editing even if it's below something else.
         ' That is, if the settings allow it.
         If var_CurrentLayer <> Layer And frm_Main.chk_FadeLayers.Checked Then
-            tempSpr.Color = New SFML.Graphics.Color(255, 255, 255, 128)
+            tempSpr.Color = New SFML.Graphics.Color(255, 255, 255, 175)
         End If
 
         ' Push the sprite to the screen.

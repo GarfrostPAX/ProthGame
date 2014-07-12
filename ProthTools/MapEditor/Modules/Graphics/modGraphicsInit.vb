@@ -66,6 +66,7 @@ Module modGraphicsInit
         If File.Exists(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT) Then
             tex_BackDrop = New SFML.Graphics.Texture(var_AppPath + DIR_DATA + DIR_GENERIC + "backdrop" + GFX_EXT)
             tex_BackDrop.Smooth = False
+            tex_BackDrop.Repeated = True
         Else
             MsgBox("Unable to locate backdrop" + GFX_EXT, MsgBoxStyle.Critical, "Error")
             End

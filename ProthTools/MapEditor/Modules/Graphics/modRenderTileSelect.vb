@@ -1,4 +1,7 @@
-﻿Module modRenderTileSelect
+﻿Imports SFML.Window
+Imports SFML.Graphics
+
+Module modRenderTileSelect
 
     Public Sub RenderTileSelect()
 
@@ -35,35 +38,19 @@
     End Sub
 
     Private Sub RenderTileSetBackdrop()
-        Dim X As Integer, Y As Integer, Width As Integer, Height As Integer
         Dim tempSpr As SFML.Graphics.Sprite
+        Dim x As Integer, y As Integer
 
-        ' Let's check if the tileset is larger than the visible area, and if so adjust.
-        If tex_TileSet(var_CurrentTileSet).Size.X > render_TileSelect.Size.X Then
-            Width = tex_TileSet(var_CurrentTileSet).Size.X / TILE_X
-        Else
-            Width = render_TileSelect.Size.X / TILE_X
-        End If
-        If tex_TileSet(var_CurrentTileSet).Size.Y > render_TileSelect.Size.Y Then
-            Height = tex_TileSet(var_CurrentTileSet).Size.Y / TILE_Y
-        Else
-            Height = render_TileSelect.Size.Y / TILE_Y
-        End If
+        ' We need to do this and add one to make sure the sprite has the right size.
+        x = tex_TileSet(var_CurrentTileSet).Size.X
+        y = tex_TileSet(var_CurrentTileSet).Size.Y + 32 ' Makes sure that it also looks decent on screens where the viewwindow isn't perfectly scaled to 32px tiles.
 
-        ' Grab our tileset.
-        tempSpr = New SFML.Graphics.Sprite(tex_BackDrop)
+        ' Create a new sprite the size of the tileset.
+        ' Since our texture is set to repeat, it'll handle the tiles on its own.
+        tempSpr = New Sprite(tex_BackDrop, New SFML.Graphics.IntRect(0, 0, x, y))
 
-        For X = 0 To Width
-            For Y = 0 To Height
-
-                ' Set location
-                tempSpr.Position = New SFML.Window.Vector2f(X * TILE_X, Y * TILE_Y)
-
-                ' Paste it on-screen.
-                render_TileSelect.Draw(tempSpr)
-
-            Next
-        Next
+        ' Render it to the screen.
+        render_TileSelect.Draw(tempSpr)
     End Sub
 
     Private Sub RenderCurrentSelection()

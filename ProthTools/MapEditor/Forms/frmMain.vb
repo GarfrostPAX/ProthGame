@@ -14,6 +14,9 @@ Public Class frmMain
 
     Private CameraMovedX As Integer
     Private CameraMovedY As Integer
+    Private OldHValue As Integer
+    Private OldVValue As Integer
+
 
     Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
         If m.Msg = WM_NCLBUTTONDBLCLK Then Return
@@ -133,7 +136,7 @@ Public Class frmMain
         End If
 
         render_TileSelect.SetView(view_TileSelect)
-
+        var_TileSetChanged = True
     End Sub
 
     Private Sub cmb_TileSets_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_TileSets.SelectedIndexChanged
@@ -189,6 +192,7 @@ Public Class frmMain
         End If
 
         render_TileSelect.SetView(view_TileSelect)
+        var_TileSetChanged = True
     End Sub
 
     Private Sub surf_TileSelectMouseMove(sender As Object, e As MouseEventArgs)
@@ -273,4 +277,5 @@ Public Class frmMain
     Private Sub btn_ClearLayer_Click(sender As Object, e As EventArgs) Handles btn_ClearLayer.Click
         FillLayer(True)
     End Sub
+
 End Class
