@@ -52,6 +52,71 @@ Module modDatabase
 
     End Sub
 
+    Public Sub LoadMaps()
+        Dim fStream As System.IO.FileStream
+        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+        Dim MapNames() As String, i As Integer, Data() As String, tempStr As String, tempDat() As String, n As Integer
+
+        ' Check if the map list exists.
+        If FileExist(DATA_ROOT + DATA_MAPS + "maplist.dat") Then
+            ' Read out all the lines in the file.
+            MapNames = System.IO.File.ReadAllLines(var_AppPath + DATA_ROOT + DATA_MAPS + "maplist.dat")
+
+            ' Set our Max_Maps value.
+            MAX_MAPS = UBound(MapNames) + 1
+
+            ' Let's redim our maps array to fit the amount of maps we're getting.
+            ' +1 because I hate starting at 0 with these things.
+            ReDim obj_Map(MAX_MAPS)
+
+            ' Now loop through the array.
+            For i = 0 To UBound(MapNames)
+                ' Split the string up so we can get our map name.
+                Data = Split(MapNames(i), "=")
+
+                ' First let's read the basic map info we need to load it up again.
+                tempStr = System.IO.File.ReadAllText(var_AppPath + DATA_ROOT + DATA_MAPS + Trim(Data(1)) + MAPINF_EXT)
+
+                ' Split it up.
+                tempDat = Split(tempStr, ",")
+
+                ' Now to make sure we set the right size of the map!
+                obj_Map(i + 1).LayerCount = tempDat(0)
+                obj_Map(i + 1).SizeX = tempDat(1)
+                obj_Map(i + 1).SizeY = tempDat(2)
+                obj_Map(i + 1).AttributesX = (obj_Map(i + 1).SizeX * 2) + 1 ' + 1 to make sure we actually get the full amount since we start at 0.
+                obj_Map(i + 1).AttributesY = (obj_Map(i + 1).SizeY * 2) + 1
+
+                ' Time to start allocating this map's size.
+                ReDim obj_Map(i + 1).Layers(obj_Map(i + 1).LayerCount)
+                ReDim obj_Map(i + 1).Attributes(obj_Map(i + 1).AttributesX, obj_Map(i + 1).AttributesY)
+
+                For n = 1 To obj_Map(i + 1).LayerCount
+                    ReDim obj_Map(i + 1).Layers(n).Tiles(obj_Map(i + 1).SizeX, obj_Map(i + 1).SizeY)
+                Next
+
+                ' Now let's read our map data!
+                ' Open a new filestream.
+                fStream = New System.IO.FileStream(var_AppPath + DATA_ROOT + DATA_MAPS + Trim(Data(1)) + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
+
+                ' Dump the Array into the file.
+                bf.AssemblyFormat = Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple
+                obj_Map(i + 1) = bf.Deserialize(fStream)
+
+                ' Close the filestream.
+                fStream.Close()
+            Next
+
+        Else
+            ' Doesn't exist for some reason.
+            ' Can't continue without it, so let's close the server.
+            WriteToConsole("Could not locate maplist data.")
+            WriteToConsole("Press any key to close server.")
+            tempStr = Console.ReadLine
+            End
+        End If
+    End Sub
+
     Public Sub SavePlayer(ByVal ID As Integer)
         Dim FileName As String
         Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter

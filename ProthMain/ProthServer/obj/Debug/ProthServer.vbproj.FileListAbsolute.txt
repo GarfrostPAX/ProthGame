@@ -27,3 +27,10 @@ C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\Pr
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.exe
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.xml
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\ProthServer.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\ProthServer.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\ProthServer.xml
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\bin\Debug\Nading Network Library Server.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.vbprojResolveAssemblyReference.cache
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.Resources.resources
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthServer\obj\Debug\ProthServer.vbproj.GenerateResource.Cache

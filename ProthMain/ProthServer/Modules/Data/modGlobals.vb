@@ -11,14 +11,20 @@
 
     Public Const DATA_ROOT As String = "\data"
     Public Const DATA_PLAYERS As String = "\players\"
+    Public Const DATA_MAPS As String = "\maps\"
+
+    Public Const MAPINF_EXT As String = ".minf"
+    Public Const MAPDAT_EXT As String = ".mdat"
 
     ' Global Variables
     ' Player HighIndex, used to cap off certain loops from looping through endless amounts of empty player slots.
     Public var_PlayerHighIndex As Integer = 0
+    Public MAX_MAPS As Integer = 0
 
     ' Structure Globals
     Public obj_Player(MAX_PLAYERS) As PlayerRec
     Public obj_TempPlayer(MAX_PLAYERS) As TempPlayerRec
+    Public obj_Map() As MapRec
     Public obj_Options As OptionsRec
 
     ' General Globals

@@ -86,23 +86,63 @@
     End Sub
 
     Public Sub SaveMap(ByVal FileName As String)
-        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+        Dim Data() As String, l As Integer, x As Integer, y As Integer, DatNum As Integer
 
-        ' First let's save the basic map info we need to load it up again later.
-        System.IO.File.WriteAllText(FileName + MAPINF_EXT, Map.LayerCount.ToString + "," + Map.SizeX.ToString + "," + Map.SizeY.ToString)
+        ' Temporarily set the cap of the array to 5.
+        ReDim Data(5)
 
-        ' Now let's dump our Array to a file!
-        ' Open a new filestream.
-        Dim fStream As New System.IO.FileStream(FileName + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
+        ' Let's start adding data to.. Data!
+        Data(0) = Map.Title
+        Data(1) = Map.LayerCount.ToString
+        Data(2) = Map.SizeX.ToString
+        Data(3) = Map.SizeY.ToString
+        Data(4) = Map.AttributesX.ToString
+        Data(5) = Map.AttributesY.ToString
 
-        ' Dump the Array into the file.
-        bf.Serialize(fStream, Map)
+        ' Set our data number to 5 to begin with.
+        DatNum = 5
 
-        ' Close the filestream.
-        fStream.Close()
+        ' Loop through the bordering maps.
+        For l = Directions.Up To Directions.Left
+            DatNum = DatNum + 1
+            ReDim Preserve Data(DatNum)
+            Data(DatNum) = Map.BorderingMap(l).ToString
+        Next
+
+        ' Moving on to our tiles.
+        For l = 1 To Map.LayerCount
+            DatNum = DatNum + 1
+            ReDim Preserve Data(DatNum)
+            Data(DatNum) = Map.Layers(l).LayerName + ","
+            Data(DatNum) = Data(DatNum) + Map.Layers(l).UnderPlayer.ToString
+            For x = 0 To Map.SizeX
+                For y = 0 To Map.SizeY
+                    DatNum = DatNum + 1
+                    ReDim Preserve Data(DatNum)
+                    Data(DatNum) = Data(DatNum) + Map.Layers(l).Tiles(x, y).TileSetID.ToString + ","
+                    Data(DatNum) = Data(DatNum) + Map.Layers(l).Tiles(x, y).TileSetX.ToString + ","
+                    Data(DatNum) = Data(DatNum) + Map.Layers(l).Tiles(x, y).TileSetY.ToString
+                Next
+            Next
+        Next
+
+        ' And our Attributes.
+        For x = 0 To Map.AttributesX
+            For y = 0 To Map.AttributesY
+                DatNum = DatNum + 1
+                ReDim Preserve Data(DatNum)
+                Data(DatNum) = Map.Attributes(x, y).AttributeID.ToString + ","
+                Data(DatNum) = Data(DatNum) + Map.Attributes(x, y).Data1.ToString + ","
+                Data(DatNum) = Data(DatNum) + Map.Attributes(x, y).Data2.ToString + ","
+                Data(DatNum) = Data(DatNum) + Map.Attributes(x, y).Data3.ToString
+            Next
+        Next
+
+        ' Let's finaly save the map info we need to load it up again later.
+        System.IO.File.WriteAllLines(FileName, Data)
 
         ' Set the form title.
-        frm_Main.Text = "Prothesys Map Editor [" + FileName + MAPINF_EXT + "]"
+        frm_Main.Text = "Prothesys Map Editor [" + FileName + "]"
 
         ' Set our last saved map to this one.
         var_LastSavedMap = FileName

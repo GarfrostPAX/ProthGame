@@ -19,6 +19,10 @@ Module modMain
         WriteToConsole("Loading server options..")
         LoadOptions()
 
+        ' Load Maps.
+        WriteToConsole("Loading maps..")
+        LoadMaps()
+
         ' Start the SQL Connection
         WriteToConsole("Starting MySQL connector..")
         InitMySQL()

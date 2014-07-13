@@ -250,7 +250,7 @@ Module modRenderMain
     End Sub
 
     Public Sub RenderAttributes()
-        Dim x As Integer, y As Integer, tempx As Integer, tempy As Integer
+        Dim x As Integer, y As Integer
         Dim tempSpr As SFML.Graphics.Sprite
 
         ' Make sure our texture is up to date.

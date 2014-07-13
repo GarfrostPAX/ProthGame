@@ -193,7 +193,7 @@
 
             ' Set some default settings for our lovely window.
             Dialog.InitialDirectory = var_AppPath + DIR_DATA + DIR_MAPS
-            Dialog.Filter = "Map Info (*.minf)|*.minf"
+            Dialog.Filter = "Map Info (*.mdat)|*.mdat"
             Dialog.Title = "Save Map.."
 
             ' Run the dialog and get a return value.
@@ -206,7 +206,7 @@
             Else
                 ' Save the map!
                 ' But make sure you take off the extension that the dialog adds..
-                SaveMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
+                SaveMap(Dialog.FileName)
             End If
         Else
             SaveMap(var_LastSavedMap)
@@ -224,7 +224,7 @@
 
         ' Set some default settings for our lovely window.
         Dialog.InitialDirectory = var_AppPath + DIR_DATA + DIR_MAPS
-        Dialog.Filter = "Map Info (*.minf)|*.minf"
+        Dialog.Filter = "Map Info (*.mdat)|*.mdat"
         Dialog.Title = "Save Map.."
 
         ' Run the dialog and get a return value.
@@ -237,7 +237,7 @@
         Else
             ' Load the map!
             ' But make sure you take off the extension that the dialog adds..
-            LoadMap(Left(Dialog.FileName, Len(Dialog.FileName) - Len(MAPINF_EXT)))
+            LoadMap(Dialog.FileName)
         End If
 
     End Sub
