@@ -153,31 +153,67 @@
     End Sub
 
     Public Sub LoadMap(ByVal FileName As String)
-        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-        Dim tempStr As String, TempDat() As String
+        Dim Data() As String, l As Integer, x As Integer, y As Integer, DatNum As Integer, tempDat() As String
 
-        ' First let's read the basic map info we need to load it up again.
-        tempstr = System.IO.File.ReadAllText(FileName + MAPINF_EXT)
+        ' Let's finaly save the map info we need to load it up again later.
+        Data = System.IO.File.ReadAllLines(FileName)
 
-        ' Split it up.
-        TempDat = Split(tempStr, ",")
+        ' Let's start adding data to.. Data!
+        Map.Title = Data(0)
+        Map.LayerCount = CByte(Data(1))
+        Map.SizeX = CInt(Data(2))
+        Map.SizeY = CInt(Data(3))
+        Map.AttributesX = CInt(Data(4))
+        Map.AttributesY = CInt(Data(5))
 
-        ' Instead of being fancy and redimming everything, let's just load in a brand new map.
-        ' It's easier. I'm lazy.
-        NewMap(CByte(TempDat(0)), CByte(TempDat(1)), CByte(TempDat(2)))
+        ' Create a new map with this data to get everything dimmed properly.
+        NewMap(Map.LayerCount, Map.SizeX, Map.SizeY)
 
-        ' Now let's read our map data!
-        ' Open a new filestream.
-        Dim fStream As New System.IO.FileStream(FileName + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
+        ' Set our data number to 5 to begin with.
+        DatNum = 5
 
-        ' Dump the Array into the file.
-        Map = bf.Deserialize(fStream)
+        ' Loop through the bordering maps.
+        For l = Directions.Up To Directions.Left
+            DatNum = DatNum + 1
+            Map.BorderingMap(l) = CInt(Data(DatNum))
+        Next
 
-        ' Close the filestream.
-        fStream.Close()
+        ' Moving on to our tiles.
+        For l = 1 To Map.LayerCount
+            DatNum = DatNum + 1
+            tempDat = Split(Data(DatNum), ",")
+            Map.Layers(l).LayerName = tempDat(0)
+            ' Stored as a word, for some reason
+            If tempDat(1).ToLower = "true" Then
+                Map.Layers(l).UnderPlayer = True
+            Else
+                Map.Layers(l).UnderPlayer = False
+            End If
+            For x = 0 To Map.SizeX
+                For y = 0 To Map.SizeY
+                    DatNum = DatNum + 1
+                    tempDat = Split(Data(DatNum), ",")
+                    Map.Layers(l).Tiles(x, y).TileSetID = CInt(tempDat(0))
+                    Map.Layers(l).Tiles(x, y).TileSetX = CInt(tempDat(1))
+                    Map.Layers(l).Tiles(x, y).TileSetY = CInt(tempDat(2))
+                Next
+            Next
+        Next
+
+        ' And our Attributes.
+        For x = 0 To Map.AttributesX
+            For y = 0 To Map.AttributesY
+                DatNum = DatNum + 1
+                tempDat = Split(Data(DatNum), ",")
+                Map.Attributes(x, y).AttributeID = CByte(tempDat(0))
+                Map.Attributes(x, y).Data1 = CInt(tempDat(1))
+                Map.Attributes(x, y).Data2 = CInt(tempDat(2))
+                Map.Attributes(x, y).Data3 = CInt(tempDat(3))
+            Next
+        Next
 
         ' Set the form title.
-        frm_Main.Text = "Prothesys Map Editor [" + FileName + MAPINF_EXT + "]"
+        frm_Main.Text = "Prothesys Map Editor [" + FileName + "]"
 
         ' Tell the renderer that something changed.
         var_MainChanged = True
