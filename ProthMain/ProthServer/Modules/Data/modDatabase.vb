@@ -53,9 +53,7 @@ Module modDatabase
     End Sub
 
     Public Sub LoadMaps()
-        Dim fStream As System.IO.FileStream
-        Dim bf As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-        Dim MapNames() As String, i As Integer, Data() As String, tempStr As String, tempDat() As String, n As Integer
+        Dim MapNames() As String, i As Integer, Data() As String
 
         ' Check if the map list exists.
         If FileExist(DATA_ROOT + DATA_MAPS + "maplist.dat") Then
@@ -74,37 +72,7 @@ Module modDatabase
                 ' Split the string up so we can get our map name.
                 Data = Split(MapNames(i), "=")
 
-                ' First let's read the basic map info we need to load it up again.
-                tempStr = System.IO.File.ReadAllText(var_AppPath + DATA_ROOT + DATA_MAPS + Trim(Data(1)) + MAPINF_EXT)
-
-                ' Split it up.
-                tempDat = Split(tempStr, ",")
-
-                ' Now to make sure we set the right size of the map!
-                obj_Map(i + 1).LayerCount = tempDat(0)
-                obj_Map(i + 1).SizeX = tempDat(1)
-                obj_Map(i + 1).SizeY = tempDat(2)
-                obj_Map(i + 1).AttributesX = (obj_Map(i + 1).SizeX * 2) + 1 ' + 1 to make sure we actually get the full amount since we start at 0.
-                obj_Map(i + 1).AttributesY = (obj_Map(i + 1).SizeY * 2) + 1
-
-                ' Time to start allocating this map's size.
-                ReDim obj_Map(i + 1).Layers(obj_Map(i + 1).LayerCount)
-                ReDim obj_Map(i + 1).Attributes(obj_Map(i + 1).AttributesX, obj_Map(i + 1).AttributesY)
-
-                For n = 1 To obj_Map(i + 1).LayerCount
-                    ReDim obj_Map(i + 1).Layers(n).Tiles(obj_Map(i + 1).SizeX, obj_Map(i + 1).SizeY)
-                Next
-
-                ' Now let's read our map data!
-                ' Open a new filestream.
-                fStream = New System.IO.FileStream(var_AppPath + DATA_ROOT + DATA_MAPS + Trim(Data(1)) + MAPDAT_EXT, System.IO.FileMode.OpenOrCreate)
-
-                ' Dump the Array into the file.
-                bf.AssemblyFormat = Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple
-                obj_Map(i + 1) = bf.Deserialize(fStream)
-
-                ' Close the filestream.
-                fStream.Close()
+                LoadMap(i + 1, Data(1) + MAPDAT_EXT)
             Next
 
         Else
@@ -112,9 +80,76 @@ Module modDatabase
             ' Can't continue without it, so let's close the server.
             WriteToConsole("Could not locate maplist data.")
             WriteToConsole("Press any key to close server.")
-            tempStr = Console.ReadLine
+            Dim tempStr As String = Console.ReadLine
             End
         End If
+    End Sub
+
+    Public Sub LoadMap(ByVal ID As Integer, ByVal FileName As String)
+        Dim Data() As String, l As Integer, x As Integer, y As Integer, DatNum As Integer, tempDat() As String
+
+        ' Let's finaly save the map info we need to load it up again later.
+        Data = System.IO.File.ReadAllLines(var_AppPath + DATA_ROOT + DATA_MAPS + FileName)
+
+        ' Let's start adding data to.. Data!
+        obj_Map(ID).Title = Data(0)
+        obj_Map(ID).LayerCount = CByte(Data(1))
+        obj_Map(ID).SizeX = CInt(Data(2))
+        obj_Map(ID).SizeY = CInt(Data(3))
+        obj_Map(ID).AttributesX = CInt(Data(4))
+        obj_Map(ID).AttributesY = CInt(Data(5))
+
+        ' Make sure all our arrays are ready to go inside this map.
+        ReDim obj_Map(ID).BorderingMap(3)
+        ReDim obj_Map(ID).Layers(obj_Map(ID).LayerCount)
+        ReDim obj_Map(ID).Attributes(obj_Map(ID).AttributesX, obj_Map(ID).AttributesY)
+        For l = 1 To obj_Map(ID).LayerCount
+            ReDim obj_Map(ID).Layers(l).Tiles(obj_Map(ID).SizeX, obj_Map(ID).SizeY)
+        Next
+
+        ' Set our data number to 5 to begin with.
+        DatNum = 5
+
+        ' Loop through the bordering maps.
+        For l = Directions.Up To Directions.Left
+            DatNum = DatNum + 1
+            obj_Map(ID).BorderingMap(l) = CInt(Data(DatNum))
+        Next
+
+        ' Moving on to our tiles.
+        For l = 1 To obj_Map(ID).LayerCount
+            DatNum = DatNum + 1
+            tempDat = Split(Data(DatNum), ",")
+            obj_Map(ID).Layers(l).LayerName = tempDat(0)
+            ' Stored as a word, for some reason
+            If tempDat(1).ToLower = "true" Then
+                obj_Map(ID).Layers(l).UnderPlayer = True
+            Else
+                obj_Map(ID).Layers(l).UnderPlayer = False
+            End If
+            For x = 0 To obj_Map(ID).SizeX
+                For y = 0 To obj_Map(ID).SizeY
+                    DatNum = DatNum + 1
+                    tempDat = Split(Data(DatNum), ",")
+                    obj_Map(ID).Layers(l).Tiles(x, y).TileSetID = CInt(tempDat(0))
+                    obj_Map(ID).Layers(l).Tiles(x, y).TileSetX = CInt(tempDat(1))
+                    obj_Map(ID).Layers(l).Tiles(x, y).TileSetY = CInt(tempDat(2))
+                Next
+            Next
+        Next
+
+        ' And our Attributes.
+        For x = 0 To obj_Map(ID).AttributesX
+            For y = 0 To obj_Map(ID).AttributesY
+                DatNum = DatNum + 1
+                tempDat = Split(Data(DatNum), ",")
+                obj_Map(ID).Attributes(x, y).AttributeID = CByte(tempDat(0))
+                obj_Map(ID).Attributes(x, y).Data1 = CInt(tempDat(1))
+                obj_Map(ID).Attributes(x, y).Data2 = CInt(tempDat(2))
+                obj_Map(ID).Attributes(x, y).Data3 = CInt(tempDat(3))
+            Next
+        Next
+
     End Sub
 
     Public Sub SavePlayer(ByVal ID As Integer)

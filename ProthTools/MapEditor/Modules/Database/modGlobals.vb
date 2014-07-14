@@ -14,8 +14,6 @@ Module modGlobals
     Public Const DIR_GENERIC As String = "\generic\"
     Public Const DIR_MAPS As String = "\maps\"
     Public Const GFX_EXT As String = ".png"
-    Public Const MAPINF_EXT As String = ".minf"
-    Public Const MAPDAT_EXT As String = ".mdat"
 
     ' Map Constants.
     Public Const MAP_DEFAULT_X As Byte = 60

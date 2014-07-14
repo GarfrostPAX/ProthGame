@@ -15,6 +15,8 @@ Module modGraphicsInit
 
     End Sub
 
+    ' TODO: Fix sub below to load tilesets in order from file.
+    ' Current method is inaccurate as tileset names may change and so will the order of them loading.
     Private Sub InitTileSets()
         Dim fileEntries As String() = Directory.GetFiles(var_AppPath + DIR_DATA + DIR_TILESETS)
         Dim FileName As String, Count As Integer

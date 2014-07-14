@@ -13,7 +13,6 @@
     Public Const DATA_PLAYERS As String = "\players\"
     Public Const DATA_MAPS As String = "\maps\"
 
-    Public Const MAPINF_EXT As String = ".minf"
     Public Const MAPDAT_EXT As String = ".mdat"
 
     ' Global Variables
