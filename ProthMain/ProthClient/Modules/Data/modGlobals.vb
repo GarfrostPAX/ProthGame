@@ -13,8 +13,11 @@
     Public obj_Options As OptionsRec
     Public obj_Player(MAX_PLAYERS) As PlayerRec
 
+    ' Render Globals
+    Public obj_GameWindow As SFML.Graphics.RenderWindow
+    Public obj_GameCamera As SFML.Graphics.View
+
     ' Regular global values.
-    Public var_DestroyingGame As Boolean = False
     Public var_LoggingIn As Byte = 0
     Public var_AppPath As String
 

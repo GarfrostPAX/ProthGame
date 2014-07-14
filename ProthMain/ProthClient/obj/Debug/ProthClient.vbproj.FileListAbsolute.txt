@@ -21,3 +21,23 @@ C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthClient\o
 C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthClient\obj\Debug\ProthClient.Resources.resources
 C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthClient\obj\Debug\ProthClient.vbproj.GenerateResource.Cache
 C:\Users\Silvester\Documents\Visual Studio 2013\Projects\Prothesys\ProthClient\bin\Debug\Nading Network Library Client.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\ProthClient.exe.config
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.xml
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\ProthClient.exe
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\ProthClient.pdb
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\ProthClient.xml
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\Nading Network Library Client.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.vbprojResolveAssemblyReference.cache
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.frmMain.resources
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.Resources.resources
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.vbproj.GenerateResource.Cache
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\csfml-audio-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\csfml-graphics-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\csfml-window-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\libsndfile-1.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\openal32.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-audio-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-graphics-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-window-2.dll

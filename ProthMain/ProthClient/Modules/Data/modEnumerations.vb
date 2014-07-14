@@ -35,4 +35,12 @@
         Accepted
     End Enum
 
+    Public Enum GameState
+        Closing
+        Loading
+        Login
+        CharSelect
+        CharCreate
+    End Enum
+
 End Module

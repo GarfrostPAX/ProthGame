@@ -26,7 +26,6 @@
         obj_Options.ServerPort = CInt(xml.<config>.<server>.<port>.Value)
 
         ' Graphical Options
-        obj_Options.Device = CByte(xml.<config>.<graphics>.<device>.Value)
         obj_Options.ResolutionX = CInt(xml.<config>.<graphics>.<resolutionx>.Value)
         obj_Options.ResolutionY = CInt(xml.<config>.<graphics>.<resolutiony>.Value)
         obj_Options.Fullscreen = CByte(xml.<config>.<graphics>.<fullscreen>.Value)

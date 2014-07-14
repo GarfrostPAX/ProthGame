@@ -6,7 +6,6 @@
 	</server>
 
 	<graphics>
-		<device>1</device>
 		<resolutionx>1280</resolutionx>
 		<resolutiony>720</resolutiony>
 		<fullscreen>0</fullscreen>

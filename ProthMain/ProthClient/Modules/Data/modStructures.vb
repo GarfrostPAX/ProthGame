@@ -25,7 +25,6 @@
         Dim ServerPort As Integer
 
         ' Graphical Options
-        Dim Device As Byte
         Dim ResolutionX As Integer
         Dim ResolutionY As Integer
         Dim Fullscreen As Byte

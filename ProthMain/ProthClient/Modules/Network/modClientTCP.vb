@@ -56,7 +56,7 @@
     End Sub
 
     Friend Sub OnDisconnected()
-        If var_DestroyingGame = False Then
+        If GetClientState() <> GameState.Closing Then
             ' Connection has been lost, possibly for unknown reasons.
             MsgBox("Your connection to the server has been lost! Please check your internet connection.", MsgBoxStyle.Information, "Connection Lost")
             DestroyGame()
