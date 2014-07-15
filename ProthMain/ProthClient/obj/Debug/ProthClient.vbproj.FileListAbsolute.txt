@@ -41,3 +41,6 @@ C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\op
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-audio-2.dll
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-graphics-2.dll
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\sfmlnet-window-2.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\Tao.OpenGl.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\Tao.OpenGl.ExtensionLoader.dll
+C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\tguinet.dll

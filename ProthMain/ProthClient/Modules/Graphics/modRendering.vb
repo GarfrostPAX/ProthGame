@@ -10,19 +10,23 @@
         ' But we won't be rendering every window at the same time, only the one in use.
         ' This is why the ClientState subs exist!
 
-        Do While GetClientState() <> GameState.Closing
+        ' Clear our window of old data before continueing.
+        obj_GameWindow.Clear(SFML.Graphics.Color.Black)
 
-            ' Clear our window of old data before continueing.
-            obj_GameWindow.Clear(SFML.Graphics.Color.Black)
+        ' The following part will handle which render sub we'll be using in this loop.
+        ' It's pretty straightforward honestly, we'll push into one of the RenderStates files from here.
+        Select Case GetClientState()
 
+            Case GameState.Loading
+                RenderLoading()
 
-            ' Make sure all events related to the application are actually handled.
-            obj_GameWindow.DispatchEvents()
-            Application.DoEvents()
+            Case GameState.Login
+                RenderLogin()
 
-            ' Render the screen!
-            obj_GameWindow.Display()
-        Loop
+        End Select
+
+        ' Render the screen!
+        obj_GameWindow.Display()
 
     End Sub
 

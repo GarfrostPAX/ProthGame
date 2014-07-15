@@ -70,6 +70,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="tguinet">
+      <HintPath>..\libs\tguinet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -99,7 +102,11 @@
     <Compile Include="Modules\Data\modStructures.vb" />
     <Compile Include="Modules\Graphics\modInitGraphics.vb" />
     <Compile Include="Modules\Graphics\modRendering.vb" />
+    <Compile Include="Modules\Graphics\RenderStates\modLoadingGraphics.vb" />
+    <Compile Include="Modules\Graphics\RenderStates\modLoginGraphics.vb" />
+    <Compile Include="Modules\Logic\ClientStates\modLoginLogic.vb" />
     <Compile Include="Modules\Logic\modClientLogic.vb" />
+    <Compile Include="Modules\Logic\modClientLoop.vb" />
     <Compile Include="Modules\Logic\modGeneral.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />
     <Compile Include="Modules\Network\modClientTCP.vb" />
@@ -143,9 +150,7 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Graphics\RenderStates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -160,6 +165,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="openal32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tao.OpenGl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tao.OpenGl.ExtensionLoader.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

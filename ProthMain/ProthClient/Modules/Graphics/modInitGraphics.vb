@@ -7,9 +7,13 @@ Module modInitGraphics
         ' First initialize the window!
         InitWindow()
 
+        ' Initialize all the data only used in specific gamestates.
+        InitGameStates()
 
-        ' Finaly, let's get to rendering the regular view of the game.
+        ' We can render the screen once now.
+        ' This is to make sure the user knows we're loading stuff.
         RenderGame()
+
     End Sub
   
     Private Sub InitWindow()
@@ -29,7 +33,7 @@ Module modInitGraphics
         End If
 
         ' Add window handlers
-        AddHandler obj_GameWindow.Closed, AddressOf DestroyGame
+        AddHandler obj_GameWindow.Closed, AddressOf DestroyWindow
 
         ' Set up the main game view.
         Dim temprec As New SFML.Graphics.FloatRect(0, 0, obj_Options.ResolutionX, obj_Options.ResolutionY)
@@ -40,6 +44,23 @@ Module modInitGraphics
 
     End Sub
 
+    Private Sub InitGameStates()
+
+        ' Initialize our Loading Window. 
+        InitLoading()
+
+        ' Initialize our Login Window.
+        InitLogin()
+
+    End Sub
    
+    Public Sub DestroyGraphics()
+        ' Destroy our regular graphics.
+
+
+        ' Destroy our gamestates.
+        DestroyLoading()
+        DestroyLogin()
+    End Sub
 
 End Module

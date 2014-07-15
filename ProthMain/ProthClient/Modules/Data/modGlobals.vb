@@ -9,6 +9,9 @@
     Public Const MAX_PLAYERS As Integer = 500
     Public Const MAX_CHARACTERS As Byte = 3
 
+    Public Const DATA_ROOT As String = "\data"
+    Public Const DATA_GUI As String = "\gui\"
+
     ' Turn all the structures into something useful.
     Public obj_Options As OptionsRec
     Public obj_Player(MAX_PLAYERS) As PlayerRec
