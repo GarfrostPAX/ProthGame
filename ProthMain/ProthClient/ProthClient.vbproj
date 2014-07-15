@@ -95,6 +95,7 @@
     <Compile Include="Modules\Data\modStructures.vb" />
     <Compile Include="Modules\Graphics\modInitGraphics.vb" />
     <Compile Include="Modules\Graphics\modRendering.vb" />
+    <Compile Include="Modules\Graphics\RenderStates\modCharCreateGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modCharSelectGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoadingGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoginGraphics.vb" />
@@ -143,9 +144,7 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

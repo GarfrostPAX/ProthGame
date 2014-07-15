@@ -1,0 +1,3 @@
+﻿Module modCharCreateGraphics
+
+End Module

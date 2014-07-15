@@ -66,6 +66,7 @@ Module modInitGraphics
         ' Destroy our gamestates.
         DestroyLoading()
         DestroyLogin()
+        DestroyCharSelect()
     End Sub
 
 End Module

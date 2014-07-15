@@ -42,6 +42,11 @@ Module modLoginLogic
             ' Hide our current window as to not cause any issues.
             ' Not doing this results in the window physically being there, but not visually.
             win_Login.Visible = False
+            win_CharSelect.Visible = True
+
+            ' Clear out our user data.
+            ' We don't want to store the person's password in memory.
+            txt_Password.Text = ""
 
             ' Move on to the character selection screen!
             SetClientState(GameState.CharSelect)

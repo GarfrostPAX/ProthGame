@@ -80,12 +80,14 @@ Module modCharSelectGraphics
         ' Add Handlers
         AddHandler win_CharSelect.ClosedCallback, AddressOf HandleCharSelectCloseButton
         AddHandler btn_logout.LeftMouseClickedCallback, AddressOf HandleCharSelectCloseButton
-
+        AddHandler btn_charselect(1).LeftMouseClickedCallback, AddressOf HandleCharSelectButton1
+        AddHandler btn_charselect(2).LeftMouseClickedCallback, AddressOf HandleCharSelectButton2
+        AddHandler btn_charselect(3).LeftMouseClickedCallback, AddressOf HandleCharSelectButton3
 
     End Sub
 
     Public Sub UpdateCharSelectGraphics()
-        Dim i As Integer, tempval As Integer
+        Dim i As Integer, tempval As Integer, temploc As Integer
 
         ' Cycle through our character slots and handle accordingly.
         For i = 1 To MAX_CHARACTERS
@@ -97,7 +99,10 @@ Module modCharSelectGraphics
 
                 ' Position it to the center.
                 tempval = (100 - lbl_charname(i).Size.X) / 2
-                lbl_charname(i).Position = New Vector2f(lbl_charname(i).Position.X + tempval, lbl_charname(i).Position.Y)
+                If i = 1 Then temploc = 40
+                If i = 2 Then temploc = 180
+                If i = 3 Then temploc = 320
+                lbl_charname(i).Position = New Vector2f(temploc + tempval, lbl_charname(i).Position.Y)
 
                 ' Change the button text to Play!
                 btn_charselect(i).Text = "Play"
@@ -109,7 +114,10 @@ Module modCharSelectGraphics
 
                 ' Position it to the center.
                 tempval = (100 - lbl_charname(i).Size.X) / 2
-                lbl_charname(i).Position = New Vector2f(lbl_charname(i).Position.X + tempval, lbl_charname(i).Position.Y)
+                If i = 1 Then temploc = 40
+                If i = 2 Then temploc = 180
+                If i = 3 Then temploc = 320
+                lbl_charname(i).Position = New Vector2f(temploc + tempval, lbl_charname(i).Position.Y)
             End If
         Next
 
@@ -121,5 +129,24 @@ Module modCharSelectGraphics
         gui_CharSelect.Draw()
 
     End Sub
+
+    Public Sub DestroyCharSelect()
+
+        ' Set all our objects to nothing
+        lbl_charname(1) = Nothing
+        lbl_charname(2) = Nothing
+        lbl_charname(3) = Nothing
+        btn_charselect(1) = Nothing
+        btn_charselect(2) = Nothing
+        btn_charselect(3) = Nothing
+        pic_charface(1) = Nothing
+        pic_charface(2) = Nothing
+        pic_charface(3) = Nothing
+        btn_logout = Nothing
+        win_CharSelect = Nothing
+        gui_CharSelect = Nothing
+
+    End Sub
+
 
 End Module

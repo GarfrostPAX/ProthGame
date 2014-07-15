@@ -35,6 +35,7 @@
         ' Temporary Data
         Dim InGame As Boolean
         Dim LoginStatus As Byte
+        Dim CurChar As Byte
     End Structure
 
     Public Structure OptionsRec

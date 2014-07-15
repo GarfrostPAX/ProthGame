@@ -28,6 +28,7 @@
     Public var_TempName(MAX_CHARACTERS) As String
     Public var_TempJob(MAX_CHARACTERS) As Byte
     Public var_TempLevel(MAX_CHARACTERS) As Byte
+    Public var_TempSlot As Integer
 
     Public Const GFX_EXT As String = ".png"
 
