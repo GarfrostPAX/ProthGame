@@ -15,7 +15,7 @@
         ' Make sure to keep the Packetqueue turned off, we want to use event based processing.
         Try
             ' Set the status label to "connecting"
-            frmMain.lblStatus.Text = "Connecting.."
+            lbl_LoginStatus.Text = "Connecting.."
 
             ' Connect
             obj_Client.Connect(obj_Options.ServerIP, obj_Options.ServerPort.ToString, False)
@@ -44,7 +44,7 @@
         ' We're not doing anything here since the client NEEDS to know which ID they have before they can contact the server for information.
 
         ' Set the label to connected.
-        frmMain.lblStatus.Text = "Connected"
+        lbl_LoginStatus.Text = "Connected"
     End Sub
 
     Friend Sub OnPacketReceived(ByVal PacketType As Byte, ByVal Packet As String)
@@ -95,6 +95,17 @@
 
         ' Send over our data to the server.
         SendData(ClientPackets.RequestLogin, Packet)
+    End Sub
+
+    Public Sub SendRequestLogout()
+        Dim Packet As String
+
+        ' No need for packet data, so we'll send an empty one across.
+        Packet = ""
+
+        ' Send over our data.
+        SendData(ClientPackets.RequestLogout, Packet)
+
     End Sub
 
 End Module

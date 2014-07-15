@@ -34,6 +34,8 @@ Module modInitGraphics
 
         ' Add window handlers
         AddHandler obj_GameWindow.Closed, AddressOf DestroyWindow
+        AddHandler obj_GameWindow.MouseButtonPressed, AddressOf HandleMouseClick
+        AddHandler obj_GameWindow.KeyPressed, AddressOf HandleKeyPressed
 
         ' Set up the main game view.
         Dim temprec As New SFML.Graphics.FloatRect(0, 0, obj_Options.ResolutionX, obj_Options.ResolutionY)
@@ -51,6 +53,9 @@ Module modInitGraphics
 
         ' Initialize our Login Window.
         InitLogin()
+
+        ' Initialize our Character Selection Screen.
+        InitCharSelect()
 
     End Sub
    

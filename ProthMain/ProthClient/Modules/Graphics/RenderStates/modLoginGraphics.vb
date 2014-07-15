@@ -5,13 +5,14 @@ Imports TGUI
 Module modLoginGraphics
 
     Private gui_Login As New Gui(obj_GameWindow)
-    Private win_Login As ChildWindow
+
     Private lbl_Username As Label
     Private lbl_Password As Label
     Private btn_Login As Button
     Private btn_Close As Button
 
     ' The following two are public, we need them elsewhere
+    Public win_Login As ChildWindow
     Public txt_Username As EditBox
     Public txt_Password As EditBox
     Public lbl_LoginStatus As Label
@@ -19,7 +20,7 @@ Module modLoginGraphics
     Public Sub InitLogin()
 
         ' Create and position our main Login Window.
-        win_Login = gui_login.Add(New ChildWindow(var_AppPath + DATA_ROOT + DATA_GUI + "black.conf"))
+        win_Login = gui_Login.Add(New ChildWindow(var_AppPath + DATA_ROOT + DATA_GUI + "black.conf"))
         win_Login.Size = New Vector2f(300, 230)
         win_Login.GlobalFont = New Font("C:\Windows\Fonts\Arial.ttf")
         win_Login.TitleBarHeight = 20

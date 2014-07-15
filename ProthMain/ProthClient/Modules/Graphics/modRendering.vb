@@ -23,6 +23,9 @@
             Case GameState.Login
                 RenderLogin()
 
+            Case GameState.CharSelect
+                RenderCharSelect()
+
         End Select
 
         ' Render the screen!

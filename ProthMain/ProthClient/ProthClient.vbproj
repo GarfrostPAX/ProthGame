@@ -91,23 +91,19 @@
     <Compile Include="Classes\Encryption\clsCrypto.vb" />
     <Compile Include="Modules\Data\modDatabase.vb" />
     <Compile Include="Modules\Data\modEnumerations.vb" />
-    <Compile Include="Forms\frmMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmMain.Designer.vb">
-      <DependentUpon>frmMain.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Modules\Data\modGlobals.vb" />
     <Compile Include="Modules\Data\modStructures.vb" />
     <Compile Include="Modules\Graphics\modInitGraphics.vb" />
     <Compile Include="Modules\Graphics\modRendering.vb" />
+    <Compile Include="Modules\Graphics\RenderStates\modCharSelectGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoadingGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoginGraphics.vb" />
+    <Compile Include="Modules\Logic\ClientStates\modCharSelectLogic.vb" />
     <Compile Include="Modules\Logic\ClientStates\modLoginLogic.vb" />
     <Compile Include="Modules\Logic\modClientLogic.vb" />
     <Compile Include="Modules\Logic\modClientLoop.vb" />
     <Compile Include="Modules\Logic\modGeneral.vb" />
+    <Compile Include="Modules\Logic\modInput.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />
     <Compile Include="Modules\Network\modClientTCP.vb" />
     <Compile Include="Modules\Network\modHandleData.vb" />
@@ -128,9 +124,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\frmMain.resx">
-      <DependentUpon>frmMain.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -150,7 +143,9 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Forms\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

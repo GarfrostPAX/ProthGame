@@ -1,4 +1,6 @@
-﻿Module modLoginLogic
+﻿Imports SFML.Window
+
+Module modLoginLogic
 
     Public Sub HandleLoginButton()
 
@@ -34,7 +36,15 @@
 
         ElseIf var_LoggingIn = LoginStates.Accepted Then
             ' We've been accepted and have receive our required data for our lovely character selection screen!
-            ' Let's set the data to appear on there before continueing on.
+            ' Let's set the data to appear on there before continuing on.
+            UpdateCharSelectGraphics()
+
+            ' Hide our current window as to not cause any issues.
+            ' Not doing this results in the window physically being there, but not visually.
+            win_Login.Visible = False
+
+            ' Move on to the character selection screen!
+            SetClientState(GameState.CharSelect)
         End If
 
     End Sub
@@ -43,6 +53,19 @@
         ' Set our gamestate to closing.
         ' Our loop will handle the rest.
         SetClientState(GameState.Closing)
+    End Sub
+
+    Public Sub HandleLoginKeyPressed(sender As Object, Code As Keyboard.Key, Shift As Boolean, Control As Boolean, Alt As Boolean)
+
+        ' Pick which key is being pressed.
+        Select Case Code
+
+            Case Keyboard.Key.Return
+                HandleLoginButton()
+                Exit Sub
+
+        End Select
+
     End Sub
 
 End Module

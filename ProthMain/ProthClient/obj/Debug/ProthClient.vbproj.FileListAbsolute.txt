@@ -30,7 +30,6 @@ C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\Pr
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\ProthClient.xml
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\Nading Network Library Client.dll
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.vbprojResolveAssemblyReference.cache
-C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.frmMain.resources
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.Resources.resources
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\obj\Debug\ProthClient.vbproj.GenerateResource.Cache
 C:\Users\Silvester\Documents\GitHub\ProthGame\ProthMain\ProthClient\bin\Debug\csfml-audio-2.dll

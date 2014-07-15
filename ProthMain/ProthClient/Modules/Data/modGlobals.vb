@@ -11,6 +11,7 @@
 
     Public Const DATA_ROOT As String = "\data"
     Public Const DATA_GUI As String = "\gui\"
+    Public Const DATA_FACES As String = "\faces\"
 
     ' Turn all the structures into something useful.
     Public obj_Options As OptionsRec

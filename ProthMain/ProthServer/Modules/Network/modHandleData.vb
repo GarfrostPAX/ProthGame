@@ -18,6 +18,11 @@ Module modHandleData
             Case ClientPackets.RequestLogin
                 HandleRequestLogin(Client, Slot, Packet)
                 Exit Sub
+
+            Case ClientPackets.RequestLogout
+                HandleRequestLogout(Client, Slot, Packet)
+                Exit Sub
+
         End Select
     End Sub
 
@@ -66,6 +71,27 @@ Module modHandleData
         ' The client will not receive their final OK until this is set to either verified or rejected.
         ' This sub itself will no longer process information on the user. A seperate thread will constantly be checking for new ''waiting'' clients.
         obj_TempPlayer(Slot).LoginStatus = LoginStatus.Waiting
+
+    End Sub
+
+    Private Sub HandleRequestLogout(ByVal Client As Guid, ByVal Slot As Integer, ByVal Packet As String)
+        Dim tempGUID As Guid
+
+        ' This user wants to log out! Fair enough.
+        ' Before we do anything else we should save their data though.
+        SavePlayer(Slot)
+
+        ' Now we should make a backup of the GUID before clearing out the player.
+        tempGUID = obj_TempPlayer(Slot).ServerGUID
+
+        ' Clear out the player data.
+        ClearPlayer(Slot)
+
+        ' Set our GUID back to where it belongs so we still recognize him/her.
+        obj_TempPlayer(Slot).ServerGUID = tempGUID
+
+        ' Debug Info
+        WriteToConsole("GUID: " + tempGUID.ToString + " has logged out on Slot: " + Slot.ToString)
 
     End Sub
 

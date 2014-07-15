@@ -4,6 +4,7 @@
         RequestVersion
         RequestPING
         RequestLogin
+        RequestLogout
     End Enum
 
     Public Enum ServerPackets As Byte
