@@ -108,4 +108,16 @@
 
     End Sub
 
+    Public Sub SendRequestCreateChar()
+        Dim Packet As String
+
+        ' Add our character data to the packet.
+        Packet = var_TempSlot.ToString + SEP_SYMBOL _
+            + txt_Charname.Text.Trim
+
+        ' Send over our data.
+        SendData(ClientPackets.RequestCreateChar, Packet)
+
+    End Sub
+
 End Module

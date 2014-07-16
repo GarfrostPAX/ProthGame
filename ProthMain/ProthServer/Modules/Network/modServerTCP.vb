@@ -185,4 +185,28 @@
 
     End Sub
 
+    Public Sub SendCreateCharResult(ByVal Slot As Integer)
+        Dim Packet As String
+
+        ' Time to build up our packet. We'll be throwing in basic character data.
+        ' This is going to be used in the character selection screen which is triggered from this
+        ' message.
+        ' TODO: Clean this up, it looks terrible.
+        With obj_Player(Slot)
+            Packet = .Character(1).Name _
+                + SEP_SYMBOL + .Character(1).Job.ToString _
+                + SEP_SYMBOL + .Character(1).Level.ToString _
+                + SEP_SYMBOL + .Character(2).Name _
+                + SEP_SYMBOL + .Character(2).Job.ToString _
+                + SEP_SYMBOL + .Character(2).Level.ToString _
+                + SEP_SYMBOL + .Character(3).Name _
+                + SEP_SYMBOL + .Character(3).Job.ToString _
+                + SEP_SYMBOL + .Character(3).Level.ToString
+        End With
+
+        ' Send data off!
+        SendDataTo(obj_TempPlayer(Slot).ServerGUID, ServerPackets.SendCreateCharResult, Packet)
+
+    End Sub
+
 End Module

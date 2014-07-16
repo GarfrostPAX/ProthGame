@@ -26,6 +26,9 @@
             Case GameState.CharSelect
                 RenderCharSelect()
 
+            Case GameState.CharCreate
+                RenderCharCreate()
+
         End Select
 
         ' Render the screen!

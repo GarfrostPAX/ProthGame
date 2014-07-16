@@ -10,6 +10,12 @@
         Return var_ClientState
     End Function
 
+    Public Sub CloseAllWindows()
+        win_CharCreate.Visible = False
+        win_CharSelect.Visible = False
+        win_Login.Visible = False
+    End Sub
+
     Public Sub HandleLogout()
 
         ' Send our logout packet.
@@ -17,8 +23,9 @@
         SendRequestLogout()
 
         ' Before we set the states back to login, let's set every other menu to invisible and login to visible.
+        CloseAllWindows()
         win_Login.Visible = True
-        win_CharSelect.Visible = False
+
 
         ' Set our label to logged out.
         lbl_LoginStatus.Text = "Logged out"

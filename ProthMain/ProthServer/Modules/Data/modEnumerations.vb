@@ -5,6 +5,7 @@
         RequestPING
         RequestLogin
         RequestLogout
+        RequestCreateChar
     End Enum
 
     Public Enum ServerPackets As Byte
@@ -14,6 +15,7 @@
         SendClientSlot
         SendLoginFailure
         SendLoginOK
+        SendCreateCharResult
     End Enum
 
     Public Enum SystemMessages As Byte

@@ -15,6 +15,10 @@
 
     Public Const MAPDAT_EXT As String = ".mdat"
 
+    Public Const SPAWN_MAP As Integer = 1
+    Public Const SPAWN_X As Integer = 60
+    Public Const SPAWN_Y As Integer = 30
+
     ' Global Variables
     ' Player HighIndex, used to cap off certain loops from looping through endless amounts of empty player slots.
     Public var_PlayerHighIndex As Integer = 0

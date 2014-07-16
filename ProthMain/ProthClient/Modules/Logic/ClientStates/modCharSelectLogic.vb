@@ -30,8 +30,12 @@ Module modCharSelectLogic
             ' This slot is unused! Let's save the slot number and get cracking on character creation.
             var_TempSlot = CharSlot
 
+            ' Remove the name from the data fied.
+            txt_Charname.Text = ""
+
             ' Hide current window and switch the clientstate to character creation.
-            win_CharSelect.Visible = False
+            CloseAllWindows()
+            win_CharCreate.Visible = True
             SetClientState(GameState.CharCreate)
         End If
 

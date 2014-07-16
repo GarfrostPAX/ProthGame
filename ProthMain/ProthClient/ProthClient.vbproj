@@ -99,6 +99,7 @@
     <Compile Include="Modules\Graphics\RenderStates\modCharSelectGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoadingGraphics.vb" />
     <Compile Include="Modules\Graphics\RenderStates\modLoginGraphics.vb" />
+    <Compile Include="Modules\Logic\ClientStates\modCharCreateLogic.vb" />
     <Compile Include="Modules\Logic\ClientStates\modCharSelectLogic.vb" />
     <Compile Include="Modules\Logic\ClientStates\modLoginLogic.vb" />
     <Compile Include="Modules\Logic\modClientLogic.vb" />

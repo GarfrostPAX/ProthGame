@@ -57,6 +57,9 @@ Module modInitGraphics
         ' Initialize our Character Selection Screen.
         InitCharSelect()
 
+        ' And our Character Creation Window.
+        InitCharCreate()
+
     End Sub
    
     Public Sub DestroyGraphics()

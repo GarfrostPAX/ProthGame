@@ -23,6 +23,10 @@ Module modHandleData
                 HandleRequestLogout(Client, Slot, Packet)
                 Exit Sub
 
+            Case ClientPackets.RequestCreateChar
+                HandleRequestCreateChar(Client, Slot, Packet)
+                Exit Sub
+
         End Select
     End Sub
 
@@ -92,6 +96,40 @@ Module modHandleData
 
         ' Debug Info
         WriteToConsole("GUID: " + tempGUID.ToString + " has logged out on Slot: " + Slot.ToString)
+
+    End Sub
+
+    Private Sub HandleRequestCreateChar(Client As Guid, Slot As Integer, Packet As String)
+        Dim PacketContent() As String, tempSlot As Byte
+
+        ' Split up the packet so we can retrieve the data.
+        PacketContent = Split(Packet, SEP_SYMBOL)
+
+        ' Set our data to our temp slots for easy access.
+        tempSlot = CByte(PacketContent(1))
+
+        ' Check if there is already a character in this slot, if so skip the creation and just send the user their data.
+        If obj_Player(Slot).Character(tempSlot).Name.Length < 1 Then
+            ' This slot is empty, this means we can set up our user's data!
+            ' Let's get to setting the basics on this character slot.
+
+            ' Set the user's name.
+            obj_Player(Slot).Character(tempSlot).Name = PacketContent(2)
+
+            ' And basic settings, such as level and first spawn location.
+            obj_Player(Slot).Character(tempSlot).Level = 1
+
+            obj_Player(Slot).Character(tempSlot).Map = SPAWN_MAP
+            obj_Player(Slot).Character(tempSlot).X = SPAWN_X
+            obj_Player(Slot).Character(tempSlot).Y = SPAWN_Y
+            obj_Player(Slot).Character(tempSlot).Direction = Directions.Down
+
+            WriteToConsole("Character: " + PacketContent(2) + " has been created on CharSlot: " + tempSlot.ToString + " on Slot: " + Slot.ToString)
+        End If
+
+        ' Send the user news about his/her characters and the data for them.
+        ' They'll need this packet to return to their selection menu.
+        SendCreateCharResult(Slot)
 
     End Sub
 

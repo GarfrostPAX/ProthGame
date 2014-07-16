@@ -78,6 +78,7 @@
     <Compile Include="Modules\Logic\modGeneral.vb" />
     <Compile Include="Modules\Logic\modMain.vb" />
     <Compile Include="Modules\Logic\modPlayer.vb" />
+    <Compile Include="Modules\Logic\modServerLogic.vb" />
     <Compile Include="Modules\Logic\modServerLoop.vb" />
     <Compile Include="Modules\Network\modHandleData.vb" />
     <Compile Include="Modules\Network\modServerTCP.vb" />

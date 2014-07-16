@@ -41,7 +41,7 @@ Module modLoginLogic
 
             ' Hide our current window as to not cause any issues.
             ' Not doing this results in the window physically being there, but not visually.
-            win_Login.Visible = False
+            CloseAllWindows()
             win_CharSelect.Visible = True
 
             ' Clear out our user data.

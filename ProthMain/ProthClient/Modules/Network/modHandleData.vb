@@ -29,6 +29,10 @@
                 HandleSendLoginOK(Packet)
                 Exit Sub
 
+            Case ServerPackets.SendCreateCharResult
+                HandleSendChreateCharResult(Packet)
+                Exit Sub
+
         End Select
     End Sub
 
@@ -112,6 +116,36 @@
         ' time to move on!
         ' Set the logging in state to accepted.
         var_LoggingIn = LoginStates.Accepted
+
+    End Sub
+
+    Private Sub HandleSendChreateCharResult(Packet As String)
+        Dim PacketContent() As String
+
+        ' This packet contains basic character data. We should parse this.
+        PacketContent = Split(Packet, SEP_SYMBOL)
+
+        ' Throw our data into our temporary arrays.
+        ' TODO: Clean this up, it looks terrible.
+        var_TempName(1) = PacketContent(0)
+        var_TempJob(1) = CByte(PacketContent(1))
+        var_TempLevel(1) = CByte(PacketContent(2))
+        var_TempName(2) = PacketContent(3)
+        var_TempJob(2) = CByte(PacketContent(4))
+        var_TempLevel(2) = CByte(PacketContent(5))
+        var_TempName(3) = PacketContent(6)
+        var_TempJob(3) = CByte(PacketContent(7))
+        var_TempLevel(3) = CByte(PacketContent(8))
+
+        ' Now let's update the charselect window.
+        UpdateCharSelectGraphics()
+
+        ' Set the clientstate over.
+        SetClientState(GameState.CharSelect)
+
+        ' Hide and unhide the right windows.
+        CloseAllWindows()
+        win_CharSelect.Visible = True
 
     End Sub
 
